@@ -11,17 +11,11 @@ export function LoginPage() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
     try {
-      await pb.collection('users').authWithPassword(
-      email, password);
+      console.log('test');
+      await pb.collection('users').authWithPassword(email, password);
       navigate('/main')
     } catch {
       console.log('login failed') // Will change this to setting the state of the input boxes validation
@@ -38,25 +32,26 @@ export function LoginPage() {
         </div>
         <p className="font-extrabold text-[18px]">: 나만의 진로 설계 가이드</p>
       </div>
-      <form action="/main" className="flex flex-col px-7 w-full items-center justify-center gap-4" onSubmit={handleSubmit}>
+      <form 
+        className="flex flex-col px-7 w-full items-center justify-center gap-4" 
+        onSubmit={handleSubmit}>
         <label htmlFor="email" className="sr-only">이메일</label>
         <input 
           type="email" 
           id="email" 
           placeholder="이메일" 
           className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black"
-          onChange={handleEmailChange}/>
+          onChange={(e) => {setEmail(e.target.value)}}/>
         <label htmlFor="password" className="sr-only">비밀번호</label>
         <input 
           type="password" 
           id="password" 
           placeholder="비밀번호" 
           className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black"
-          onChange={handlePasswordChange}/>
+          onChange={(e) => {setPassword(e.target.value)}}/>
         <button 
-          className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg" 
-          type="button"
-          onClick={handleSubmit}>로그인</button>
+          className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg"
+          >로그인</button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">
           <FindInfo />
         </div>

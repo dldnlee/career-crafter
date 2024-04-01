@@ -28,7 +28,6 @@ export function SignupPage() {
     <div className="w-full h-full flex flex-col justify-center items-center gap-10">
       <h1 className="text-2xl">회원가입</h1>
       <form 
-        action="/main" 
         className="flex flex-col px-7 w-full items-center justify-center gap-6"
         onSubmit={handleSubmit}>
         <label htmlFor="name" className="flex items-start justify-center flex-col w-full">이름
