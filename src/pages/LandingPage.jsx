@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import sample_char from 'src/assets/sample_char.png';
-
+import {motion} from 'framer-motion'
 
 
 
@@ -21,7 +20,18 @@ export function LandingPage() {
   return (
     <div className='w-full h-full flex flex-col items-center justify-center '>
       <h1 className='text-3xl font-extrabold mb-[50px]'>Career Crafter</h1>
-      <img src={sample_char} alt="" className='w-[140px]'/>
+      <motion.div 
+        animate={{
+          scale: [1, 1.2, 1.2, 1, 1],
+          rotate: [0, 0, 270, 270, 0],
+          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+        transition={{
+          ease: "linear",
+          duration: 1.5,
+          repeat: Infinity
+        }}
+        className='bg-black w-[120px] h-[120px]'></motion.div>
     </div>
   )
 }

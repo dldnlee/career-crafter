@@ -1,13 +1,12 @@
-/* eslint-disable react/prop-types */
 import Header from "src/components/Header"
 import horse3d from "src/assets/horse3d.png"
 import plus_square from "src/assets/plus_square.png"
-import { Link } from "react-router-dom"
 import lion from 'src/assets/lion.png'
 import scorpion from 'src/assets/scorpion.png'
 import goat from 'src/assets/goat.png'
 import { useEffect } from "react"
 import { useState } from "react"
+import {motion} from 'framer-motion';
 
 function WorkPref() {
   return (
@@ -44,11 +43,14 @@ function KeywordPref() {
 }
 
 function NPC({name, image}) {
-  return (  
-    <Link to="/access" className="w-[120px] flex flex-col items-center gap-2 bg-white shadow-lg hover:bg-gray-200 p-2 pt-4 rounded-2xl">
+  return (
+    <motion.button 
+      whileHover={{scale:1.1}}
+      whileTap={{scale:0.9}}
+      className="w-[120px] flex flex-col items-center gap-2 bg-white shadow-lg  p-2 pt-4 rounded-2xl">
       <img src={image} alt="" className="w-[50px]"/>
       <p>{name}</p>
-    </Link>
+    </motion.button>
   )
 }
 
@@ -61,7 +63,6 @@ function NPCContainer() {
         <NPC name='취향이' image={scorpion} />
         <NPC name='관심이' image={goat} />
       </div>
-
     </div>
   )
 }
@@ -79,7 +80,8 @@ export function MainPage() {
   return (
     <div>
       <Header />
-      <div className="w-full py-10 flex flex-col items-center justify-center gap-4">
+      <div
+        className="w-full py-10 flex flex-col items-center justify-center gap-4">
         <h1 className="text-xl font-semibold">안녕하세요 {user?.name}님,</h1>
         <p className="mb-6 px-5 py-3 shadow-lg rounded-lg max-w-2/3">오늘은 어떤 내용을 작성 해볼까요?</p>
         <img src={horse3d} alt="" className="w-1/2" />
