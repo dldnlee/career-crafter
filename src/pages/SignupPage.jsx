@@ -29,7 +29,7 @@ export function SignupPage() {
       <h1 className="text-2xl">회원가입</h1>
       <form 
         action="/main" 
-        className="flex flex-col px-7 w-full items-center justify-center gap-4"
+        className="flex flex-col px-7 w-full items-center justify-center gap-6"
         onSubmit={handleSubmit}>
         <label htmlFor="name" className="flex items-start justify-center flex-col w-full">이름
           <input 
@@ -68,7 +68,7 @@ export function SignupPage() {
         </label>
 
         <button 
-          className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg" 
+          className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg mt-4" 
           >회원가입</button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">
         </div>

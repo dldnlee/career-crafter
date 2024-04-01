@@ -9,9 +9,13 @@ import sample_char from 'src/assets/sample_char.png';
 export function LandingPage() {
   const navigate = useNavigate();
   useEffect(() => {
-    
+
     setTimeout(() => {
-      navigate('/access', 2);
+      if(localStorage.getItem('pocketbase_auth')){
+        navigate('/main')
+      } else {
+        navigate('/access')
+      }
     }, 2000)
   }, [])
   
