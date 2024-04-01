@@ -30,9 +30,15 @@ export function LoginPage() {
   
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
-      <form action="/main" className="flex flex-col px-7 w-full items-center justify-center gap-4">
-        <h1 className="text-2xl">로그인</h1>
+    <div className="flex flex-col gap-10 items-center justify-center w-full h-full">
+      <div className="flex flex-col gap-2 w-fit justify-center items-start">
+        <div className="text-[54px] font-extrabold flex flex-col leading-none">
+          <p>Career</p>
+          <p>Crafter</p>
+        </div>
+        <p className="font-extrabold text-[18px]">: 나만의 진로 설계 가이드</p>
+      </div>
+      <form action="/main" className="flex flex-col px-7 w-full items-center justify-center gap-4" onSubmit={handleSubmit}>
         <label htmlFor="email" className="sr-only">이메일</label>
         <input 
           type="email" 
@@ -48,7 +54,7 @@ export function LoginPage() {
           className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black"
           onChange={handlePasswordChange}/>
         <button 
-          className="w-full bg-gray-700 text-white py-4 px-2 rounded-lg" 
+          className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg" 
           type="button"
           onClick={handleSubmit}>로그인</button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">
