@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { FindInfo } from "../components"
 
 export function AccessPage() {
   return (
@@ -11,12 +12,10 @@ export function AccessPage() {
         <p className="font-extrabold text-[18px]">: 나만의 진로 설계 가이드</p>
       </div>
       <div className="flex flex-col w-auto gap-[6px]">
-        <Link to="/login" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white">Log In</Link>
-        <Link to="/login" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white">Sign Up</Link>
+        <Link to="/login" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white rounded-md">Log In</Link>
+        <Link to="/signup" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white rounded-md">Sign Up</Link>
         <div className="flex w-full text-[13px] justify-between items-center px-2">
-          <Link className="p-3">비밀번호 찾기</Link>
-          <hr className="h-[20px] w-[1px] bg-black"/>
-          <Link className="p-3">아이디 찾기</Link>
+          <FindInfo />
         </div>
       </div>
     </div>

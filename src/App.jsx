@@ -1,5 +1,11 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { ErrorPage, RootLayout, LandingPage, MainPage, LoginPage } from './pages'
+import { 
+  ErrorPage, 
+  RootLayout, 
+  LandingPage, 
+  MainPage, 
+  LoginPage, 
+  SignupPage } from './pages'
 import './index.css'
 import { AccessPage } from './pages/AccessPage'
 
@@ -11,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <MainPage/>
+        element: <LandingPage/>
       },
       {
         path: 'main',
@@ -30,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: 'login',
     element: <LoginPage/>
+  },
+  {
+    path: 'signup',
+    element: <SignupPage/>
   }
 ])
 
