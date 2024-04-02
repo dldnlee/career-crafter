@@ -1,12 +1,13 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import './index.css'
 import { 
   ErrorPage, 
   RootLayout, 
   LandingPage, 
   MainPage, 
   LoginPage, 
-  SignupPage } from './pages'
-import './index.css'
+  SignupPage,
+  SettingsPage } from './pages'
 import { AccessPage } from './pages/AccessPage'
 
 const router = createBrowserRouter([
@@ -21,7 +22,13 @@ const router = createBrowserRouter([
       },
       {
         path: 'main',
-        element: <MainPage/> 
+        element: <MainPage/>,
+        children: [
+          {
+            path: 'settings',
+            element: <SettingsPage/>
+          }
+        ]  
       }
     ]
   },

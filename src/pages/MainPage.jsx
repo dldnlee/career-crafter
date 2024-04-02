@@ -4,9 +4,11 @@ import plus_square from "src/assets/plus_square.png"
 import lion from 'src/assets/lion.png'
 import scorpion from 'src/assets/scorpion.png'
 import goat from 'src/assets/goat.png'
-import { useEffect } from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {motion} from 'framer-motion';
+import { Outlet, useNavigate } from "react-router-dom"
+import {useSetAtom} from 'jotai';
+import { settings } from "src/data/stores"
 
 function WorkPref() {
   return (
@@ -69,6 +71,7 @@ function NPCContainer() {
 
 export function MainPage() {
   const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(localStorage.getItem('pocketbase_auth')) {
@@ -77,9 +80,10 @@ export function MainPage() {
     }
   }, [])
 
+
   return (
     <div>
-      <Header />
+      <Header clickHandler2={() => navigate('settings')}/>
       <div
         className="w-full py-10 flex flex-col items-center justify-center gap-4">
         <h1 className="text-xl font-semibold">안녕하세요 {user?.name}님,</h1>
@@ -87,8 +91,9 @@ export function MainPage() {
         <img src={horse3d} alt="" className="w-1/2" />
         <NPCContainer/>
       </div>
-      <WorkPref />
-      <KeywordPref />
+      <WorkPref/>
+      <KeywordPref/>
+      <Outlet/>
     </div>
   )
 }

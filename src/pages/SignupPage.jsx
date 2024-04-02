@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { pb } from "../data/pb";
+import { useNavigate } from "react-router-dom";
 
 export function SignupPage() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirm, setConfirm] = useState();
+  const navigate = useNavigate();
 
   async function handleSubmit() {
 
@@ -18,6 +20,8 @@ export function SignupPage() {
 
     try {
       await pb.collection('users').create(data);
+      await pb.collection('users').authWithPassword('dldnlee@gmail.com', 'sungeun8877');
+      navigate('/');
     } catch {
       console.log('Please check again')
     }
@@ -66,10 +70,15 @@ export function SignupPage() {
             onChange={(e) => {setConfirm(e.target.value)}}/>
         </label>
 
-        <button 
-          className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg mt-4" 
-          >회원가입</button>
-        <div className="flex w-full text-[13px] justify-between items-center px-12">
+        <div className="flex flex-col w-full mt-4 gap-2">
+          <button
+            className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg"
+            >가입하기</button>
+          <button
+            type="button"
+            onClick={() => {navigate(-1)}}
+            className="w-full bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black py-4 px-2 rounded-lg"
+          >이전</button>
         </div>
       </form>
     </div>
