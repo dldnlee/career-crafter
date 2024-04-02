@@ -53,7 +53,7 @@ export function LoginPage() {
           className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg"
           >로그인</button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">
-          <FindInfo />
+          <FindInfo textTwo="회워가입" routeTwo="/signup"/>
         </div>
       </form>
     </div>

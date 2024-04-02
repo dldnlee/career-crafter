@@ -7,8 +7,6 @@ import goat from 'src/assets/goat.png'
 import { useEffect, useState } from "react"
 import {motion} from 'framer-motion';
 import { Outlet, useNavigate } from "react-router-dom"
-import {useSetAtom} from 'jotai';
-import { settings } from "src/data/stores"
 
 function WorkPref() {
   return (
