@@ -21,8 +21,12 @@ export function AccessPage() {
           className="font-extrabold text-[18px]">: 나만의 진로 설계 가이드</motion.p>
       </div>
       <div className="flex flex-col w-auto gap-[6px]">
-        <Link to="/login" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white rounded-md">Log In</Link>
-        <Link to="/signup" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white rounded-md">Sign Up</Link>
+        <Link to="/login" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white rounded-md">
+          로그인
+        </Link>
+        <Link to="/signup" className="w-[260px] py-3 text-center border border-black hover:bg-black hover:text-white rounded-md">
+          회원가입
+        </Link>
         <div className="flex w-full text-[13px] justify-between items-center px-2">
           <FindInfo />
         </div>

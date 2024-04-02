@@ -4,11 +4,13 @@ import { pb } from "../data/pb";
 import { useNavigate } from "react-router-dom";
 
 
-
+const validInputStyle = "focus:outline-black";
+const invalidInputStyle = "border-red-500 focus:outline-red-500"
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [valid, setValid] = useState(true);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -16,8 +18,9 @@ export function LoginPage() {
     try {
       console.log('test');
       await pb.collection('users').authWithPassword(email, password);
-      navigate('/main')
+      navigate('/')
     } catch {
+      setValid(false);
       console.log('login failed') // Will change this to setting the state of the input boxes validation
     }
   }
@@ -35,23 +38,27 @@ export function LoginPage() {
       <form 
         className="flex flex-col px-7 w-full items-center justify-center gap-4" 
         onSubmit={handleSubmit}>
-        <label htmlFor="email" className="sr-only">이메일</label>
-        <input 
-          type="email" 
-          id="email" 
-          placeholder="이메일" 
-          className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black"
-          onChange={(e) => {setEmail(e.target.value)}}/>
-        <label htmlFor="password" className="sr-only">비밀번호</label>
-        <input 
-          type="password" 
-          id="password" 
-          placeholder="비밀번호" 
-          className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black"
-          onChange={(e) => {setPassword(e.target.value)}}/>
+        <label htmlFor="email" className="w-full">이메일
+          <input 
+            type="email" 
+            id="email" 
+            placeholder="이메일" 
+            className={`p-4 bg-gray-100 rounded-lg w-full ${valid ? validInputStyle : invalidInputStyle}`}
+            onChange={(e) => {setEmail(e.target.value); valid===false ? setValid(true) : null}}/>
+        </label>
+        <label htmlFor="password" className="w-full">비밀번호
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="비밀번호" 
+            className={`p-4 bg-gray-100 rounded-lg w-full ${valid ? validInputStyle : invalidInputStyle}`}
+            onChange={(e) => {setPassword(e.target.value); valid===false ? setValid(true) : null}}/>
+          <span className={`${valid ? 'hidden' : 'block'} text-red-500`}>이메일 또는 비밀번호가 잘못 되었습니다</span>
+        </label>
         <button 
           className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg"
-          >로그인</button>
+          >로그인
+        </button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">
           <FindInfo textTwo="회워가입" routeTwo="/signup"/>
         </div>
