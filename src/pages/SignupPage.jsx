@@ -27,7 +27,6 @@ export function SignupPage() {
     }
   }
 
-
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-10">
       <h1 className="text-2xl">회원가입</h1>

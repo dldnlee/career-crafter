@@ -5,8 +5,43 @@ import lion from 'src/assets/lion.png'
 import scorpion from 'src/assets/scorpion.png'
 import goat from 'src/assets/goat.png'
 import { useEffect, useState } from "react"
-import {motion} from 'framer-motion';
+import {motion} from 'framer-motion'
 import { Outlet, useNavigate } from "react-router-dom"
+import { Radar } from "react-chartjs-2"
+import { Chart as ChartJS} from 'chart.js/auto'
+
+const data = {
+  labels: [
+    'Eating',
+    'Drinking',
+    'Sleeping',
+    'Designing',
+    'Coding',
+    'Cycling',
+    'Running'
+  ],
+  datasets: [{
+    label: '나의 이전 직무 상황',
+    data: [65, 59, 90, 81, 56, 55, 40],
+    fill: true,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  }, {
+    label: '나의 현재 직무 상황',
+    data: [28, 48, 40, 19, 96, 27, 100],
+    fill: true,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgb(54, 162, 235)',
+    pointBackgroundColor: 'rgb(54, 162, 235)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(54, 162, 235)'
+  }]
+};
 
 function WorkPref() {
   return (
@@ -19,7 +54,7 @@ function WorkPref() {
         </button>
       </div>
       <div className="w-full py-10 flex justify-center items-center border-t border-b border-gray-400">
-        <div className="w-[200px] h-[200px] bg-gray-300"></div>
+        <Radar data={data} />
       </div>
     </div>
   )

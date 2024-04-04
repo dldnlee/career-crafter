@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const validInputStyle = "focus:outline-black";
-const invalidInputStyle = "border-red-500 focus:outline-red-500"
+const invalidInputStyle = "border-red-500 focus:outline-red-500";
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -35,7 +35,7 @@ export function LoginPage() {
         </div>
         <p className="font-extrabold text-[18px]">: 나만의 진로 설계 가이드</p>
       </div>
-      <form 
+      <form
         className="flex flex-col px-7 w-full items-center justify-center gap-4" 
         onSubmit={handleSubmit}>
         <label htmlFor="email" className="w-full">이메일
