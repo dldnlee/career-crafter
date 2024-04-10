@@ -1,7 +1,8 @@
 import { FindInfo } from "src/components"
 import { useState } from "react";
 import { pb } from "../data/pb";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import close from "src/assets/close.svg";
 
 
 const validInputStyle = "focus:outline-black";
@@ -28,6 +29,11 @@ export function LoginPage() {
 
   return (
     <div className="flex flex-col gap-10 items-center justify-center w-full h-full">
+      <div className="fixed top-0 left-0 w-full flex justify-end p-4">
+        <Link to='/access' replace className="w-[30px]">
+          <img src={close} alt="닫기" className="w-full"/>
+        </Link>
+      </div>
       <div className="flex flex-col gap-2 w-fit justify-center items-start">
         <div className="text-[54px] font-extrabold flex flex-col leading-none">
           <p>Career</p>

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 
 
@@ -15,6 +16,8 @@ async function GetQuestions() {
 
 
 export function SurveyPage() {
+  const {category} = useParams();
+
   useEffect(() => {
     console.log('this is the survey page')
   }, [])
@@ -22,7 +25,7 @@ export function SurveyPage() {
 
   return (
     <div>
-      Hello this is the survey page
+      Hello this is the {category} page
     </div>
   )
 }
