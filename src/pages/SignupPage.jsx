@@ -9,7 +9,8 @@ export function SignupPage() {
   const [confirm, setConfirm] = useState();
   const navigate = useNavigate();
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
 
     const data = {
       "name" : name,
@@ -20,10 +21,11 @@ export function SignupPage() {
 
     try {
       await pb.collection('users').create(data);
-      await pb.collection('users').authWithPassword('dldnlee@gmail.com', 'sungeun8877');
+      await pb.collection('users').authWithPassword(email, password);
       navigate('/');
-    } catch {
-      console.log('Please check again')
+    } catch(error) {
+      console.log(error);
+      console.log('Please check again');
     }
   }
 
