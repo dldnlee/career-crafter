@@ -96,7 +96,7 @@ function NPCContainer() {
   const navigate = useNavigate();
 
   function redirect(name) {
-    navigate(`/survey/${name}`);
+    navigate(`survey/${name}`);
   }
 
   return(
@@ -124,7 +124,7 @@ export function MainPage() {
 
 
   return (
-    <div>
+    <div className="bg-white relative w-full h-full overflow-auto">
       <Header clickHandler2={() => navigate('settings')}/>
       <div
         className="w-full py-10 flex flex-col items-center justify-center gap-4">

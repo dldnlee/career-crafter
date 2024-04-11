@@ -28,14 +28,14 @@ const router = createBrowserRouter([
           {
             path: 'settings',
             element: <SettingsPage/>
+          },
+          {
+            path: 'survey/:category',
+            element: <SurveyPage />
           }
         ]  
       }
     ]
-  },
-  {
-    path: 'survey/:category',
-    element: <SurveyPage />
   },
   {
     path: 'access',
