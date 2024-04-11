@@ -28,7 +28,7 @@ export function LoginPage() {
   
 
   return (
-    <div className="flex flex-col gap-10 items-center justify-center w-full h-full">
+    <div className="flex flex-col gap-10 items-center justify-center w-full h-full bg-white">
       <div className="sticky top-0 left-0 w-full flex justify-end p-4">
         <Link to='/access' replace className="w-[30px]">
           <img src={close} alt="닫기" className="w-full"/>

@@ -18,7 +18,7 @@ export function LandingPage() {
   }, [])
   
   return (
-    <div className='w-full h-full flex flex-col items-center justify-center '>
+    <div className='w-full h-full flex flex-col items-center justify-center bg-white'>
       <h1 className='text-3xl font-extrabold mb-[50px]'>Career Crafter</h1>
       <motion.div 
         animate={{

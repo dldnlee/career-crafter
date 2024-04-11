@@ -5,27 +5,15 @@ import lion from 'src/assets/lion.png';
 import goat from 'src/assets/goat.png';
 import close from 'src/assets/close.svg';
 
-
-
 const npcMapping = {
   '스펙이' : lion,
   '취향이' : scorpion,
   '관심이' : goat 
 }
 
-
-async function GetQuestions() {
-  try {
-    fetch('https://www.career.go.kr/inspct/openapi/test/questions?apikey=[인증키]&q=[주요능력효능검사]') // 인증키 미삽입
-  } catch {
-    console.log('failed to get data');
-  }
-}
-
-
 export function SurveyPage() {
   const {category} = useParams();
-  const [answer, setAnswer] = useState(0);
+  const [answer, setAnswer] = useState(3);
 
   useEffect(() => {
     console.log('this is the survey page')
@@ -58,7 +46,7 @@ export function SurveyPage() {
               id='answer'
               min='1'
               max='5'
-              value={3}
+              value={answer}
               className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               onChange={(e) => {setAnswer(e.target.value)}}/>
           </div>

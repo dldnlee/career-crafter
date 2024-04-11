@@ -4,7 +4,7 @@ import {motion} from "framer-motion"
 
 export function AccessPage() {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full gap-[60px]">
+    <div className="flex flex-col items-center justify-center w-full h-full gap-[60px] bg-white">
       <div className="flex flex-col gap-4 w-fit justify-center items-start">
         <motion.div
           initial={{x:-100}}
