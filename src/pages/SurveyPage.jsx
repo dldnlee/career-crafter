@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import {motion} from 'framer-motion';
 import scorpion from 'src/assets/scorpion.png';
 import lion from 'src/assets/lion.png';
 import goat from 'src/assets/goat.png';
@@ -29,11 +30,15 @@ export function SurveyPage() {
           </Link>
         </div>
         <div className="w-full h-full flex flex-col justify-center items-center gap-10">
-          <div className="flex flex-col justify-center items-center">
+          <motion.div
+            initial={{opacity:0, y:50}}
+            animate={{opacity:1, y:0}}
+            transition={{ ease: "easeOut", duration: 1 }}
+            className="flex flex-col justify-center items-center">
             <h1 className="text-3xl font-bold">{category}</h1>
             <img src={npcMapping[category]} alt={category} className="w-2/3" />
             <h1 className="text-l p-3 shadow-md rounded-lg text-center">오늘의 기분은 어떤가요?</h1>
-          </div>
+          </motion.div>
           <div className="flex flex-col w-full px-10 gap-5">
             <ul className="w-full flex justify-between">
               <li>매우 낮음</li>
@@ -51,7 +56,7 @@ export function SurveyPage() {
               onChange={(e) => {setAnswer(e.target.value)}}/>
           </div>
           <div className="flex w-full gap-4">
-            <button className="w-full p-4 bg-white shadow-lg border rounded-xl hover:bg-black hover:text-white">이전</button>
+            <button className="w-full p-4 bg-white shadow-lg border rounded-xl hover:bg-gray-400 hover:text-white">이전</button>
             <button className="w-full p-4 bg-black text-white shadow-md rounded-xl hover:bg-white hover:text-black">다음</button>
           </div>
         </div>
