@@ -37,7 +37,11 @@ export function SurveyPage() {
             className="flex flex-col justify-center items-center">
             <h1 className="text-3xl font-bold">{category}</h1>
             <img src={npcMapping[category]} alt={category} className="w-2/3" />
-            <h1 className="text-l p-3 shadow-md rounded-lg text-center">오늘의 기분은 어떤가요?</h1>
+            <motion.h1 
+              initial={{opacity:0, y:50}}
+              animate={{opacity:1, y:0}}
+              transition={{ ease: "easeOut", duration: 1 }}
+              className="text-l p-3 shadow-md rounded-lg text-center">오늘의 기분은 어떤가요?</motion.h1>
           </motion.div>
           <div className="flex flex-col w-full px-10 gap-5">
             <ul className="w-full flex justify-between">

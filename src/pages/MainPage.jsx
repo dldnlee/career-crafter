@@ -86,7 +86,7 @@ function NPC({name, image, clickHandler}) {
       type='button'
       className="w-[120px] flex flex-col items-center gap-2 bg-white shadow-lg  p-2 pt-4 rounded-2xl"
       onClick={clickHandler}>
-        <img src={image} alt="" className="w-[50px]"/>
+        <img src={image} alt="" className="w-[40px]"/>
         <p>{name}</p>
     </motion.button>
   )
@@ -111,6 +111,78 @@ function NPCContainer() {
   )
 }
 
+
+function HeaderTest({user}) {
+  
+  return (
+    <div className="w-full flex flex-col justify-start px-5">
+      <h1 className="text-3xl font-bold">Hello, {user?.name}</h1>
+      <p>오늘은 어떤 내용을 적을까요?</p>
+    </div>
+  )
+}
+
+const categories = [
+  {
+    category: '오늘의 질문',
+    function: () => {}
+  },
+  {
+    category: 'NPC질문',
+    function: () => {}
+  },
+  {
+    category: '직무/회사',
+    function: () => {}
+  },
+  {
+    category: '관심 키워드',
+    function: () => {}
+  },
+  {
+    category: '키워드 분석',
+    function: () => {}
+  },
+
+]
+
+function Categories() {
+  return (
+    <ul className="flex overflow-auto w-full gap-3 py-2 px-4 text-nowrap">
+      {
+        categories.map((item, idx) => {
+          return (
+            <li key={idx} className="p-3 shadow-md rounded-lg bg-[#303030]">
+              <button className="w-full h-full" onClick={item.function}>{item.category}</button></li>
+          )
+        })
+      }
+    </ul>
+  )
+}
+
+function MainCard() {
+  return (
+    <div className="w-full h-full text-black font-bold text-xl rounded-xl relative bg-[#e0f2ff] flex justify-center items-center">
+        <div className="flex absolute top-0 left-0 w-full justify-between p-5">
+          <h1>오늘의 질문</h1>
+          <button>
+            <img src={plus_square} alt="" />
+          </button>
+        </div>
+        <img src={horse3d} alt='Main Character' />
+      </div>
+  )
+}
+
+function CardContainer() {
+  return (
+    <div className="py-4 px-10 w-full h-[450px]">
+      <MainCard />
+    </div>
+  )
+}
+
 export function MainPage() {
   const [user, setUser] = useState();
   const navigate = useNavigate();
@@ -124,17 +196,17 @@ export function MainPage() {
 
 
   return (
-    <div className="bg-white relative w-full h-full overflow-auto">
+    <div className="bg-black text-white relative w-full h-full overflow-auto">
       <Header clickHandler2={() => navigate('settings')}/>
       <div
-        className="w-full py-10 flex flex-col items-center justify-center gap-4">
-        <h1 className="text-xl font-semibold">안녕하세요 {user?.name}님,</h1>
-        <p className="mb-6 px-5 py-3 shadow-lg rounded-lg max-w-2/3">오늘은 어떤 내용을 작성 해볼까요?</p>
-        <img src={horse3d} alt="" className="w-1/2" />
-        <NPCContainer/>
+        className="w-full py-5 flex flex-col items-center justify-center gap-4">
+        <HeaderTest user={user}/>
+        <Categories />
+        <CardContainer />
+        {/* <NPCContainer/> */}
       </div>
-      <WorkPref/>
-      <KeywordPref/>
+      {/* <WorkPref/>
+      <KeywordPref/> */}
       <Outlet/>
     </div>
   )
