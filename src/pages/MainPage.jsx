@@ -111,23 +111,23 @@ function Categories() {
 
 function MainCard() {
   return (
-    <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-[#e0f2ff] flex justify-center items-center">
+    <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#e0f2ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>오늘의 질문</h1>
         <button>
           <img src={plus_square} alt="" />
         </button>
       </div>
-      <img src={horse3d} alt='Main Character' />
+      <img src={horse3d} alt='Main Character'/>
     </Link>
   )
 }
 
 function GraphCard() {
   return (
-      <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-[#e0f2ff] flex justify-center items-center">
+      <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
-          <h1>오늘의 질문</h1>
+          <h1>직무/회사</h1>
           <button>
             <img src={plus_square} alt="" />
           </button>
@@ -138,9 +138,8 @@ function GraphCard() {
 }
 
 function NPCCard() {
-
   return (
-    <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-[#e0f2ff] flex justify-center items-center">
+    <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
         <img src={plus_square} alt="" />
@@ -160,7 +159,7 @@ function CardContainer() {
   return (
     <Swiper 
       modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={10}
+      spaceBetween={5}
       slidesPerView={1.2}
       effect="fade"
       centeredSlides={true}

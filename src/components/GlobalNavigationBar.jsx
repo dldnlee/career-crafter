@@ -6,7 +6,7 @@ export function GlobalNavigationBar() {
       <div className="bg-black rounded-full px-5 py-2 flex justify-between items-center">
         <Link to="/main" >홈</Link>
         <p className="px-4 text-gray-400">|</p>
-        <Link to="/landing" >Community</Link>
+        <Link to="/community" >Community</Link>
       </div>
     </div>
   )

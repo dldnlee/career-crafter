@@ -8,7 +8,8 @@ import {
   LoginPage, 
   SignupPage,
   SettingsPage,
-  SurveyPage } from './pages'
+  SurveyPage,
+  CommunityPage } from './pages'
 import { AccessPage } from './pages/AccessPage'
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             element: <SurveyPage />
           }
         ]  
+      },
+      {
+        path: 'community',
+        element: <CommunityPage />
       }
     ]
   },
