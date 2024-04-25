@@ -44,22 +44,22 @@ const data = {
   }]
 };
 
-// function WorkPref() {
-//   return (
-//     <div className="py-5 px-10 bg-gray-50">
-//       <div className="flex justify-between pb-4 items-center">
-//         <button className="none w-[25px] h-[25px]"></button>
-//         <h2 className="text-2xl font-semibold">나의 직무 성향</h2>
-//         <button className="w-[25px] h-[25px] flex justify-center items-center">
-//           <img src={plus_square} alt="" className="w-full"/>
-//         </button>
-//       </div>
-//       <div className="w-full py-10 flex justify-center items-center border-t border-b border-gray-400">
-//         <Radar data={data} />
-//       </div>
-//     </div>
-//   )
-// }
+function WorkPref() {
+  return (
+    <div className="py-5 px-10 bg-gray-50">
+      <div className="flex justify-between pb-4 items-center">
+        <button className="none w-[25px] h-[25px]"></button>
+        <h2 className="text-2xl font-semibold">나의 직무 성향</h2>
+        <button className="w-[25px] h-[25px] flex justify-center items-center">
+          <img src={plus_square} alt="" className="w-full"/>
+        </button>
+      </div>
+      <div className="w-full py-10 flex justify-center items-center border-t border-b border-gray-400">
+        <Radar data={data} />
+      </div>
+    </div>
+  )
+}
 
 // function KeywordPref() {
 //   return (
@@ -147,13 +147,17 @@ const categories = [
 ]
 
 function Categories() {
+  const [selected, setSelected] = useState('');
+
+
+  
   return (
     <ul className="flex overflow-auto w-full gap-3 py-2 px-4 text-nowrap">
       {
         categories.map((item, idx) => {
           return (
-            <li key={idx} className="p-3 shadow-md rounded-lg bg-[#303030]">
-              <button className="w-full h-full" onClick={item.function}>{item.category}</button></li>
+            <li key={idx}>
+              <button className={`w-full h-full p-3 shadow-md rounded-lg ${selected === item.category ? "bg-white text-black" : "bg-[#303030]"}`} onClick={() => {setSelected(item.category)}}>{item.category}</button></li>
           )
         })
       }
@@ -175,12 +179,46 @@ function MainCard() {
   )
 }
 
+function GraphCard() {
+  return (
+    <Link to="survey/취향이" className="w-[300px] min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-[#e0f2ff] flex justify-center items-center">
+      <div className="flex absolute top-0 left-0 w-full justify-between p-5">
+        <h1>오늘의 질문</h1>
+        <button>
+          <img src={plus_square} alt="" />
+        </button>
+      </div>
+      <Radar data={data}/>
+    </Link>
+  )
+}
+
+function NPCCard() {
+  return (
+    <Link to="survey/취향이" className="w-[300px] min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-[#e0f2ff] flex justify-center items-center">
+      <div className="flex absolute top-0 left-0 w-full justify-between p-5">
+        <h1>NPC 질문</h1>
+        <button>
+          <img src={plus_square} alt="" />
+        </button>
+      </div>
+      
+      <div>
+        <img src={scorpion} className="w-[50px]" alt="" />
+        <img src={lion} className="w-[50px]" alt="" />
+        <img src={goat} className="w-[50px]" alt="" />
+        
+      </div>
+    </Link>
+  )
+}
+
 function CardContainer() {
   return (
     <div className="py-4 px-10 flex w-full  overflow-auto gap-5">
       <MainCard />
-      <MainCard />
-      <MainCard />
+      <NPCCard />
+      <GraphCard />
     </div>
   )
 }
@@ -198,7 +236,7 @@ export function MainPage() {
 
 
   return (
-    <div className="bg-black text-white relative w-full h-full overflow-auto">
+    <div className="bg-[#181818] text-white relative w-full h-full overflow-auto">
       <Header clickHandler2={() => navigate('settings')}/>
       <div
         className="w-full py-5 flex flex-col items-center justify-center gap-4">
