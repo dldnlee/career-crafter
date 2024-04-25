@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { FindInfo } from "../components"
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
 
 export function AccessPage() {
   return (

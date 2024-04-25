@@ -22,7 +22,7 @@ export function SurveyPage() {
 
 
   return (
-    <div className="fixed flex justify-center items-center top-0 left-0 w-full h-full backdrop-blur-md bg-gray-700/30 p-10">
+    <div className="fixed flex justify-center items-center top-0 left-0 w-full h-full backdrop-blur-md bg-gray-700/30 p-10 z-100">
       <div className="bg-white w-full px-5 py-10 pt-20 shadow-lg rounded-2xl relative overflow-hidden">
         <div className="absolute bg-white top-0 left-0 w-full flex justify-end p-4">
           <Link to='/main' replace className="w-[30px]">
