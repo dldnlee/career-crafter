@@ -9,7 +9,11 @@ import {
   SignupPage,
   SettingsPage,
   SurveyPage,
-  CommunityPage } from './pages'
+  CommunityPage, 
+  Ranking, 
+  HomePage,
+  Friends,
+  QuestionsPage} from './pages'
 import { AccessPage } from './pages/AccessPage'
 
 const router = createBrowserRouter([
@@ -27,20 +31,38 @@ const router = createBrowserRouter([
         element: <MainPage/>,
         children: [
           {
+            index: true,
+            element: <HomePage/>
+          },
+          {
             path: 'settings',
             element: <SettingsPage/>
           },
           {
             path: 'survey/:category',
             element: <SurveyPage />
+          },
+          {
+            path: 'community',
+            element: <CommunityPage />,
+            children: [
+              {
+                index: true,
+                element: <Ranking/>
+              },
+              {
+                path: 'friends',
+                element: <Friends />
+              }
+            ]
           }
         ]  
-      },
-      {
-        path: 'community',
-        element: <CommunityPage />
       }
     ]
+  },
+  {
+    path: 'questions/:category',
+    element: <QuestionsPage/>
   },
   {
     path: 'access',

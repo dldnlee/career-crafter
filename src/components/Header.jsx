@@ -3,7 +3,7 @@ import settings from 'src/assets/settings.png'
 
 export default function Header({clickHandler2}) {
   return (
-    <div className='sticky top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-[#181818] z-100'>
+    <div className='sticky top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-[#181818] text-white z-100'>
       {/* <p className='font-bold'>CareerCrafter</p> */}
       <div className='w-full pr-5'>
         <p>나의 답변 현황: 50%</p>
