@@ -23,18 +23,32 @@ export function QuestionsPage() {
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
       <div className='h-full w-full bg-gray-100 p-5'>
-        <ul className='flex flex-col gap-3'>
+        <h1>오늘 하루도 힘차게 시작해봐요</h1>
+        <ul className='flex flex-col gap-2'>
           {
             dummyQuestions.map((item, idx) => {
               return (
-                <li key={idx} className='flex flex-col items-center gap-3 p-6 bg-black text-white rounded-2xl'>
-                  <label htmlFor={`answer_${idx+1}`}>{item.question}</label>
-                  <input
-                    type="range"
-                    id={`answer_${idx+1}`}
-                    min='1'
-                    max='5'
-                    className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"/>
+                <li key={idx} className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
+                  <label htmlFor={`answer_${idx+1}`} className='relative flex flex-col gap-10'>
+                    <h3>{item.question}</h3>
+                    <div className='w-full'>
+                      <div className='w-full justify-between flex text-sm'>
+                        <p>매우 불만족</p>
+                        <p>보통</p>
+                        <p>매우 만족</p>
+                      </div>
+                      <div className='w-full px-5'>
+                        <input
+                          type="range"
+                          id={`answer_${idx+1}`}
+                          min='1'
+                          max='5'
+                          className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"/>
+                      </div>
+                    </div>
+                  </label>
+
+
                 </li>
               )
             })
