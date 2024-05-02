@@ -1,5 +1,7 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
+import { RangeInput } from '../components';
+import { motion } from 'framer-motion';
 
 const dummyQuestions = [
   {
@@ -7,12 +9,45 @@ const dummyQuestions = [
   },
   {
     'question' : '나는 지금 학과에 만족한다'
+  },
+  {
+    'question' : '나는 지금 학과에 만족한다'
+  },
+  {
+    'question' : '나는 지금 학과에 만족한다'
+  },
+  {
+    'question' : '나는 지금 학과에 만족한다'
   }
 ]
 
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const child = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+};
 
 export function QuestionsPage() {
   const { category } = useParams();
+  const navigate = useNavigate();
+
+  function onChangeFn(e) {
+    console.log(e.target.value);
+  }
 
   return (
     <div className="w-full h-full bg-white">
@@ -22,38 +57,33 @@ export function QuestionsPage() {
         </Link>
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
-      <div className='h-full w-full bg-gray-100 p-5'>
-        <h1>오늘 하루도 힘차게 시작해봐요</h1>
-        <ul className='flex flex-col gap-2'>
+      <div className='h-full w-full p-5 flex flex-col gap-5'>
+        <h1 className='text-lg font-extrabold'>오늘 하루도 힘차게 시작해봐요!</h1>
+        <motion.ul
+          variants={container}
+          initial={'hidden'}
+          animate={'visible'}
+          className='flex flex-col gap-2 w-full h-2/3 overflow-auto'>
           {
             dummyQuestions.map((item, idx) => {
               return (
-                <li key={idx} className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
-                  <label htmlFor={`answer_${idx+1}`} className='relative flex flex-col gap-10'>
-                    <h3>{item.question}</h3>
-                    <div className='w-full'>
-                      <div className='w-full justify-between flex text-sm'>
-                        <p>매우 불만족</p>
-                        <p>보통</p>
-                        <p>매우 만족</p>
-                      </div>
-                      <div className='w-full px-5'>
-                        <input
-                          type="range"
-                          id={`answer_${idx+1}`}
-                          min='1'
-                          max='5'
-                          className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"/>
-                      </div>
-                    </div>
-                  </label>
-
-
-                </li>
+                <motion.li 
+                  variants={child}
+                  key={idx} 
+                  className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
+                  <RangeInput id={`answer_${idx}`} question={item.question} onChangeFn={onChangeFn}/>
+                </motion.li>
               )
             })
           }
-        </ul>
+        </motion.ul>
+        <button 
+          className='w-full bg-black px-2 py-4 rounded-xl text-white hover:bg-gray-200 hover:text-black'
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/main');
+          }}>완료
+        </button>
       </div>
     </div>
   )
