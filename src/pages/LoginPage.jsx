@@ -66,7 +66,7 @@ export function LoginPage() {
           >로그인
         </button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">
-          <FindInfo textTwo="회워가입" routeTwo="/signup"/>
+          <FindInfo textTwo="회원가입" routeTwo="/signup"/>
         </div>
       </form>
     </div>
