@@ -1,10 +1,9 @@
-import horse3d from "src/assets/horse3d.png"
+import horse3d from "src/assets/horse3d.svg"
 import plus_square from "src/assets/plus_square.png"
-import lion from 'src/assets/lion.png'
-import scorpion from 'src/assets/scorpion.png'
-import goat from 'src/assets/goat.png'
+import lion from 'src/assets/lion.svg'
+import scorpion from 'src/assets/scorpion.svg'
+import goat from 'src/assets/goat.svg'
 import { useEffect, useState } from "react"
-
 import { Outlet, Link } from "react-router-dom"
 import { Radar } from "react-chartjs-2"
 // eslint-disable-next-line no-unused-vars
@@ -144,9 +143,9 @@ function NPCCard() {
         <img src={plus_square} alt="" />
       </div>
       <div>
-        <img src={scorpion} className="w-[50px]" alt="" />
-        <img src={lion} className="w-[50px]" alt="" />
-        <img src={goat} className="w-[50px]" alt="" />
+        <img src={scorpion} className="size-[80px]" alt="" />
+        <img src={lion} className="size-[80px]" alt="" />
+        <img src={goat} className="size-[80px]" alt="" />
       </div>
     </Link>
   )
