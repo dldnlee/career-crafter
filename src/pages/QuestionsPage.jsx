@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
 import { RangeInput } from '../components';
 import { motion } from 'framer-motion';
+import { outgoingQuestions } from '../data/questions';
 
 const dummyQuestions = [
   {
@@ -65,15 +66,17 @@ export function QuestionsPage() {
           animate={'visible'}
           className='flex flex-col gap-2 w-full h-2/3 overflow-auto'>
           {
-            dummyQuestions.map((item, idx) => {
-              return (
-                <motion.li 
-                  variants={child}
-                  key={idx} 
-                  className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
-                  <RangeInput id={`answer_${idx}`} question={item.question} onChangeFn={onChangeFn}/>
-                </motion.li>
-              )
+            outgoingQuestions.map((item, idx) => {
+              if(idx >= 6 && idx <= 20 ) {
+                return (
+                  <motion.li 
+                    variants={child}
+                    key={idx} 
+                    className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
+                    <RangeInput id={`answer_${idx}`} question={item} onChangeFn={onChangeFn}/>
+                  </motion.li>
+                )
+              }
             })
           }
         </motion.ul>
