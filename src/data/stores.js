@@ -8,6 +8,8 @@ export const communityTab = atom(1);
 export const swiperIndex = atom(0);
 export const category = atom('');
 export const GNBPage = atom('홈');
+export const userData = atom([]);
 
 export const q_rangeStart = atom(0);
 export const q_rangeEnd = atom(0);
+export const answerSheet = atom([]);

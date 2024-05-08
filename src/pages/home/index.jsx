@@ -10,13 +10,15 @@ import { Radar } from "react-chartjs-2"
 import { Chart as ChartJS} from 'chart.js/auto'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import { motion } from "framer-motion"
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom, useAtom } from "jotai"
 import { swiperIndex } from "src/data/stores"
+import { userData } from "../../data"
 
 const data = {
   labels: [
@@ -86,9 +88,13 @@ const categories = [
 function Categories() {
   const swiper = useSwiper();
   const activeIndex = useAtomValue(swiperIndex);
+  useEffect(() => {
+    swiper.slideTo(activeIndex);
+    // swiper.snapIndex(activeIndex);
+  },);
   
   return (
-    <ul className="flex overflow-auto w-full gap-3 py-2 px-4 text-nowrap">
+    <ul className="flex overflow-auto w-full gap-3 py-2 px-4 text-nowrap no-scrollbar">
       {
         categories.map((item, idx) => {
           return (
@@ -135,17 +141,54 @@ function GraphCard() {
 
 function NPCCard() {
   return (
-    <Link to="/questions/NPC 질문" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
+    <div className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
         <img src={plus_square} alt="" />
       </div>
       <div>
-        <img src={scorpion} className="size-[80px]" alt="" />
-        <img src={lion} className="size-[80px]" alt="" />
-        <img src={goat} className="size-[80px]" alt="" />
+        <Link to="/questions/취향이">
+        <motion.div 
+            animate={{y: -50}}
+            transition={{
+              y: {
+                type: 'spring', 
+                stiffness: 100, 
+                duration: 0.1,
+                repeatDelay: 0,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'linear'
+              }
+            }}
+            >
+            <img src={scorpion} className="size-[90px]" alt="" />
+          </motion.div>
+        </Link>
+        <Link to="/questions/스펙이">
+        <motion.div 
+            animate={{x: [0, -80, 0, 80], y:-10}}
+            transition={{
+              type: 'spring', 
+              stiffness: 100, 
+              duration: 4,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              y: {duration: 0.3, repeat: Infinity, repeatType:'mirror'},
+              x: {
+                duration: 10,
+                repeat: Infinity,
+                repeatType: 'mirror',}
+            }}
+            >
+            <img src={lion} className="size-[90px]" alt="" />
+          </motion.div>
+        </Link>
+        <Link to="/questions/NPC 질문">
+          <img src={goat} className="size-[75px]" alt="" />
+        </Link>
       </div>
-    </Link>
+    </div>
   )
 }
 
@@ -178,7 +221,7 @@ function CardContainer() {
 }
 
 export function HomePage() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useAtom(userData);
 
   useEffect(() => {
     if(localStorage.getItem('pocketbase_auth')) {

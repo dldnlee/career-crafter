@@ -1,26 +1,11 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, Form } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
 import { RangeInput } from '../components';
 import { motion } from 'framer-motion';
-import { outgoingQuestions } from '../data/questions';
-
-const dummyQuestions = [
-  {
-    'question' : '오늘 나는 기분이 아주 좋다'
-  },
-  {
-    'question' : '나는 지금 학과에 만족한다'
-  },
-  {
-    'question' : '나는 지금 학과에 만족한다'
-  },
-  {
-    'question' : '나는 지금 학과에 만족한다'
-  },
-  {
-    'question' : '나는 지금 학과에 만족한다'
-  }
-]
+import { outgoingQuestions, testAnswers, getRange } from '../data/questions';
+import { useEffect, useState } from 'react';
+import { pb, userData } from '../data';
+import { useAtomValue } from 'jotai';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -42,12 +27,60 @@ const child = {
   }
 };
 
+
+
 export function QuestionsPage() {
   const { category } = useParams();
   const navigate = useNavigate();
+  const user = useAtomValue(userData);
+  const [rangeStart, setRangeStart] = useState(0);
+  const [answerSheet, setAnswerSheet] = useState([]);
+  const [userAnswers, setUserAnswers] = useState();
+  const [questions, setQuestions] = useState([]);
 
-  function onChangeFn(e) {
-    console.log(e.target.value);
+  useEffect(() => {
+    switch (category) {
+      case '오늘의 질문':
+        setQuestions(outgoingQuestions);
+        break;
+      case '스펙이':
+        setQuestions(outgoingQuestions);
+        break;
+      case '취향이':
+        setQuestions(outgoingQuestions);
+    }
+  }, [category])
+
+
+  useEffect(() => {
+    async function getAnswerSheet() {
+      const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
+      setUserAnswers(record);
+    }
+    getAnswerSheet();
+  }, [user])
+
+  useEffect(() => {
+    console.log(userAnswers);
+    if (userAnswers) {
+      setAnswerSheet(JSON.parse(userAnswers.outgoing));
+      setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
+    } 
+  }, [userAnswers])
+
+  function onChangeFn(e, index) {
+    console.log(answerSheet);
+    let answers = [...answerSheet];
+    answers[index] = parseInt(e.target.value);
+    setAnswerSheet(answers);
+    console.log(answers);
+  }
+
+  async function onSubmitHandler() {
+    const newData = { ...userAnswers };
+    newData.outgoing = JSON.stringify(answerSheet);
+    console.log(newData);
+    await pb.collection('answers').update(userAnswers.id, newData);
   }
 
   return (
@@ -58,7 +91,10 @@ export function QuestionsPage() {
         </Link>
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
-      <div className='h-full w-full p-5 flex flex-col gap-5'>
+      <Form
+        action='/main'
+        className='h-full w-full p-5 flex flex-col gap-5'
+        onSubmit={onSubmitHandler}>
         <h1 className='text-lg font-extrabold'>오늘 하루도 힘차게 시작해봐요!</h1>
         <motion.ul
           variants={container}
@@ -67,13 +103,13 @@ export function QuestionsPage() {
           className='flex flex-col gap-2 w-full h-2/3 overflow-auto'>
           {
             outgoingQuestions.map((item, idx) => {
-              if(idx >= 6 && idx <= 20 ) {
+              if(idx >= rangeStart && idx < (rangeStart + 5) ) {
                 return (
                   <motion.li 
                     variants={child}
                     key={idx} 
                     className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
-                    <RangeInput id={`answer_${idx}`} question={item} onChangeFn={onChangeFn}/>
+                    <RangeInput id={`answer_${idx}`} question={item} onChangeFn={(e) => {onChangeFn(e, idx)}}/>
                   </motion.li>
                 )
               }
@@ -82,12 +118,9 @@ export function QuestionsPage() {
         </motion.ul>
         <button 
           className='w-full bg-black px-2 py-4 rounded-xl text-white hover:bg-gray-200 hover:text-black'
-          onClick={(e) => {
-            e.preventDefault();
-            navigate('/main');
-          }}>완료
+          >완료
         </button>
-      </div>
+      </Form>
     </div>
   )
 }
