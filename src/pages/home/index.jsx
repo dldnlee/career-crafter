@@ -149,8 +149,17 @@ function NPCCard() {
       <div>
         <Link to="/questions/취향이">
         <motion.div 
-            animate={{y: -50}}
+            animate={{y: [-50, 0], rotate: 10}}
             transition={{
+              rotate: {
+                // type: 'spring', 
+                // stiffness: 100, 
+                duration: 0.7,
+                repeatDelay: 0,
+                repeat: Infinity,
+                repeatType: 'mirror',
+                ease: 'linear'
+              },
               y: {
                 type: 'spring', 
                 stiffness: 100, 
@@ -161,27 +170,26 @@ function NPCCard() {
                 ease: 'linear'
               }
             }}
+            className="relative"
             >
             <img src={scorpion} className="size-[90px]" alt="" />
+            <p className="absolute top-[-10px] left-6 text-sm w-full">스펙이</p>
           </motion.div>
         </Link>
         <Link to="/questions/스펙이">
-        <motion.div 
-            animate={{x: [0, -80, 0, 80], y:-10}}
+          <motion.div 
+            animate={{x: [80, -80], y:-10}}
             transition={{
-              type: 'spring', 
-              stiffness: 100, 
-              duration: 4,
-              repeat: Infinity,
-              repeatType: 'mirror',
               y: {duration: 0.3, repeat: Infinity, repeatType:'mirror'},
               x: {
                 duration: 10,
                 repeat: Infinity,
-                repeatType: 'mirror',}
+                repeatType: 'reverse',}
             }}
+            className="relative"
             >
             <img src={lion} className="size-[90px]" alt="" />
+            <p className="absolute top-[-10px] left-5 text-sm w-full">취향이</p>
           </motion.div>
         </Link>
         <Link to="/questions/NPC 질문">
