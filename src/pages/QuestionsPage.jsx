@@ -1,11 +1,12 @@
 import { useParams, Link, useNavigate, Form } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
-import { RangeInput } from '../components';
+import { Loader, RangeInput } from '../components';
 import { motion } from 'framer-motion';
-import { outgoingQuestions, testAnswers, getRange } from '../data/questions';
+import { outgoingQuestions } from '/src/data/questions';
 import { useEffect, useState } from 'react';
-import { pb, userData } from '../data';
-import { useAtomValue } from 'jotai';
+import { pb, userAnswerData, userData } from '../data';
+import { getRange } from '/src/util/getRange';
+import { useAtom, useAtomValue } from 'jotai';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -35,8 +36,9 @@ export function QuestionsPage() {
   const user = useAtomValue(userData);
   const [rangeStart, setRangeStart] = useState(0);
   const [answerSheet, setAnswerSheet] = useState([]);
-  const [userAnswers, setUserAnswers] = useState();
+  const [userAnswers, setUserAnswers] = useAtom(userAnswerData);
   const [questions, setQuestions] = useState([]);
+  const [loaderState, setLoaderState] = useState(false);
 
   useEffect(() => {
     switch (category) {
@@ -51,7 +53,6 @@ export function QuestionsPage() {
     }
   }, [category])
 
-
   useEffect(() => {
     async function getAnswerSheet() {
       const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
@@ -62,10 +63,21 @@ export function QuestionsPage() {
 
   useEffect(() => {
     console.log(userAnswers);
-    if (userAnswers) {
-      setAnswerSheet(JSON.parse(userAnswers.outgoing));
-      setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
-    } 
+    if (!userAnswers) return;
+    switch (category) {
+      case '오늘의 질문':
+        setAnswerSheet(JSON.parse(userAnswers.outgoing));
+        setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
+        break;
+      case '스펙이':
+        setAnswerSheet(JSON.parse(userAnswers.outgoing));
+        setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
+        break;
+      case '취향이':
+        setAnswerSheet(JSON.parse(userAnswers.outgoing));
+        setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
+        break;
+    }
   }, [userAnswers])
 
   function onChangeFn(e, index) {
@@ -76,11 +88,12 @@ export function QuestionsPage() {
     console.log(answers);
   }
 
-  async function onSubmitHandler() {
+  async function onSubmitHandler(e) {
+    e.preventDefault();
     const newData = { ...userAnswers };
     newData.outgoing = JSON.stringify(answerSheet);
-    console.log(newData);
     await pb.collection('answers').update(userAnswers.id, newData);
+    navigate('/complete', {replace:true});
   }
 
   return (
@@ -92,7 +105,6 @@ export function QuestionsPage() {
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
       <Form
-        action='/main'
         className='h-full w-full p-5 flex flex-col gap-5'
         onSubmit={onSubmitHandler}>
         <h1 className='text-lg font-extrabold'>오늘 하루도 힘차게 시작해봐요!</h1>
@@ -102,7 +114,7 @@ export function QuestionsPage() {
           animate={'visible'}
           className='flex flex-col gap-2 w-full h-2/3 overflow-auto'>
           {
-            outgoingQuestions.map((item, idx) => {
+            questions.map((item, idx) => {
               if(idx >= rangeStart && idx < (rangeStart + 5) ) {
                 return (
                   <motion.li 
@@ -121,6 +133,7 @@ export function QuestionsPage() {
           >완료
         </button>
       </Form>
+      <Loader active={loaderState} />
     </div>
   )
 }

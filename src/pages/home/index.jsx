@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import horse3d from "src/assets/horse3d.svg"
-import plus_square from "src/assets/plus_square.png"
 import lion from 'src/assets/lion.svg'
 import scorpion from 'src/assets/scorpion.svg'
 import goat from 'src/assets/goat.svg'
@@ -11,14 +11,17 @@ import { Chart as ChartJS} from 'chart.js/auto'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import { motion } from "framer-motion"
+import { Loader } from "src/components";
+import { useProgress } from "/src/hooks/useProgress"
+import { useAtomValue, useSetAtom, useAtom } from "jotai"
+import { swiperIndex } from "src/data/stores"
+import { userAnswerData, userData, pb } from "/src/data"
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { useAtomValue, useSetAtom, useAtom } from "jotai"
-import { swiperIndex } from "src/data/stores"
-import { userData } from "../../data"
+import { userProgress } from "../../data"
 
 const data = {
   labels: [
@@ -116,9 +119,6 @@ function MainCard() {
     <Link to="/questions/오늘의 질문" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#e0f2ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>오늘의 질문</h1>
-        <button>
-          <img src={plus_square} alt="" />
-        </button>
       </div>
       <img src={horse3d} alt='Main Character'/>
     </Link>
@@ -130,9 +130,6 @@ function GraphCard() {
       <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>직무/회사</h1>
-          <button>
-            <img src={plus_square} alt="" />
-          </button>
         </div>
         <Radar data={data}/>
       </Link>
@@ -141,19 +138,16 @@ function GraphCard() {
 
 function NPCCard() {
   return (
-    <div className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
+    <div className="relative w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
-        <img src={plus_square} alt="" />
       </div>
       <div>
         <Link to="/questions/취향이">
-        <motion.div 
+          <motion.div 
             animate={{y: [-50, 0], rotate: 10}}
             transition={{
               rotate: {
-                // type: 'spring', 
-                // stiffness: 100, 
                 duration: 0.7,
                 repeatDelay: 0,
                 repeat: Infinity,
@@ -204,32 +198,40 @@ function CardContainer() {
   const setActiveIndex = useSetAtom(swiperIndex);
 
   return (
-    <Swiper 
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={5}
-      slidesPerView={1.2}
-      effect="fade"
-      centeredSlides={true}
-      freeMode={true}
-      onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-      className="w-full h-full"
-      >
-      <div slot="container-start" className="mb-5"><Categories/></div>
-        <SwiperSlide>
-          <MainCard/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NPCCard/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <GraphCard/>
-        </SwiperSlide>
-    </Swiper>
+    <div className="w-full h-full z-0">
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={5}
+        slidesPerView={1.2}
+        effect="fade"
+        centeredSlides={true}
+        freeMode={true}
+        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        className="w-full h-full"
+        >
+        <div slot="container-start" className="mb-5"><Categories/></div>
+          <SwiperSlide>
+            <MainCard/>
+          </SwiperSlide>
+          <SwiperSlide>
+            <NPCCard/>
+          </SwiperSlide>
+          <SwiperSlide>
+            <GraphCard/>
+          </SwiperSlide>
+      </Swiper>
+    </div>
   )
 }
 
+
+
 export function HomePage() {
   const [user, setUser] = useAtom(userData);
+  const setUserAnswers = useSetAtom(userAnswerData);
+  const progress = useAtomValue(userProgress);
+  useProgress();
+  console.log(progress);
 
   useEffect(() => {
     if(localStorage.getItem('pocketbase_auth')) {
@@ -238,15 +240,23 @@ export function HomePage() {
     }
   }, [])
 
+  useEffect(() => {
+    async function getUserAnswers() {
+      const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
+      setUserAnswers(record);
+    }
+    getUserAnswers();
+  }, [user])
 
   return (
     <div className="bg-primary-bg text-white relative w-full h-full overflow-auto">
       <div
-        className="w-full py-5 flex flex-col items-center justify-center gap-4">
+        className="w-full py-5 flex flex-col items-center relative justify-center gap-4">
         <HeaderTest user={user}/>
         <CardContainer />
       </div>
       <Outlet/>
+      {/* <Loader active={loaderActive}/> */}
     </div>
   )
 }
