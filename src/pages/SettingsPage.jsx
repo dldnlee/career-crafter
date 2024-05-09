@@ -11,7 +11,7 @@ export function SettingsPage() {
   }
 
   return (
-    <div className="fixed left-0 top-0 w-screen h-screen backdrop-blur-md bg-black/20">
+    <div className="absolute left-0 top-0 w-full h-full z-10 backdrop-blur-md bg-black/20">
       <button 
         className="h-full w-full"
         onClick={() => {navigate(-1)}}
