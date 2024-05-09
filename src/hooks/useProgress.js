@@ -1,19 +1,9 @@
-import { useAtom, useAtomValue, useSetAtom } from "jotai"
-import { pb, userAnswerData, userData, userProgress } from "../data"
-import { useEffect, useState } from "react";
+import { useAtomValue, useSetAtom } from "jotai"
+import { userAnswerData, userProgress } from "/src/data"
+import { useEffect } from "react";
 
+import { getSum } from "/src/util";
 
-
-function getSum(list) {
-  // const sum = list.reduce((partialSum, a) => partialSum + a, 0);
-  let count = 0;
-  for(let i=0; i<list.length; i++) {
-    if(list[i] !== 0) {
-      count += 1;
-    } 
-  }
-  return count;
-}
 
 export async function useProgress() {
   // const user = useAtomValue(userData);

@@ -1,12 +1,19 @@
 import { useParams, Link, useNavigate, Form } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
-import { Loader, RangeInput } from '../components';
+import { RangeInput } from '../components';
 import { motion } from 'framer-motion';
 import { outgoingQuestions } from '/src/data/questions';
 import { useEffect, useState } from 'react';
 import { pb, userAnswerData, userData } from '../data';
-import { getRange } from '/src/util/getRange';
 import { useAtom, useAtomValue } from 'jotai';
+import { 
+  checkEmpty, 
+  getRange, 
+  getRandomQuestions, 
+  setDefaultValues 
+  } from '/src/util/';
+import { checkPref, checkSpec } from '../util';
+
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -38,54 +45,73 @@ export function QuestionsPage() {
   const [answerSheet, setAnswerSheet] = useState([]);
   const [userAnswers, setUserAnswers] = useAtom(userAnswerData);
   const [questions, setQuestions] = useState([]);
-  const [loaderState, setLoaderState] = useState(false);
 
-  useEffect(() => {
-    switch (category) {
-      case '오늘의 질문':
-        setQuestions(outgoingQuestions);
-        break;
-      case '스펙이':
-        setQuestions(outgoingQuestions);
-        break;
-      case '취향이':
-        setQuestions(outgoingQuestions);
-    }
-  }, [category])
-
+  // Set answersheet data for user
   useEffect(() => {
     async function getAnswerSheet() {
       const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
       setUserAnswers(record);
     }
     getAnswerSheet();
-  }, [user])
+  }, [])
 
+  // Set category of questions based on params category
   useEffect(() => {
-    console.log(userAnswers);
-    if (!userAnswers) return;
+    console.log('here')
     switch (category) {
       case '오늘의 질문':
-        setAnswerSheet(JSON.parse(userAnswers.outgoing));
-        setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
+        if (!getRandomQuestions(userAnswers)) return; // can change to alert box
+        setQuestions(getRandomQuestions(userAnswers));
         break;
       case '스펙이':
-        setAnswerSheet(JSON.parse(userAnswers.outgoing));
-        setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
+        setQuestions(outgoingQuestions);
         break;
       case '취향이':
-        setAnswerSheet(JSON.parse(userAnswers.outgoing));
-        setRangeStart(getRange(JSON.parse(userAnswers.outgoing)))
+        setQuestions(outgoingQuestions);
+    }
+  }, [])
+
+
+  
+  // Set current answer sheet
+  useEffect(() => {
+    // console.log(userAnswers);
+    if (!userAnswers) return;
+    let range = 0;
+    let answers = [];
+    switch (category) {
+      case '오늘의 질문':
+        if (!checkEmpty(userAnswers)) {alert('모든 질문에 답변하셨습니다')}
+        range = getRange(checkEmpty(userAnswers));
+        setRangeStart(range);
+        answers = setDefaultValues(checkEmpty(userAnswers), range)
+        setAnswerSheet(answers);
+        break;
+      case '스펙이':
+        if (!checkSpec(userAnswers)) {alert('모든 질문에 답변하셨습니다')}
+        range = getRange(checkSpec(userAnswers));
+        setRangeStart(range);
+        answers = setDefaultValues(checkSpec(userAnswers), range)
+        setAnswerSheet(answers);
+        break;
+      case '취향이':
+        if (!checkPref(userAnswers)) {alert('모든 질문에 답변하셨습니다')}
+        range = getRange(checkPref(userAnswers));
+        setRangeStart(range);
+        answers = setDefaultValues(checkPref(userAnswers), range)
+        setAnswerSheet(answers);
         break;
     }
-  }, [userAnswers])
+    
+  }, [])
 
+  //Event Handlers
   function onChangeFn(e, index) {
     console.log(answerSheet);
     let answers = [...answerSheet];
     answers[index] = parseInt(e.target.value);
     setAnswerSheet(answers);
-    console.log(answers);
+    // console.log(answers);
   }
 
   async function onSubmitHandler(e) {
@@ -133,7 +159,6 @@ export function QuestionsPage() {
           >완료
         </button>
       </Form>
-      <Loader active={loaderState} />
     </div>
   )
 }
