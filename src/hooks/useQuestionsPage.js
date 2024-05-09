@@ -41,12 +41,13 @@ export function useQuestionsPage(category) {
         console.log(getRandomQuestions(userAnswers)[1])
         break;
       case '스펙이':
-        setQuestions(getSpecQuestions(userAnswers[0]));
+        setQuestions(getSpecQuestions(userAnswers)[0]);
         setQuestionType(getSpecQuestions(userAnswers)[1]);
         break;
       case '취향이':
-        setQuestions(getPrefQuestions(userAnswers[0]));
-        setQuestionType(getSpecQuestions(userAnswers[1]));
+        setQuestions(getPrefQuestions(userAnswers)[0]);
+        setQuestionType(getPrefQuestions(userAnswers)[1]);
+        break;
     }
   }, [])
   

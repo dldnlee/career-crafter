@@ -115,48 +115,45 @@ function Categories() {
 
 function MainCard() {
   return (
-    <Link to="/questions/오늘의 질문" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#e0f2ff] flex justify-center items-center">
-      <div className="flex absolute top-0 left-0 w-full justify-between p-5">
-        <h1>오늘의 질문</h1>
-      </div>
-      <motion.img 
-        animate={{y:20, rotate:10}}
-        transition={{
-          type:'spring',
-          stiffness:100,
-          duration: 1,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          
-        }}
-        src={mainCharacter} alt='Main Character'
-        />
-    </Link>
-  )
-}
-
-function GraphCard() {
-  const {data} = useRadarGraph();
-
-
-  return (
-      <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
+    <motion.div 
+      initial={{y:100}}
+      animate={{y:0}}
+      className="w-[300px] mx-auto min-w-[300px] h-[450px] ">
+      <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#e0f2ff] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
-          <h1>스텟 분석</h1>
+          <h1>오늘의 질문</h1>
         </div>
-        <Radar data={data}/>
+        <motion.img 
+          animate={{y:20, rotate:10}}
+          transition={{
+            type:'spring',
+            stiffness:100,
+            duration: 1,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            
+          }}
+          src={mainCharacter} alt='Main Character'
+          />
       </Link>
+
+    </motion.div>
   )
 }
+
 
 function NPCCard() {
   return (
-    <div className="relative w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
+    <motion.div 
+      initial={{y:100}}
+      animate={{y:0}}
+      transition={{delay:0.1}}
+      className="relative w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
       </div>
       <div>
-        <Link to="/questions/취향이">
+        <Link to="/questions/스펙이">
           <motion.div 
             animate={{y: [-50, 0], rotate: 10}}
             transition={{
@@ -183,7 +180,7 @@ function NPCCard() {
             <p className="absolute top-[-10px] left-6 text-sm w-full">스펙이</p>
           </motion.div>
         </Link>
-        <Link to="/questions/스펙이">
+        <Link to="/questions/취향이">
           <motion.div 
             animate={{x: [80, -80], y:-10}}
             transition={{
@@ -199,17 +196,43 @@ function NPCCard() {
             <p className="absolute top-[-10px] left-5 text-sm w-full">취향이</p>
           </motion.div>
         </Link>
-        <Link to="/questions/NPC 질문">
+        <motion.div 
+          initial={{x:0}}
+          animate={{x:[20, 0, -20], y:[20, 0, 20]}}
+          transition={{repeat:Infinity, duration:3, repeatType:'reverse'}}
+          className="relative">
           <img src={goat} className="size-[75px]" alt="" />
-        </Link>
+          <p className="absolute top-[-10px] left-5 text-sm w-full">성향이</p>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
+function GraphCard() {
+  const {data} = useRadarGraph();
+  return (
+      <motion.div
+        initial={{y:100}}
+        animate={{y:0}}
+        transition={{delay:0.2}}
+      className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
+        <div className="flex absolute top-0 left-0 w-full justify-between p-5">
+          <h1>스텟 분석</h1>
+        </div>
+        <Radar data={data}/>
+      </motion.div>
+  )
+}
+
+
 function KeywordCard() {
   return (
-    <div className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ffe099] flex justify-center items-center">
+    <motion.div
+      initial={{y:100}}
+      animate={{y:0}}
+      transition={{delay:0.3}}
+    className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ffe099] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>관심 키워드</h1>
       </div>
@@ -221,7 +244,7 @@ function KeywordCard() {
         ></l-helix>
         <h2 className="text-md">서비스 준비중입니다!</h2>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
