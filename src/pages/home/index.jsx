@@ -15,6 +15,7 @@ import { useProgress } from "/src/hooks/useProgress"
 import { useAtomValue, useSetAtom, useAtom } from "jotai"
 import { swiperIndex } from "src/data/stores"
 import { userAnswerData, userData, pb } from "/src/data"
+import 'ldrs/helix';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -76,15 +77,11 @@ const categories = [
     function: () => {}
   },
   {
-    category: '직무/회사',
+    category: '스텟 분석',
     function: () => {}
   },
   {
     category: '관심 키워드',
-    function: () => {}
-  },
-  {
-    category: '키워드 분석',
     function: () => {}
   },
 
@@ -145,7 +142,7 @@ function GraphCard() {
   return (
       <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
-          <h1>직무/회사</h1>
+          <h1>스텟 분석</h1>
         </div>
         <Radar data={data}/>
       </Link>
@@ -210,6 +207,24 @@ function NPCCard() {
   )
 }
 
+function KeywordCard() {
+  return (
+    <div className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ffe099] flex justify-center items-center">
+      <div className="flex absolute top-0 left-0 w-full justify-between p-5">
+        <h1>관심 키워드</h1>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-20">
+        <l-helix
+          size="60"
+          speed="2.0"
+          color="black"
+        ></l-helix>
+        <h2 className="text-md">서비스 준비중입니다!</h2>
+      </div>
+    </div>
+  )
+}
+
 function CardContainer() {
   const setActiveIndex = useSetAtom(swiperIndex);
 
@@ -235,10 +250,14 @@ function CardContainer() {
           <SwiperSlide>
             <GraphCard/>
           </SwiperSlide>
+          <SwiperSlide>
+            <KeywordCard/>
+          </SwiperSlide>
       </Swiper>
     </div>
   )
 }
+
 
 
 

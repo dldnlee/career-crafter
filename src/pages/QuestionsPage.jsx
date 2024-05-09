@@ -1,121 +1,24 @@
 import { useParams, Link, useNavigate, Form } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
-import { RangeInput } from '../components';
+import { Loader, RangeInput } from '/src/components';
 import { motion } from 'framer-motion';
-import { outgoingQuestions } from '/src/data/questions';
-import { useEffect, useState } from 'react';
-import { pb, userAnswerData, userData } from '../data';
-import { useAtom, useAtomValue } from 'jotai';
-import { 
-  checkEmpty, 
-  getRange, 
-  getRandomQuestions, 
-  setDefaultValues 
-  } from '/src/util/';
-import { checkPref, checkSpec, getPrefQuestions, getSpecQuestions } from '../util';
-
-
-const container = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const child = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1
-  }
-};
-
+import { useState } from 'react';
+import { pb } from '/src/data';
+import { useQuestionsPage } from '/src/hooks/useQuestionsPage';
 
 
 export function QuestionsPage() {
   const { category } = useParams();
   const navigate = useNavigate();
-  const user = useAtomValue(userData);
-  const [rangeStart, setRangeStart] = useState(0);
-  const [answerSheet, setAnswerSheet] = useState([]);
-  const [userAnswers, setUserAnswers] = useAtom(userAnswerData);
-  const [questions, setQuestions] = useState([]);
-  const [questionType, setQuestionType] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Set answersheet data for user
-  useEffect(() => {
-    async function getAnswerSheet() {
-      const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
-      setUserAnswers(record);
-    }
-    getAnswerSheet();
-  }, [])
-
-  // Set category of questions based on params category
-  useEffect(() => {
-    if (!getRandomQuestions(userAnswers)) return;
-    switch (category) {
-      case '오늘의 질문':
-        setQuestions(getRandomQuestions(userAnswers)[0]);
-        setQuestionType(getRandomQuestions(userAnswers)[1]);
-        console.log(getRandomQuestions(userAnswers)[1])
-        break;
-      case '스펙이':
-        setQuestions(getSpecQuestions(userAnswers[0]));
-        setQuestionType(getSpecQuestions(userAnswers)[1]);
-        break;
-      case '취향이':
-        setQuestions(getPrefQuestions(userAnswers[0]));
-        setQuestionType(getSpecQuestions(userAnswers[1]));
-    }
-  }, [])
-
-
-  
-  // Set current answer sheet
-  useEffect(() => {
-    // console.log(userAnswers);
-    if (!userAnswers) return;
-    let range = 0;
-    let answers = [];
-    switch (category) {
-      case '오늘의 질문':
-        if (!checkEmpty(userAnswers)) {alert('모든 질문에 답변하셨습니다')}
-        range = getRange(checkEmpty(userAnswers));
-        setRangeStart(range);
-        answers = setDefaultValues(checkEmpty(userAnswers), range)
-        setAnswerSheet(answers);
-        break;
-      case '스펙이':
-        if (!checkSpec(userAnswers)) {alert('모든 질문에 답변하셨습니다')}
-        range = getRange(checkSpec(userAnswers));
-        setRangeStart(range);
-        answers = setDefaultValues(checkSpec(userAnswers), range)
-        setAnswerSheet(answers);
-        break;
-      case '취향이':
-        if (!checkPref(userAnswers)) {alert('모든 질문에 답변하셨습니다')}
-        range = getRange(checkPref(userAnswers));
-        setRangeStart(range);
-        answers = setDefaultValues(checkPref(userAnswers), range)
-        setAnswerSheet(answers);
-        break;
-    }
-    
-  }, [])
+  const {rangeStart, answerSheet, questions, questionType, userAnswers, setAnswerSheet} = useQuestionsPage(category);
 
   //Event Handlers
   function onChangeFn(e, index) {
-    console.log(answerSheet);
     let answers = [...answerSheet];
     answers[index] = parseInt(e.target.value);
     setAnswerSheet(answers);
-    // console.log(answers);
   }
 
   async function onSubmitHandler(e) {
@@ -138,9 +41,18 @@ export function QuestionsPage() {
         newData.readiness = JSON.stringify(answerSheet);
         break;
     }
-    // newData.outgoing = JSON.stringify(answerSheet);
-    await pb.collection('answers').update(userAnswers.id, newData);
+    try {
+      setIsLoading(true);
+      await pb.collection('answers').update(userAnswers.id, newData);
+      setIsLoading(false);
+    } catch {
+      console.log('upload failed');
+    }
     navigate('/complete', {replace:true});
+  }
+
+  if(isLoading) {
+    return <Loader active={isLoading}/>
   }
 
   return (
@@ -156,16 +68,19 @@ export function QuestionsPage() {
         onSubmit={onSubmitHandler}>
         <h1 className='text-lg font-extrabold'>오늘 하루도 힘차게 시작해봐요!</h1>
         <motion.ul
-          variants={container}
-          initial={'hidden'}
-          animate={'visible'}
+          // variants={container}
+          // initial={'hidden'}
+          // animate={'visible'}
+          transition={{staggerChildren:0.5}}
           className='flex flex-col gap-2 w-full h-2/3 overflow-auto'>
           {
             questions.map((item, idx) => {
               if(idx >= rangeStart && idx < (rangeStart + 5) ) {
                 return (
                   <motion.li 
-                    variants={child}
+                    initial={{x:-100}}
+                    transition={{type:'spring', stiffness:100}}
+                    animate={{x:0}}
                     key={idx} 
                     className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
                     <RangeInput id={`answer_${idx}`} question={item} onChangeFn={(e) => {onChangeFn(e, idx)}}/>
