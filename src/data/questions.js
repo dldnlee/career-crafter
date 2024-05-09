@@ -14,16 +14,6 @@ export const outgoingQuestions = [
   '가장 중요하다고 생각하는 역량은 무엇이며, 그것을 향상시키기 위한 계획이 있나요?'
 ]
 
-export const testAnswers = [1, 1, 1, 1, 1, 0, 0, 0, 0, 0];
-
-export function getRange(answers) {
-  if(answers.includes(0)) {
-    return (answers.indexOf(0));
-  } else {
-    return false;
-  }
-}
-
 export const challengingQuestions = []
 export const regularityQuestions = []
 export const actionQuestions = []

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import horse3d from "src/assets/horse3d.svg"
+import mainCharacter from "src/assets/horse3d.svg"
 import lion from 'src/assets/lion.svg'
 import scorpion from 'src/assets/scorpion.svg'
 import goat from 'src/assets/goat.svg'
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Outlet, Link } from "react-router-dom"
 import { Radar } from "react-chartjs-2"
 // eslint-disable-next-line no-unused-vars
@@ -11,7 +11,6 @@ import { Chart as ChartJS} from 'chart.js/auto'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import { motion } from "framer-motion"
-import { Loader } from "src/components";
 import { useProgress } from "/src/hooks/useProgress"
 import { useAtomValue, useSetAtom, useAtom } from "jotai"
 import { swiperIndex } from "src/data/stores"
@@ -120,7 +119,18 @@ function MainCard() {
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>오늘의 질문</h1>
       </div>
-      <img src={horse3d} alt='Main Character'/>
+      <motion.img 
+        animate={{y:20, rotate:10}}
+        transition={{
+          type:'spring',
+          stiffness:100,
+          duration: 1,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          
+        }}
+        src={mainCharacter} alt='Main Character'
+        />
     </Link>
   )
 }

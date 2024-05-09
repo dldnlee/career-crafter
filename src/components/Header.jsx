@@ -16,7 +16,7 @@ export default function Header({clickHandler2}) {
   return (
     <div className='sticky top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-[#181818] text-white z-100'>
       {/* <p className='font-bold'>CareerCrafter</p> */}
-      <div className='w-full pr-5'>
+      <div className='w-full pr-5 flex flex-col gap-2'>
         <p>나의 답변 현황: {percentage} %</p>
         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
           <div 
