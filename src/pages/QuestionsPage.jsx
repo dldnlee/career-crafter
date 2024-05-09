@@ -12,7 +12,7 @@ import {
   getRandomQuestions, 
   setDefaultValues 
   } from '/src/util/';
-import { checkPref, checkSpec } from '../util';
+import { checkPref, checkSpec, getPrefQuestions, getSpecQuestions } from '../util';
 
 
 const container = {
@@ -45,6 +45,7 @@ export function QuestionsPage() {
   const [answerSheet, setAnswerSheet] = useState([]);
   const [userAnswers, setUserAnswers] = useAtom(userAnswerData);
   const [questions, setQuestions] = useState([]);
+  const [questionType, setQuestionType] = useState(0);
 
   // Set answersheet data for user
   useEffect(() => {
@@ -57,17 +58,20 @@ export function QuestionsPage() {
 
   // Set category of questions based on params category
   useEffect(() => {
-    console.log('here')
+    if (!getRandomQuestions(userAnswers)) return;
     switch (category) {
       case '오늘의 질문':
-        if (!getRandomQuestions(userAnswers)) return; // can change to alert box
-        setQuestions(getRandomQuestions(userAnswers));
+        setQuestions(getRandomQuestions(userAnswers)[0]);
+        setQuestionType(getRandomQuestions(userAnswers)[1]);
+        console.log(getRandomQuestions(userAnswers)[1])
         break;
       case '스펙이':
-        setQuestions(outgoingQuestions);
+        setQuestions(getSpecQuestions(userAnswers[0]));
+        setQuestionType(getSpecQuestions(userAnswers)[1]);
         break;
       case '취향이':
-        setQuestions(outgoingQuestions);
+        setQuestions(getPrefQuestions(userAnswers[0]));
+        setQuestionType(getSpecQuestions(userAnswers[1]));
     }
   }, [])
 
@@ -117,7 +121,24 @@ export function QuestionsPage() {
   async function onSubmitHandler(e) {
     e.preventDefault();
     const newData = { ...userAnswers };
-    newData.outgoing = JSON.stringify(answerSheet);
+    switch (questionType) {
+      case 1:
+        newData.outgoing = JSON.stringify(answerSheet);
+        break;
+      case 2:
+        newData.challenging = JSON.stringify(answerSheet);
+        break;
+      case 3:
+        newData.regularity = JSON.stringify(answerSheet);
+        break;
+      case 4:
+        newData.action = JSON.stringify(answerSheet);
+        break;
+      case 5:
+        newData.readiness = JSON.stringify(answerSheet);
+        break;
+    }
+    // newData.outgoing = JSON.stringify(answerSheet);
     await pb.collection('answers').update(userAnswers.id, newData);
     navigate('/complete', {replace:true});
   }
