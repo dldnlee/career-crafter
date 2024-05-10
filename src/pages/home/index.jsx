@@ -24,39 +24,6 @@ import 'swiper/css/scrollbar';
 import { userProgress } from "../../data"
 import { useRadarGraph } from "../../hooks/useRadarGraph"
 
-// const data = {
-//   labels: [
-//     '외향성',
-//     '규칙성',
-//     '직무 준비도',
-//     '행동성',
-//     '도전성'
-//   ],
-//   datasets: [{
-//     label: '나의 이전 직무 상황',
-//     data: [40, 40, 50, 40, 50],
-//     fill: true,
-//     backgroundColor: 'rgba(255, 99, 132, 0.2)',
-//     borderColor: 'rgb(255, 99, 132)',
-//     borderWidth: 1,
-//     pointBackgroundColor: 'rgb(255, 99, 132)',
-//     pointBorderColor: '#fff',
-//     pointHoverBackgroundColor: '#fff',
-//     pointHoverBorderColor: 'rgb(255, 99, 132)'
-//   }, {
-//     label: '나의 현재 직무 상황',
-//     data: [60, 34, 40, 50, 96],
-//     fill: true,
-//     backgroundColor: 'rgba(54, 162, 235, 0.2)',
-//     borderColor: 'rgb(54, 162, 235)',
-//     borderWidth: 1,
-//     pointBackgroundColor: 'rgb(54, 162, 235)',
-//     pointBorderColor: '#fff',
-//     pointHoverBackgroundColor: '#fff',
-//     pointHoverBorderColor: 'rgb(54, 162, 235)'
-//   }]
-// };
-
 function HeaderTest({user}) {
   
   return (

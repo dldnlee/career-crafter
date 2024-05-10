@@ -10,3 +10,8 @@ export function getSum(list) {
   }
   return count;
 }
+
+export function getPoints(list) {
+  const sum = list.reduce((partialSum, a) => partialSum + a, 0);
+  return sum;
+}
