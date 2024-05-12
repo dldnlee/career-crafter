@@ -57,5 +57,5 @@ export function useRadarGraph() {
     }]
   };
 
-  return {data};
+  return {data, stats};
 }

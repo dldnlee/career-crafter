@@ -1,5 +1,34 @@
 
+export const initAnswers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+
+export const initQuestions = [
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  }
+]
 
 export const outgoingQuestions = [
   '경험과 기술을 통해 어떤 가치를 제공할 수 있나요?',

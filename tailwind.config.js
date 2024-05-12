@@ -9,6 +9,7 @@ export default {
       colors: {
         'primary-bg' : '#181818',
         'secondary-bg' : '#303030',
+        'point-color' :  '#138EFF'
       }
     },
   },
