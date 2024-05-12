@@ -1,0 +1,16 @@
+
+{
+  "name": "CareerCrafter",
+  "short_name": "CareerCrafter",
+  "start_url": "/access",
+  "icons": [
+    {
+      "src": "/assets/horse3d.svg",
+      "sizes": "any"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#FFFFFF",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}

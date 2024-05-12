@@ -18,7 +18,7 @@ export function MainPage() {
 
   return (
     <>
-      <Header  clickHandler2={() => navigate('settings')}/>
+      <Header clickHandler2={() => navigate('settings')}/>
       <Outlet />
       <GlobalNavigationBar />
     </>

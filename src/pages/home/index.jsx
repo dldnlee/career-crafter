@@ -15,6 +15,7 @@ import { useProgress } from "/src/hooks/useProgress"
 import { useAtomValue, useSetAtom, useAtom } from "jotai"
 import { swiperIndex } from "src/data/stores"
 import { userAnswerData, userData, pb } from "/src/data"
+import 'ldrs/helix';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -22,39 +23,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { userProgress } from "../../data"
 import { useRadarGraph } from "../../hooks/useRadarGraph"
-
-// const data = {
-//   labels: [
-//     '외향성',
-//     '규칙성',
-//     '직무 준비도',
-//     '행동성',
-//     '도전성'
-//   ],
-//   datasets: [{
-//     label: '나의 이전 직무 상황',
-//     data: [40, 40, 50, 40, 50],
-//     fill: true,
-//     backgroundColor: 'rgba(255, 99, 132, 0.2)',
-//     borderColor: 'rgb(255, 99, 132)',
-//     borderWidth: 1,
-//     pointBackgroundColor: 'rgb(255, 99, 132)',
-//     pointBorderColor: '#fff',
-//     pointHoverBackgroundColor: '#fff',
-//     pointHoverBorderColor: 'rgb(255, 99, 132)'
-//   }, {
-//     label: '나의 현재 직무 상황',
-//     data: [60, 34, 40, 50, 96],
-//     fill: true,
-//     backgroundColor: 'rgba(54, 162, 235, 0.2)',
-//     borderColor: 'rgb(54, 162, 235)',
-//     borderWidth: 1,
-//     pointBackgroundColor: 'rgb(54, 162, 235)',
-//     pointBorderColor: '#fff',
-//     pointHoverBackgroundColor: '#fff',
-//     pointHoverBorderColor: 'rgb(54, 162, 235)'
-//   }]
-// };
 
 function HeaderTest({user}) {
   
@@ -76,15 +44,11 @@ const categories = [
     function: () => {}
   },
   {
-    category: '직무/회사',
+    category: '스텟 분석',
     function: () => {}
   },
   {
     category: '관심 키워드',
-    function: () => {}
-  },
-  {
-    category: '키워드 분석',
     function: () => {}
   },
 
@@ -118,48 +82,45 @@ function Categories() {
 
 function MainCard() {
   return (
-    <Link to="/questions/오늘의 질문" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#e0f2ff] flex justify-center items-center">
-      <div className="flex absolute top-0 left-0 w-full justify-between p-5">
-        <h1>오늘의 질문</h1>
-      </div>
-      <motion.img 
-        animate={{y:20, rotate:10}}
-        transition={{
-          type:'spring',
-          stiffness:100,
-          duration: 1,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          
-        }}
-        src={mainCharacter} alt='Main Character'
-        />
-    </Link>
-  )
-}
-
-function GraphCard() {
-  const {data} = useRadarGraph();
-
-
-  return (
-      <Link to="survey/취향이" className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
+    <motion.div 
+      initial={{y:100}}
+      animate={{y:0}}
+      className="w-[300px] mx-auto min-w-[300px] h-[450px] ">
+      <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#e0f2ff] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
-          <h1>직무/회사</h1>
+          <h1>오늘의 질문</h1>
         </div>
-        <Radar data={data}/>
+        <motion.img 
+          animate={{y:20, rotate:10}}
+          transition={{
+            type:'spring',
+            stiffness:100,
+            duration: 1,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            
+          }}
+          src={mainCharacter} alt='Main Character'
+          />
       </Link>
+
+    </motion.div>
   )
 }
+
 
 function NPCCard() {
   return (
-    <div className="relative w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
+    <motion.div 
+      initial={{y:100}}
+      animate={{y:0}}
+      transition={{delay:0.1}}
+      className="relative w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
       </div>
       <div>
-        <Link to="/questions/취향이">
+        <Link to="/questions/스펙이">
           <motion.div 
             animate={{y: [-50, 0], rotate: 10}}
             transition={{
@@ -186,7 +147,7 @@ function NPCCard() {
             <p className="absolute top-[-10px] left-6 text-sm w-full">스펙이</p>
           </motion.div>
         </Link>
-        <Link to="/questions/스펙이">
+        <Link to="/questions/취향이">
           <motion.div 
             animate={{x: [80, -80], y:-10}}
             transition={{
@@ -202,11 +163,55 @@ function NPCCard() {
             <p className="absolute top-[-10px] left-5 text-sm w-full">취향이</p>
           </motion.div>
         </Link>
-        <Link to="/questions/NPC 질문">
+        <motion.div 
+          initial={{x:0}}
+          animate={{x:[20, 0, -20], y:[20, 0, 20]}}
+          transition={{repeat:Infinity, duration:3, repeatType:'reverse'}}
+          className="relative">
           <img src={goat} className="size-[75px]" alt="" />
-        </Link>
+          <p className="absolute top-[-10px] left-5 text-sm w-full">성향이</p>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
+  )
+}
+
+function GraphCard() {
+  const {data} = useRadarGraph();
+  return (
+      <motion.div
+        initial={{y:100}}
+        animate={{y:0}}
+        transition={{delay:0.2}}
+      className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
+        <div className="flex absolute top-0 left-0 w-full justify-between p-5">
+          <h1>스텟 분석</h1>
+        </div>
+        <Radar data={data}/>
+      </motion.div>
+  )
+}
+
+
+function KeywordCard() {
+  return (
+    <motion.div
+      initial={{y:100}}
+      animate={{y:0}}
+      transition={{delay:0.3}}
+    className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ffe099] flex justify-center items-center">
+      <div className="flex absolute top-0 left-0 w-full justify-between p-5">
+        <h1>관심 키워드</h1>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-20">
+        <l-helix
+          size="60"
+          speed="2.0"
+          color="black"
+        ></l-helix>
+        <h2 className="text-md">서비스 준비중입니다!</h2>
+      </div>
+    </motion.div>
   )
 }
 
@@ -235,10 +240,14 @@ function CardContainer() {
           <SwiperSlide>
             <GraphCard/>
           </SwiperSlide>
+          <SwiperSlide>
+            <KeywordCard/>
+          </SwiperSlide>
       </Swiper>
     </div>
   )
 }
+
 
 
 

@@ -1,3 +1,7 @@
+import { useEffect } from "react"
+import { pb, userData } from "../../../data"
+import {useAtomValue} from 'jotai';
+
 
 const dummyData = [
   {
@@ -15,6 +19,27 @@ const dummyData = [
 ]
 
 export function Friends() {
+
+  // const user = useAtomValue(userData);
+
+  // useEffect(() => {
+  //   async function getFriends() {
+  //     const records = await pb.collection('users').getOne(user.id, {
+  //       expand: 
+  //     });
+
+  //     console.log(records.friends);
+
+  //     records.friends.map((item) => {
+  //       console.log(item.expand);
+  //     })
+  //   }
+
+  //   getFriends();
+  // }, [])
+
+
+
   return (
     <div className="h-full w-full pt-16 px-4">
       <h1 className="text-white text-2xl font-bold py-5">친구 목록</h1>

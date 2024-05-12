@@ -2,7 +2,7 @@ import { useAtomValue } from "jotai";
 import { useEffect } from "react";
 import { userAnswerData } from "../data";
 import { useState } from "react";
-import { getSum } from "../util";
+import { getPoints } from "../util";
 
 export function useRadarGraph() {
   
@@ -12,11 +12,11 @@ export function useRadarGraph() {
   useEffect(() => {
     let listOfStats = [];
     if(!userAnswers) return;
-    listOfStats[0] = getSum(JSON.parse(userAnswers.outgoing));
-    listOfStats[1] = getSum(JSON.parse(userAnswers.regularity));
-    listOfStats[2] = getSum(JSON.parse(userAnswers.readiness));
-    listOfStats[3] = getSum(JSON.parse(userAnswers.action));
-    listOfStats[4] = getSum(JSON.parse(userAnswers.challenging));
+    listOfStats[0] = getPoints(JSON.parse(userAnswers.outgoing));
+    listOfStats[1] = getPoints(JSON.parse(userAnswers.regularity));
+    listOfStats[2] = getPoints(JSON.parse(userAnswers.readiness));
+    listOfStats[3] = getPoints(JSON.parse(userAnswers.action));
+    listOfStats[4] = getPoints(JSON.parse(userAnswers.challenging));
 
     setStats(listOfStats);
 

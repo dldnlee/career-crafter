@@ -3,6 +3,7 @@ import settings from 'src/assets/settings.png'
 import { userProgress } from '../data'
 import { useEffect, useState } from 'react';
 import { getPercentage } from '../util';
+import {motion} from 'framer-motion';
 
 export default function Header({clickHandler2}) {
   const progress = useAtomValue(userProgress);
