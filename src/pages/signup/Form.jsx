@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { pb } from "/src/data/pb";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
@@ -14,6 +14,16 @@ export function Form() {
   const [confirm, setConfirm] = useState();
   const [userInfo, setUserInfo] = useAtom(signupData);
   const navigate = useNavigate();
+  const [validState, setValidState] = useState(false);
+
+  useEffect(() => {
+    if(name && password && email && password && confirm && password === confirm) {
+      setValidState(true);
+    } else {
+      setValidState(false);
+    }
+  }, [name, password, email, password, confirm])
+  
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,23 +37,13 @@ export function Form() {
     }
 
     setUserInfo(data);
-    // console.log(data);
     navigate('/signup/tutorial');
-
-    // try {
-    //   // await pb.collection('users').create(data);
-    //   // await pb.collection('users').authWithPassword(email, password);
-    //   navigate('/signup/tutorial');
-    // } catch(error) {
-    //   console.log(error);
-    //   console.log('Please check again');
-    // }
   }
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-10 bg-white">
       <h1 className="text-2xl">회원가입</h1>
-      <form 
+      <form
         className="flex flex-col px-7 w-full items-center justify-center gap-6"
         onSubmit={handleSubmit}>
         <label htmlFor="name" className="flex items-start justify-center flex-col w-full">이름
@@ -51,6 +51,7 @@ export function Form() {
             type="text" 
             id="name" 
             placeholder="이름" 
+            required
             className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black" 
             onChange={(e) => {setName(e.target.value)}}/>
         </label>
@@ -60,6 +61,7 @@ export function Form() {
             type="email" 
             id="email" 
             placeholder="이메일" 
+            required
             className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black" 
             onChange={(e) => {setEmail(e.target.value)}}/>
         </label>
@@ -69,6 +71,7 @@ export function Form() {
             type="password" 
             id="password" 
             placeholder="비밀번호" 
+            required
             className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black" 
             onChange={(e) => {setPassword(e.target.value)}}/>
         </label>
@@ -78,13 +81,16 @@ export function Form() {
             type="password" 
             id="password-confirm"
             placeholder="비밀번호 확인" 
-            className="p-4 bg-gray-100 rounded-lg w-full focus:outline-black" 
+            required
+            className={`p-4 bg-gray-100 rounded-lg w-full focus:outline-black ${confirm === password ? '' : 'border border-red-400'}`} 
             onChange={(e) => {setConfirm(e.target.value)}}/>
+            <span className={`${confirm === password ? 'invisible' : 'block'} text-sm text-red-500`}>비밀번호가 일치하지 않습니다</span>
         </label>
 
         <div className="flex flex-col w-full mt-4 gap-2">
           <button
-            className="w-full bg-white border border-black hover:bg-black hover:text-white py-4 px-2 rounded-lg"
+            disabled={validState ? false : true}
+            className={`w-full ${validState ? 'bg-white border border-black hover:bg-black hover:text-white' : 'bg-gray-200 text-gray-400'} py-4 px-2 rounded-lg`}
             >가입하기</button>
           <button
             type="button"

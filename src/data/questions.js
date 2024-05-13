@@ -94,8 +94,3 @@ export const readinessQuestions = [
   '이 회사의 문화나 가치관에 적응할 수 있는 이유가 있나요?',
   '가장 중요하다고 생각하는 역량은 무엇이며, 그것을 향상시키기 위한 계획이 있나요?'
 ]
-
-// export const challengingQuestions = []
-// export const regularityQuestions = []
-// export const actionQuestions = []
-// export const readinessQuestions = []

@@ -18,7 +18,9 @@ import {
   Friends,
   QuestionsPage,
   CompletePage,
-  ResultPage } from './pages'
+  ResultPage,
+  CompleteSignup
+} from './pages'
 import { AccessPage } from './pages/AccessPage'
 
 const router = createBrowserRouter([
@@ -100,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: 'initial',
         element: <InitialQuestions />
+      },
+      {
+        path: 'complete',
+        element: <CompleteSignup /> 
       }
     ]
   },
