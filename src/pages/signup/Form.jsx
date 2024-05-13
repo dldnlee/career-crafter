@@ -1,18 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import { pb } from "/src/data/pb";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { signupData } from "../../data";
-
-
-
 
 export function Form() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirm, setConfirm] = useState();
-  const [userInfo, setUserInfo] = useAtom(signupData);
+  const setUserInfo = useSetAtom(signupData);
   const navigate = useNavigate();
   const [validState, setValidState] = useState(false);
 

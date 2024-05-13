@@ -20,7 +20,7 @@ export function SubmitBtn({index}) {
     }
   }, [index])
   
-  async function clickHandler() {
+  async function clickHandler() { 
     let signupData;
     signupData = {...userData};
     signupData.initstats = JSON.stringify(stats);
