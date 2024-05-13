@@ -252,8 +252,6 @@ function CardContainer() {
 }
 
 
-
-
 export function HomePage() {
   const [user, setUser] = useAtom(userData);
   const setUserAnswers = useSetAtom(userAnswerData);
@@ -284,7 +282,6 @@ export function HomePage() {
         <CardContainer />
       </div>
       <Outlet/>
-      {/* <Loader active={loaderActive}/> */}
     </div>
   )
 }

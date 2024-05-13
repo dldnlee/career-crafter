@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { CheckAnimation } from "../components"
 import { motion } from "framer-motion"
-import myLoader from '/src/assets/my-loader.svg'
-// import testo from 
 import { lineSpinner } from "ldrs"
 lineSpinner.register();
 

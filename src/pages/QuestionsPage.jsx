@@ -1,16 +1,18 @@
-import { useParams, Link, useNavigate, Form } from 'react-router-dom';
+import { useParams, Link, Form } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
 import { Loader, RangeInput } from '/src/components';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { pb } from '/src/data';
 import { useQuestionsPage } from '/src/hooks/useQuestionsPage';
+import { CompleteDialog } from '../components/CompleteDialog';
 
 
 export function QuestionsPage() {
   const { category } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
 
   const {rangeStart, answerSheet, questions, questionType, userAnswers, setAnswerSheet} = useQuestionsPage(category);
 
@@ -45,10 +47,11 @@ export function QuestionsPage() {
       setIsLoading(true);
       await pb.collection('answers').update(userAnswers.id, newData);
       setIsLoading(false);
+      setComplete(true);
     } catch {
       console.log('upload failed');
     }
-    navigate('/complete', {replace:true});
+    // navigate('/complete', {replace:true});
   }
 
   if(isLoading) {
@@ -95,6 +98,7 @@ export function QuestionsPage() {
           >완료
         </button>
       </Form>
+      <CompleteDialog category={category} active={complete}/>
     </div>
   )
 }
