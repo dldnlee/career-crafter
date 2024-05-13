@@ -1,4 +1,4 @@
-import { useParams, Link, Form } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
 import { Loader, RangeInput } from '/src/components';
 import { motion } from 'framer-motion';
@@ -74,7 +74,7 @@ export function QuestionsPage() {
           // initial={'hidden'}
           // animate={'visible'}
           transition={{staggerChildren:0.5}}
-          className='flex flex-col gap-2 w-full h-2/3 overflow-auto'>
+          className='flex flex-col gap-2 w-full h-2/3 overflow-auto no-scrollbar'>
           {
             questions.map((item, idx) => {
               if(idx >= rangeStart && idx < (rangeStart + 5) ) {

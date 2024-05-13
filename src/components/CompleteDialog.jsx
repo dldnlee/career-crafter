@@ -37,16 +37,16 @@ export function CompleteDialog({category, active}) {
   useEffect(() => {
     switch(category) {
       case '오늘의 질문':
-        setNumber(1);
+        setNumber(0);
         break;
       case '서향이':
-        setNumber(2);
+        setNumber(1);
         break;
       case '취향이':
-        setNumber(3);
+        setNumber(2);
         break;
       case '스펙이':
-        setNumber(4);
+        setNumber(3);
     }
   }, [category])
 
