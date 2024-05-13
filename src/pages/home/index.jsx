@@ -15,7 +15,6 @@ import { useProgress } from "/src/hooks/useProgress"
 import { useAtomValue, useSetAtom, useAtom } from "jotai"
 import { swiperIndex } from "src/data/stores"
 import { userAnswerData, userData, pb } from "/src/data"
-import 'ldrs/helix';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -23,6 +22,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { userProgress } from "../../data"
 import { useRadarGraph } from "../../hooks/useRadarGraph"
+import {helix} from 'ldrs';
 
 function HeaderTest({user}) {
   
@@ -194,6 +194,9 @@ function GraphCard() {
 
 
 function KeywordCard() {
+  helix.register();
+
+
   return (
     <motion.div
       initial={{y:100}}

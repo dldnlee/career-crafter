@@ -3,6 +3,7 @@ import { initStats, signupData, initAnswers } from "/src/data";
 import { useAtomValue } from "jotai";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../../../components";
 
 
 export function SubmitBtn({index}) {
@@ -10,6 +11,7 @@ export function SubmitBtn({index}) {
   const stats = useAtomValue(initStats);
   const userData = useAtomValue(signupData);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
@@ -27,6 +29,7 @@ export function SubmitBtn({index}) {
     
     try {
       const record = await pb.collection('users').create(signupData);
+      setLoading(true);
       await pb.collection('users').authWithPassword(signupData.email, signupData.password);
       const answerData = {
         'user': record.id,
@@ -37,11 +40,14 @@ export function SubmitBtn({index}) {
         "readiness": JSON.stringify(initAnswers)
       }
       await pb.collection('answers').create(answerData);
+      setLoading(false);
       navigate('/signup/complete');
     } catch {
       console.log('register failed');
     }
   }
+
+  if(loading) return (<Loader active={loading}/> )
 
   return (
     <button 
