@@ -28,8 +28,8 @@ export function SubmitBtn({index}) {
     signupData.initstats = JSON.stringify(stats);
     
     try {
-      const record = await pb.collection('users').create(signupData);
       setLoading(true);
+      const record = await pb.collection('users').create(signupData);
       await pb.collection('users').authWithPassword(signupData.email, signupData.password);
       const answerData = {
         'user': record.id,

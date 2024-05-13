@@ -51,7 +51,6 @@ export function QuestionsPage() {
     } catch {
       console.log('upload failed');
     }
-    // navigate('/complete', {replace:true});
   }
 
   if(isLoading) {
@@ -66,7 +65,7 @@ export function QuestionsPage() {
         </Link>
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
-      <Form
+      <form
         className='h-full w-full p-5 flex flex-col gap-5'
         onSubmit={onSubmitHandler}>
         <h1 className='text-lg font-extrabold'>오늘 하루도 힘차게 시작해봐요!</h1>
@@ -97,7 +96,7 @@ export function QuestionsPage() {
           className='w-full bg-black px-2 py-4 rounded-xl text-white hover:bg-gray-200 hover:text-black'
           >완료
         </button>
-      </Form>
+      </form>
       <CompleteDialog category={category} active={complete}/>
     </div>
   )
