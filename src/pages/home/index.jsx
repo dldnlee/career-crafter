@@ -24,12 +24,12 @@ import { userProgress } from "../../data"
 import { useRadarGraph } from "../../hooks/useRadarGraph"
 import {helix} from 'ldrs';
 
-function HeaderTest({user}) {
+function HomeHeader({user}) {
   
   return (
     <div className="w-full flex flex-col justify-start px-5">
       <h1 className="text-3xl font-bold">Hello, {user?.name}</h1>
-      <p>오늘은 어떤 내용을 적을까요?</p>
+      <p>오늘은 어떤 내용을 작성할까요?</p>
     </div>
   )
 }
@@ -85,7 +85,7 @@ function MainCard() {
     <motion.div 
       initial={{y:100}}
       animate={{y:0}}
-      className="w-[300px] mx-auto min-w-[300px] h-[450px] ">
+      className="w-[300px] mx-auto min-w-[300px] h-[400px] ">
       <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#e0f2ff] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>오늘의 질문</h1>
@@ -115,7 +115,7 @@ function NPCCard() {
       initial={{y:100}}
       animate={{y:0}}
       transition={{delay:0.1}}
-      className="relative w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
+      className="relative w-[300px] mx-auto min-w-[300px] h-[400px] text-black font-bold text-xl rounded-2xl bg-gradient-to-tl from-white to-[#fee3ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
       </div>
@@ -183,7 +183,7 @@ function GraphCard() {
         initial={{y:100}}
         animate={{y:0}}
         transition={{delay:0.2}}
-      className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
+      className="w-[300px] mx-auto min-w-[300px] h-[400px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>스텟 분석</h1>
         </div>
@@ -202,7 +202,7 @@ function KeywordCard() {
       initial={{y:100}}
       animate={{y:0}}
       transition={{delay:0.3}}
-    className="w-[300px] mx-auto min-w-[300px] h-[450px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ffe099] flex justify-center items-center">
+    className="w-[300px] mx-auto min-w-[300px] h-[400px] text-black font-bold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ffe099] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>관심 키워드</h1>
       </div>
@@ -275,10 +275,10 @@ export function HomePage() {
   }, [user])
 
   return (
-    <div className="bg-primary-bg text-white relative w-full h-full overflow-auto">
+    <div className="bg-primary-bg text-white relative w-full h-full overflow-auto pb-40 no-scrollbar::-webkit-scrollbar no-scrollbar">
       <div
-        className="w-full py-5 flex flex-col items-center relative justify-center gap-4">
-        <HeaderTest user={user}/>
+        className="w-full flex flex-col items-center relative justify-center gap-4">
+        <HomeHeader user={user}/>
         <CardContainer />
       </div>
       <Outlet/>
