@@ -64,7 +64,7 @@ export function Tutorial() {
   }, [])
 
   return (
-    <div className="text-white w-full h-full bg-primary-bg flex flex-col items-center justify-center">
+    <div className="text-white w-full h-full bg-primary-bg flex flex-col items-center gap-6 justify-center">
       <HeaderWithBack />
       <Swiper
         style={{
@@ -77,7 +77,7 @@ export function Tutorial() {
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         pagination={true}
         centeredSlides={true}
-        className="w-full h-[60%]"
+        className="w-full h-[70%]"
         >
           <SwiperSlide>
             <TutorialCard 

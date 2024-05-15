@@ -37,7 +37,7 @@ export function Form() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-10 bg-white">
+    <div className="w-full h-full flex flex-col justify-center items-center gap-5 bg-white">
       <h1 className="text-2xl">회원가입</h1>
       <form
         className="flex flex-col px-7 w-full items-center justify-center gap-6"
@@ -83,15 +83,15 @@ export function Form() {
             <span className={`${confirm === password ? 'invisible' : 'block'} text-sm text-red-500`}>비밀번호가 일치하지 않습니다</span>
         </label>
 
-        <div className="flex flex-col w-full mt-4 gap-2">
+        <div className="flex flex-col w-full gap-2">
           <button
             disabled={validState ? false : true}
-            className={`w-full ${validState ? 'bg-white border border-black hover:bg-black hover:text-white' : 'bg-gray-200 text-gray-400'} py-4 px-2 rounded-lg`}
+            className={`w-full ${validState ? 'bg-white border border-black hover:bg-black hover:text-white' : 'bg-gray-200 text-gray-400'} py-3 rounded-lg`}
             >가입하기</button>
           <button
             type="button"
             onClick={() => {navigate(-1)}}
-            className="w-full bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black py-4 px-2 rounded-lg"
+            className="w-full bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black py-3 rounded-lg"
           >이전</button>
         </div>
       </form>
