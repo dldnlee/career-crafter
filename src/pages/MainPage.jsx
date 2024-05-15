@@ -1,12 +1,11 @@
 import Header from "src/components/Header"
 import { useEffect, useState } from "react"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import { GlobalNavigationBar } from "../components"
 
 
 export function MainPage() {
   const [, setUser] = useState();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if(localStorage.getItem('pocketbase_auth')) {
@@ -18,7 +17,7 @@ export function MainPage() {
 
   return (
     <>
-      <Header clickHandler2={() => navigate('settings')}/>
+      <Header/>
       <Outlet />
       <GlobalNavigationBar />
     </>
