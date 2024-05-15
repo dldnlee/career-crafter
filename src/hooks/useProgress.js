@@ -31,7 +31,6 @@ export async function useProgress() {
   useEffect(() => {
     const listOfAnswers = [outgoing, challenging, regularity, action, readiness];
     const total = getTotalSum(listOfAnswers);
-    console.log('this is the total:',total);
     setProgress(total);
   }, [userAnswers]);
 }

@@ -50,7 +50,7 @@ function NavigateBtn({index}) {
     <button
       type='button'
       onClick={clickHandler}
-      className={`w-full bg-point-color py-2 rounded-full ${active ? 'block' : 'invisible'}`}>다음</button>
+      className={`w-full bg-point-color hover:bg-point-color/60 py-2 rounded-full ${active ? 'block' : 'invisible'}`}>다음</button>
   )
 }
 

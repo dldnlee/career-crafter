@@ -58,23 +58,20 @@ export function QuestionsPage() {
   }
 
   return (
-    <div className="w-full h-full bg-white">
+    <div className="w-full h-full bg-primary text-white">
       <div className='sticky top-0 left-0 w-full p-6 flex justify-between'>
         <Link to='/main'>
-          <img src={arrowLeft} alt='뒤로가기' />
+          <img src={arrowLeft} alt='뒤로가기' className='invert'/>
         </Link>
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
       <form
         className='h-full w-full p-5 flex flex-col gap-5'
         onSubmit={onSubmitHandler}>
-        <h1 className='text-lg font-extrabold'>오늘 하루도 힘차게 시작해봐요!</h1>
+        <h1 className='text-lg font-semibold'>오늘 하루도 힘차게 시작해봐요!</h1>
         <motion.ul
-          // variants={container}
-          // initial={'hidden'}
-          // animate={'visible'}
           transition={{staggerChildren:0.5}}
-          className='flex flex-col gap-2 w-full h-2/3 overflow-auto no-scrollbar'>
+          className='flex flex-col gap-2 w-full h-2/3 overflow-auto no-scrollbar text-sm text-black'>
           {
             questions.map((item, idx) => {
               if(idx >= rangeStart && idx < (rangeStart + 5) ) {
@@ -84,7 +81,7 @@ export function QuestionsPage() {
                     transition={{type:'spring', stiffness:100}}
                     animate={{x:0}}
                     key={idx} 
-                    className={`flex flex-col font-semibold bg-black text-white gap-3 p-6 rounded-2xl`}>
+                    className={`flex flex-col bg-white gap-3 p-6 rounded-2xl`}>
                     <RangeInput id={`answer_${idx}`} question={item} onChangeFn={(e) => {onChangeFn(e, idx)}}/>
                   </motion.li>
                 )
@@ -93,7 +90,7 @@ export function QuestionsPage() {
           }
         </motion.ul>
         <button 
-          className='w-full bg-black px-2 py-4 rounded-xl text-white hover:bg-gray-200 hover:text-black'
+          className='w-full bg-point-color py-3 rounded-full text-white hover:bg-point-color/60 hover:text-white'
           >완료
         </button>
       </form>

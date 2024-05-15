@@ -23,8 +23,12 @@ export function HomePage() {
 
   useEffect(() => {
     async function getUserAnswers() {
-      const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
-      setUserAnswers(record);
+      try {
+        const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`, {requestKey:null});
+        setUserAnswers(record);
+      } catch {
+        console.log('failed');
+      }
     }
     getUserAnswers();
   }, [user])

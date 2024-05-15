@@ -11,6 +11,7 @@ export function Settings({active}) {
   async function handleLogout() {
     pb.authStore.clear();
     navigate('/');
+    setSettings(false);
   }
 
 

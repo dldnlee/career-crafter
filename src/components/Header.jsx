@@ -13,10 +13,8 @@ export default function Header() {
   const [settingsActive, setSettingsActive] = useAtom(settings)
 
   useProgress();
-
   useEffect(() => {
     const value = getPercentage(progress);
-    console.log('This is the progress:',value);
     setPercentage(value)
   }, [progress]); 
 

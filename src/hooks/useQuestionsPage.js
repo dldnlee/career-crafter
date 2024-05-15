@@ -9,28 +9,18 @@ import {
   checkSpec, 
   checkPref, 
   setDefaultValues } from "/src/util";
-import { userAnswerData, userData } from "/src/data";
-import { useAtomValue, useAtom } from "jotai";
-import { pb } from "/src/data";
+import { userAnswerData } from "/src/data";
+import { useAtomValue } from "jotai";
 
 export function useQuestionsPage(category) {
 
-  const user = useAtomValue(userData);
   const [rangeStart, setRangeStart] = useState(0);
   const [answerSheet, setAnswerSheet] = useState([]);
-  const [userAnswers, setUserAnswers] = useAtom(userAnswerData);
+  const userAnswers = useAtomValue(userAnswerData);
   const [questions, setQuestions] = useState([]);
   const [questionType, setQuestionType] = useState(0);
 
-  // Set answersheet data for user
-  useEffect(() => {
-    async function getAnswerSheet() {
-      const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
-      setUserAnswers(record);
-    }
-    getAnswerSheet();
-  }, [])
-
+  // 0 is the questions and 1 is the answers
   // Set category of questions based on params category
   useEffect(() => {
     if (!getRandomQuestions(userAnswers)) return;
@@ -38,7 +28,6 @@ export function useQuestionsPage(category) {
       case '오늘의 질문':
         setQuestions(getRandomQuestions(userAnswers)[0]);
         setQuestionType(getRandomQuestions(userAnswers)[1]);
-        console.log(getRandomQuestions(userAnswers)[1])
         break;
       case '스펙이':
         setQuestions(getSpecQuestions(userAnswers)[0]);
@@ -53,7 +42,6 @@ export function useQuestionsPage(category) {
   
   // Set current answer sheet
   useEffect(() => {
-    // console.log(userAnswers);
     if (!userAnswers) return;
     let range = 0;
     let answers = [];
