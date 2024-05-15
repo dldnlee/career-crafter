@@ -3,6 +3,7 @@ import { useState } from "react";
 import { pb } from "../data/pb";
 import { useNavigate, Link } from "react-router-dom";
 import close from "src/assets/close.svg";
+import { Loader } from "../components";
 
 
 const validInputStyle = "focus:outline-black";
@@ -12,13 +13,16 @@ export function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [valid, setValid] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       console.log('test');
+      setLoading(true);
       await pb.collection('users').authWithPassword(email, password);
+      setLoading(false);
       navigate('/')
     } catch {
       setValid(false);
@@ -26,6 +30,7 @@ export function LoginPage() {
     }
   }
   
+  if (loading) return (<Loader active={loading}/>)
 
   return (
     <div className="flex flex-col gap-10 items-center justify-center w-full h-full bg-white">

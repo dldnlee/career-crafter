@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { CheckAnimation } from "../components"
 import { motion } from "framer-motion"
-
+import { lineSpinner } from "ldrs"
+lineSpinner.register();
 
 export function CompletePage() {
   const navigate = useNavigate();
-
 
   setTimeout(() => {
     navigate('/main',);
@@ -20,3 +20,5 @@ export function CompletePage() {
     </div>
   )
 }
+
+

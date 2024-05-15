@@ -1,16 +1,18 @@
-import { useParams, Link, useNavigate, Form } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
 import { Loader, RangeInput } from '/src/components';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { pb } from '/src/data';
 import { useQuestionsPage } from '/src/hooks/useQuestionsPage';
+import { CompleteDialog } from '../components/CompleteDialog';
 
 
 export function QuestionsPage() {
   const { category } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
 
   const {rangeStart, answerSheet, questions, questionType, userAnswers, setAnswerSheet} = useQuestionsPage(category);
 
@@ -45,10 +47,10 @@ export function QuestionsPage() {
       setIsLoading(true);
       await pb.collection('answers').update(userAnswers.id, newData);
       setIsLoading(false);
+      setComplete(true);
     } catch {
       console.log('upload failed');
     }
-    navigate('/complete', {replace:true});
   }
 
   if(isLoading) {
@@ -63,7 +65,7 @@ export function QuestionsPage() {
         </Link>
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
-      <Form
+      <form
         className='h-full w-full p-5 flex flex-col gap-5'
         onSubmit={onSubmitHandler}>
         <h1 className='text-lg font-extrabold'>오늘 하루도 힘차게 시작해봐요!</h1>
@@ -72,7 +74,7 @@ export function QuestionsPage() {
           // initial={'hidden'}
           // animate={'visible'}
           transition={{staggerChildren:0.5}}
-          className='flex flex-col gap-2 w-full h-2/3 overflow-auto'>
+          className='flex flex-col gap-2 w-full h-2/3 overflow-auto no-scrollbar'>
           {
             questions.map((item, idx) => {
               if(idx >= rangeStart && idx < (rangeStart + 5) ) {
@@ -94,7 +96,8 @@ export function QuestionsPage() {
           className='w-full bg-black px-2 py-4 rounded-xl text-white hover:bg-gray-200 hover:text-black'
           >완료
         </button>
-      </Form>
+      </form>
+      <CompleteDialog category={category} active={complete}/>
     </div>
   )
 }

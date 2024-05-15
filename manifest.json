@@ -2,7 +2,7 @@
 {
   "name": "CareerCrafter",
   "short_name": "CareerCrafter",
-  "start_url": "/access",
+  "start_url": "/",
   "icons": [
     {
       "src": "/assets/horse3d.svg",

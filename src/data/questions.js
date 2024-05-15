@@ -1,5 +1,34 @@
 
+export const initAnswers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+
+export const initQuestions = [
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  },
+  {
+    question: '나에게 좋은 회사란?',
+    option1: '높은 연봉을 제공해주는 곳',
+    option2: '높은 연봉을 제공해주는 곳'
+  }
+]
 
 export const outgoingQuestions = [
   '경험과 기술을 통해 어떤 가치를 제공할 수 있나요?',
@@ -65,8 +94,3 @@ export const readinessQuestions = [
   '이 회사의 문화나 가치관에 적응할 수 있는 이유가 있나요?',
   '가장 중요하다고 생각하는 역량은 무엇이며, 그것을 향상시키기 위한 계획이 있나요?'
 ]
-
-// export const challengingQuestions = []
-// export const regularityQuestions = []
-// export const actionQuestions = []
-// export const readinessQuestions = []

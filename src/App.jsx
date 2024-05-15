@@ -7,6 +7,9 @@ import {
   MainPage, 
   LoginPage, 
   SignupPage,
+  Tutorial,
+  InitialQuestions,
+  Form,
   SettingsPage,
   SurveyPage,
   CommunityPage, 
@@ -14,7 +17,10 @@ import {
   HomePage,
   Friends,
   QuestionsPage,
-  CompletePage } from './pages'
+  CompletePage,
+  ResultPage,
+  CompleteSignup
+} from './pages'
 import { AccessPage } from './pages/AccessPage'
 
 const router = createBrowserRouter([
@@ -62,6 +68,10 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path: 'result',
+    element: <ResultPage />
+  },
+  {
     path: 'questions/:category',
     element: <QuestionsPage/>
   },
@@ -79,12 +89,30 @@ const router = createBrowserRouter([
   },
   {
     path: 'signup',
-    element: <SignupPage/>
+    element: <SignupPage/>,
+    children: [
+      {
+        index:true,
+        element : <Form/>
+      },
+      {
+        path: 'tutorial',
+        element: <Tutorial />
+      },
+      {
+        path: 'initial',
+        element: <InitialQuestions />
+      },
+      {
+        path: 'complete',
+        element: <CompleteSignup /> 
+      }
+    ]
   },
   {
     path: 'complete',
     element: <CompletePage />
-  }
+  },
 ])
 
 function App() {

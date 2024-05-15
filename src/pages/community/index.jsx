@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import { communityTab } from '../../data/stores';
+import { communityTab } from '/src/data/stores';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 

@@ -20,7 +20,7 @@ export function GlobalNavigationBar() {
 
 
   return (
-    <div className="fixed z-1 text-white bottom-10 w-full flex justify-center mx-auto inset-x-0">
+    <div className="absolute z-1 text-white bottom-10 w-full flex justify-center mx-auto inset-x-0">
       <div className="bg-black rounded-full px-5 py-2 flex justify-between items-center">
         <Link to="/main"  onClick={() => {setPage('홈')}}>
           <img src={page === '홈' ? homeActive : homeInactive} alt="홈" />
