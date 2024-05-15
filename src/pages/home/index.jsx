@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS} from 'chart.js/auto'
 import { useSetAtom, useAtom } from "jotai"
-import { userAnswerData, userData, pb } from "/src/data"
+import { userAnswerData, userData, pb, headerState } from "/src/data"
 import { CardContainer } from "./components/CardContainer"
 import { HomeHeader, } from "./components/HomeHeader"
 
@@ -13,6 +13,7 @@ import { HomeHeader, } from "./components/HomeHeader"
 export function HomePage() {
   const [user, setUser] = useAtom(userData);
   const setUserAnswers = useSetAtom(userAnswerData);
+  const setHeader = useSetAtom(headerState);
 
   useEffect(() => {
     if(localStorage.getItem('pocketbase_auth')) {
@@ -24,10 +25,13 @@ export function HomePage() {
   useEffect(() => {
     async function getUserAnswers() {
       try {
+        setHeader(false);
         const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`, {requestKey:null});
         setUserAnswers(record);
+        console.log(record);
+        setHeader(true);
       } catch {
-        console.log('failed');
+        console.error('failed');
       }
     }
     getUserAnswers();

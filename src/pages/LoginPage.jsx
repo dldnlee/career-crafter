@@ -68,7 +68,7 @@ export function LoginPage() {
           <span className={`${valid ? 'hidden' : 'block'} text-red-500`}>이메일 또는 비밀번호가 잘못 되었습니다</span>
         </label>
         <button 
-          className="w-full bg-point-color border mt-5 border-black hover:bg-black hover:text-white py-3 rounded-full"
+          className="w-full bg-point-color mt-5 hover:bg-point-color/60 hover:text-white py-3 rounded-full"
           >로그인
         </button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">

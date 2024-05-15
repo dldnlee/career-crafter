@@ -23,6 +23,9 @@ export const actionAnswers = atom([]);
 export const readinessAnswers = atom([]);
 
 
+// progress
+export const headerState = atom(true);
+
 
 // 회원가입
 export const signupData = atom();
