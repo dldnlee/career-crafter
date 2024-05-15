@@ -1,7 +1,7 @@
 import { Radar } from "react-chartjs-2"
 import { useRadarGraph } from "../hooks/useRadarGraph"
-import { RadarGraph } from "/src/components"
-import { plugins } from "chart.js"
+import { Link } from "react-router-dom"
+import arrowLeft from 'src/assets/arrowLeft.png';
 
 const keywords = [
   'PM (프로젝트 매니저',
@@ -138,13 +138,19 @@ function JobRecommendation() {
 
 export function ResultPage() {
   return (
-    <div className="p-3 w-full h-full text-white flex flex-col gap-6 overflow-auto bg-primary-bg">
-      <h1>완료한 것을 축하드립니다!</h1>
-      <RelatedKeywords />
-      <Stats /> 
-      <StatAnalysis />
-      <JobRecommendation />
-      This is the result page
+    <div className="w-full h-full text-white">
+      <div className="sticky top-0 left-0 w-full py-2 bg-primary-bg">
+        <Link to='/main' className="p-3">
+          <img src={arrowLeft} alt="뒤로가기" className="invert" />
+        </Link>
+      </div>
+      <div className="w-full h-full no-scrollbar p-3 flex flex-col gap-6 overflow-auto bg-primary-bg">
+        <h1 className="w-full text-center text-2xl font-semibold py-6">완료한 것을 축하드립니다!</h1>
+        <RelatedKeywords />
+        <Stats />
+        <StatAnalysis />
+        <JobRecommendation />
+      </div>
     </div>
   )
 }

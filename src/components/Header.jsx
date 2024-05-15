@@ -6,6 +6,7 @@ import { getPercentage } from 'src/util';
 import arrowLeft from 'src/assets/arrowLeft.png';
 import { Settings } from './Settings';
 import { useProgress } from 'src/hooks';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const progress = useAtomValue(userProgress);
@@ -23,7 +24,7 @@ export default function Header() {
     return (
       <div className='sticky z-10 top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-[#181818] text-white z-100'>
         <div className='w-full pr-5 flex flex-col gap-2'>
-          <div className='w-[130px] h-4 bg-gray-200 dark:bg-gray-700 animate-pulse'></div>
+          <div className='w-[130px] h-4 py-2 bg-gray-200 dark:bg-gray-700 animate-pulse'></div>
           <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700 animate-pulse">
           </div>
         </div>
@@ -38,7 +39,15 @@ export default function Header() {
   return (
     <div className='sticky z-10 top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-[#181818] text-white z-100'>
       <div className='w-full pr-5 flex flex-col gap-2'>
-        <p>나의 답변 현황: {percentage} %</p>
+        <div className='flex items-center justify-between'>
+          <p>나의 답변 현황: {percentage} %</p>
+        {
+          percentage === 100 ? 
+            <Link to='/result' className='text-sm'>
+              최종 분석결과 확인하기
+            </Link>
+            : null
+        }</div>
         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
           <div 
           style={{ width: `${percentage}%` }}
