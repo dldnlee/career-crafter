@@ -16,7 +16,7 @@ export function Form() {
   const [validState, setValidState] = useState(false);
 
   useEffect(() => {
-    if(name && password && email && password && confirm && password === confirm) {
+    if(name && password && email && password && confirm && pwValid && password === confirm) {
       setValidState(true);
     } else {
       setValidState(false);
