@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination, A11y } from "swiper/modules"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import scorpion from '/src/assets/scorpion.svg'
-import lion from '/src/assets/lion.svg'
-import goat from '/src/assets/goat.svg'
+import prefChar from 'src/assets/prefChar.svg'
+import biasChar from 'src/assets/biasChar.svg'
+import specChar from 'src/assets/specChar.svg'
 import { HeaderWithBack } from "/src/components"
 
 import 'swiper/css';
@@ -84,7 +84,7 @@ export function Tutorial() {
               topText={'매일 질문 답변을 통해'}
               btmText={'나의 커리어를 찾아봐요!'}
               noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={scorpion}
+              imgSrc={prefChar}
             />
           </SwiperSlide>
           <SwiperSlide>
@@ -92,7 +92,7 @@ export function Tutorial() {
               topText={'매일 질문 답변을 통해'}
               btmText={'나의 커리어를 찾아봐요!'}
               noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={lion}
+              imgSrc={biasChar}
             />
           </SwiperSlide>
           <SwiperSlide>
@@ -100,7 +100,7 @@ export function Tutorial() {
               topText={'매일 질문 답변을 통해'}
               btmText={'나의 커리어를 찾아봐요!'}
               noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={goat}
+              imgSrc={specChar}
             />
           </SwiperSlide>
       </Swiper>

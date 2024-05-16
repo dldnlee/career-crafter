@@ -4,10 +4,12 @@ import {
   getRandomQuestions, 
   getPrefQuestions, 
   getSpecQuestions, 
+  getBiasQuestions,
   getRange, 
   checkEmpty, 
   checkSpec, 
-  checkPref, 
+  checkPref,
+  checkBias, 
   setDefaultValues } from "/src/util";
 import { userAnswerData } from "/src/data";
 import { useAtomValue } from "jotai";
@@ -38,6 +40,10 @@ export function useQuestionsPage(category) {
       case '취향이':
         setQuestions(getPrefQuestions(userAnswers)[0]);
         setQuestionType(getPrefQuestions(userAnswers)[1]);
+        break;
+      case '성향이':
+        setQuestions(getBiasQuestions(userAnswers)[0]);
+        setQuestionType(getBiasQuestions(userAnswers)[1]);
         break;
     }
   }, [])
@@ -76,6 +82,16 @@ export function useQuestionsPage(category) {
         range = getRange(checkPref(userAnswers));
         setRangeStart(range);
         answers = setDefaultValues(checkPref(userAnswers), range)
+        setAnswerSheet(answers);
+        break;
+      case '성향이':
+        if (!checkBias(userAnswers)) {
+          alert('모든 질문에 답변하셨습니다');
+          navigate('/main', {replace:true});
+        }
+        range = getRange(checkBias(userAnswers));
+        setRangeStart(range);
+        answers = setDefaultValues(checkBias(userAnswers), range)
         setAnswerSheet(answers);
         break;
     }

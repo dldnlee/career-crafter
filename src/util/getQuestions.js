@@ -25,7 +25,9 @@ export function getRandomQuestions(userAnswers) {
   }
 }
 
-export function getSpecQuestions(userAnswers) {
+
+
+export function getBiasQuestions(userAnswers) {
   if(!userAnswers) return;
 
   if (checkComplete(JSON.parse(userAnswers.outgoing))) {
@@ -44,6 +46,16 @@ export function getPrefQuestions(userAnswers) {
     return [regularityQuestions, 3]
   } else if(checkComplete(JSON.parse(userAnswers.action))){
     return [actionQuestions, 4]
+  } else {
+    return false // change to popup
+  }
+}
+
+export function getSpecQuestions(userAnswers) {
+  if(!userAnswers) return;
+
+  if (checkComplete(JSON.parse(userAnswers.readiness))) {
+    return [readinessQuestions, 5]
   } else {
     return false // change to popup
   }

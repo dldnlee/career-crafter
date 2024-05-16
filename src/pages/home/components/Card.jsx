@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import mainCharacter from "src/assets/horse3d.svg"
-import lion from 'src/assets/lion.svg'
-import scorpion from 'src/assets/scorpion.svg'
-import goat from 'src/assets/goat.svg'
+import mainCharacter from "src/assets/mainChar.svg"
+import prefChar from 'src/assets/prefChar.svg'
+import biasChar from 'src/assets/biasChar.svg'
+import specChar from 'src/assets/specChar.svg'
 import { Radar } from "react-chartjs-2"
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS} from 'chart.js/auto'
@@ -57,7 +57,7 @@ export function NPCCard() {
         <h1>NPC 질문</h1>
       </div>
       <div>
-        <Link to="/questions/스펙이">
+        <Link to="/questions/성향이">
           <motion.div 
             animate={{y: [-50, 0], rotate: 10}}
             transition={{
@@ -80,8 +80,8 @@ export function NPCCard() {
             }}
             className="relative"
             >
-            <img src={scorpion} className="size-[90px]" alt="" />
-            <p className="absolute top-[-10px] left-6 text-sm w-full">스펙이</p>
+            <img src={biasChar} className="size-[90px]" alt="" />
+            <p className="absolute top-[-10px] left-6 text-sm w-full">성향이</p>
           </motion.div>
         </Link>
         <Link to="/questions/취향이">
@@ -96,18 +96,20 @@ export function NPCCard() {
             }}
             className="relative"
             >
-            <img src={lion} className="size-[90px]" alt="" />
+            <img src={prefChar} className="size-[90px]" alt="" />
             <p className="absolute top-[-10px] left-5 text-sm w-full">취향이</p>
           </motion.div>
         </Link>
-        <motion.div 
-          initial={{x:0}}
-          animate={{x:[20, 0, -20], y:[20, 0, 20]}}
-          transition={{repeat:Infinity, duration:3, repeatType:'reverse'}}
-          className="relative">
-          <img src={goat} className="size-[75px]" alt="" />
-          <p className="absolute top-[-10px] left-5 text-sm w-full">성향이</p>
-        </motion.div>
+        <Link to="/questions/스펙이">
+          <motion.div
+            initial={{x:0}}
+            animate={{x:[20, 0, -20], y:[20, 0, 20]}}
+            transition={{repeat:Infinity, duration:3, repeatType:'reverse'}}
+            className="relative">
+            <img src={specChar} className="size-[75px]" alt="" />
+            <p className="absolute top-[-10px] left-5 text-sm w-full">스펙이</p>
+          </motion.div>
+        </Link>
       </div>
     </motion.div>
   )

@@ -18,7 +18,7 @@ export function checkEmpty(userAnswers) {
   }
 }
 
-export function checkSpec(userAnswers) {
+export function checkBias(userAnswers) {
 
   if (checkComplete(JSON.parse(userAnswers.outgoing))) {
     return JSON.parse(userAnswers.outgoing)
@@ -28,6 +28,8 @@ export function checkSpec(userAnswers) {
     return false // change to popup
   }
 }
+
+
 
 export function checkPref(userAnswers) {
 
@@ -40,6 +42,12 @@ export function checkPref(userAnswers) {
   }
 }
 
-export function checkLast() {
+// 직무 준비도
+export function checkSpec(userAnswers) {
 
+  if (checkComplete(JSON.parse(userAnswers.readiness))) {
+    return JSON.parse(userAnswers.readiness)
+  } else {
+    return false // change to popup
+  }
 }
