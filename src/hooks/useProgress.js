@@ -27,7 +27,6 @@ export async function useProgress() {
   useEffect(() => {
     async function getUserAnswers() {
       const currentUser = JSON.parse(localStorage.getItem('pocketbase_auth'));
-
       try {
         setHeader(false);
         const record = await pb.collection('answers').getFirstListItem(`user="${currentUser.model.id}"`, {requestKey:null});
@@ -53,5 +52,5 @@ export async function useProgress() {
     const total = getTotalSum(listOfAnswers);
     setProgress(total);
     // setHeader(true);
-  }, [userAnswers]);
+  }, [outgoing, challenging, regularity, action, readiness]);
 }
