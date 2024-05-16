@@ -2,16 +2,18 @@ import {useSetAtom} from 'jotai';
 import { settings, pb } from '/src/data';
 import {useNavigate} from 'react-router-dom';
 import close from '/src/assets/close.svg'
-
+import { userAnswerData } from '../data';
 
 export function Settings({active}) {
   const setSettings = useSetAtom(settings);
   const navigate = useNavigate();
+  const setUserAnswers = useSetAtom(userAnswerData);
 
   async function handleLogout() {
     pb.authStore.clear();
     navigate('/');
     setSettings(false);
+    setUserAnswers();
   }
 
 

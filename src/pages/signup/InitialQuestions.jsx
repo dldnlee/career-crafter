@@ -25,7 +25,7 @@ export function InitialQuestions() {
   }, []);
 
   return (
-    <div className='w-full h-full bg-white flex flex-col items-center'>
+    <div className='w-full h-full bg-primary-bg text-white flex flex-col items-center'>
       <div className='w-full px-6 flex flex-col gap-14'>
         <div>
           <QuestionsIndex btnPrevEvent={handlePrev} btnNextEvent={handleNext} index={activeIndex} />

@@ -7,7 +7,10 @@ import {
   regularityAnswers, 
   actionAnswers, 
   readinessAnswers,
-  userProgress } from "/src/data"
+  userProgress,
+  headerState,
+  pb,
+  } from "/src/data"
 import { getTotalSum } from "../util";
 
 export async function useProgress() {
@@ -18,6 +21,23 @@ export async function useProgress() {
   const [action, setAction] = useAtom(actionAnswers);
   const [readiness, setReadiness] = useAtom(readinessAnswers);
   const setProgress = useSetAtom(userProgress);
+  const setUserAnswers = useSetAtom(userAnswerData);
+  const setHeader = useSetAtom(headerState);
+
+  useEffect(() => {
+    async function getUserAnswers() {
+      const currentUser = JSON.parse(localStorage.getItem('pocketbase_auth'));
+
+      try {
+        setHeader(false);
+        const record = await pb.collection('answers').getFirstListItem(`user="${currentUser.model.id}"`, {requestKey:null});
+        setUserAnswers(record);
+      } catch {
+        console.error('failed');
+      }
+    }
+    getUserAnswers();
+  }, [])
 
   useEffect(() => {
     if (!userAnswers) return;
@@ -32,5 +52,6 @@ export async function useProgress() {
     const listOfAnswers = [outgoing, challenging, regularity, action, readiness];
     const total = getTotalSum(listOfAnswers);
     setProgress(total);
+    // setHeader(true);
   }, [userAnswers]);
 }

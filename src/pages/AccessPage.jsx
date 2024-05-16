@@ -2,8 +2,12 @@ import { Link } from "react-router-dom"
 import { FindInfo } from "../components"
 import { motion } from "framer-motion"
 import whiteCharacter from 'src/assets/whiteCharacterStart.svg';
+import { useInitializeAtoms } from "../hooks/useInitializeAtoms";
 
 export function AccessPage() {
+
+  useInitializeAtoms();
+
   return (
     <div className="flex flex-col items-center justify-center gap-6 w-full h-full bg-primary text-white">
       <div className="flex flex-col w-fit justify-center items-start">

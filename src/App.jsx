@@ -10,7 +10,6 @@ import {
   Tutorial,
   InitialQuestions,
   Form,
-  SurveyPage,
   CommunityPage, 
   Ranking, 
   HomePage,
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <HomePage/>
-          },
-          {
-            path: 'survey/:category',
-            element: <SurveyPage />
           },
           {
             path: 'community',
