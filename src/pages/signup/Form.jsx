@@ -7,9 +7,10 @@ import close from "src/assets/close.svg";
 
 export function Form() {
   const [name, setName] = useState();
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState();
   const [confirm, setConfirm] = useState();
+  const [pwValid, setPwValid] = useState(true);
   const setUserInfo = useSetAtom(signupData);
   const navigate = useNavigate();
   const [validState, setValidState] = useState(false);
@@ -22,6 +23,16 @@ export function Form() {
     }
   }, [name, password, email, password, confirm])
   
+
+  function checkPassword(e) {
+    if(e.target.value.length > 7) {
+      console.log(e.target.value)
+      setPassword(e.target.value)
+      setPwValid(true);
+    } else {
+      setPwValid(false);
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -75,8 +86,9 @@ export function Form() {
             id="password" 
             placeholder="비밀번호" 
             required
-            className="p-3 bg-gray-100 rounded-lg w-full focus:outline-black text-black" 
-            onChange={(e) => {setPassword(e.target.value)}}/>
+            className={`p-3 bg-gray-100 rounded-lg ${pwValid ? '' : 'border border-red-400'} w-full focus:outline-black text-black`} 
+            onChange={checkPassword}/>
+          <span className={`${pwValid ? 'invisible' : 'block'} text-red-500 text-sm`}>8자 이상 입력해주세요</span>
         </label>
 
         <label htmlFor="password-confirm" className="flex items-start justify-center flex-col w-full">비밀번호 확인
