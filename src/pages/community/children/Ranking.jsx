@@ -34,8 +34,8 @@ const dummyData = [
 
 export function Ranking() {
   return (
-    <div className="h-full w-full pt-16 px-4">
-      <h1 className="text-white text-2xl font-bold py-5">이번주 랭킹</h1>
+    <div className="h-full w-full px-4">
+      <h1 className="text-white text-2xl font-bold pb-4">이번주 랭킹</h1>
       <ul className="flex flex-col gap-2 overflow-auto w-full h-[400px] no-scrollbar">
         {
           dummyData.map((item, idx) => {

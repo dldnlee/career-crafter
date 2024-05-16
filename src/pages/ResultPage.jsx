@@ -3,7 +3,8 @@ import { useRadarGraph } from "../hooks/useRadarGraph"
 import { Link } from "react-router-dom"
 import arrowLeft from 'src/assets/arrowLeft.png';
 import whiteChar from 'src/assets/whiteCharacter.svg';
-import {motion} from 'framer-motion'
+import {motion} from 'framer-motion';
+import mockGraph from 'src/assets/mockGraph.png';
 
 const keywords = [
   'PM (프로젝트 매니저',
@@ -77,6 +78,7 @@ function Stats() {
   return (
     <div className="flex flex-col gap-5">
       <TitleText text={'유형 분석 그래프'} /> 
+      <img src={mockGraph} alt="" className="rounded-lg" />
       <div className="bg-white p-6 rounded-2xl">
         <Radar data={data}/>
       </div>
