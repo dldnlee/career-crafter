@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination, A11y } from "swiper/modules"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import scorpion from '/src/assets/scorpion.svg'
-import lion from '/src/assets/lion.svg'
-import goat from '/src/assets/goat.svg'
+import prefChar from 'src/assets/prefChar.svg'
+import biasChar from 'src/assets/biasChar.svg'
+import specChar from 'src/assets/specChar.svg'
 import { HeaderWithBack } from "/src/components"
 
 import 'swiper/css';
@@ -50,7 +50,7 @@ function NavigateBtn({index}) {
     <button
       type='button'
       onClick={clickHandler}
-      className={`w-full bg-point-color py-2 rounded-full ${active ? 'block' : 'invisible'}`}>다음</button>
+      className={`w-full bg-point-color hover:bg-point-color/60 py-2 rounded-full ${active ? 'block' : 'invisible'}`}>다음</button>
   )
 }
 
@@ -64,7 +64,7 @@ export function Tutorial() {
   }, [])
 
   return (
-    <div className="text-white w-full h-full bg-primary-bg flex flex-col items-center justify-center">
+    <div className="text-white w-full h-full bg-primary-bg flex flex-col items-center gap-6 justify-center">
       <HeaderWithBack />
       <Swiper
         style={{
@@ -77,14 +77,14 @@ export function Tutorial() {
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         pagination={true}
         centeredSlides={true}
-        className="w-full h-[60%]"
+        className="w-full h-[70%]"
         >
           <SwiperSlide>
             <TutorialCard 
               topText={'매일 질문 답변을 통해'}
               btmText={'나의 커리어를 찾아봐요!'}
               noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={scorpion}
+              imgSrc={prefChar}
             />
           </SwiperSlide>
           <SwiperSlide>
@@ -92,7 +92,7 @@ export function Tutorial() {
               topText={'매일 질문 답변을 통해'}
               btmText={'나의 커리어를 찾아봐요!'}
               noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={lion}
+              imgSrc={biasChar}
             />
           </SwiperSlide>
           <SwiperSlide>
@@ -100,7 +100,7 @@ export function Tutorial() {
               topText={'매일 질문 답변을 통해'}
               btmText={'나의 커리어를 찾아봐요!'}
               noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={goat}
+              imgSrc={specChar}
             />
           </SwiperSlide>
       </Swiper>

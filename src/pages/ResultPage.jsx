@@ -1,7 +1,10 @@
 import { Radar } from "react-chartjs-2"
 import { useRadarGraph } from "../hooks/useRadarGraph"
-import { RadarGraph } from "/src/components"
-import { plugins } from "chart.js"
+import { Link } from "react-router-dom"
+import arrowLeft from 'src/assets/arrowLeft.png';
+import whiteChar from 'src/assets/whiteCharacter.svg';
+import {motion} from 'framer-motion';
+import mockGraph from 'src/assets/mockGraph.png';
 
 const keywords = [
   'PM (프로젝트 매니저',
@@ -75,6 +78,7 @@ function Stats() {
   return (
     <div className="flex flex-col gap-5">
       <TitleText text={'유형 분석 그래프'} /> 
+      <img src={mockGraph} alt="" className="rounded-lg" />
       <div className="bg-white p-6 rounded-2xl">
         <Radar data={data}/>
       </div>
@@ -127,24 +131,43 @@ function Job() {
 
 function JobRecommendation() {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 w-full">
       <TitleText text={'추천 기업'}/> 
-      <Job />
-      <Job /> 
-      <Job />  
+      <div className="flex flex-col h-[500px] gap-2 overflow-auto no-scrollbar">
+        <Job />
+        <Job />
+        <Job />
+      </div>
     </div>
   )
 }
 
 export function ResultPage() {
   return (
-    <div className="p-3 w-full h-full text-white flex flex-col gap-6 overflow-auto bg-primary-bg">
-      <h1>완료한 것을 축하드립니다!</h1>
-      <RelatedKeywords />
-      <Stats /> 
-      <StatAnalysis />
-      <JobRecommendation />
-      This is the result page
+    <div className="w-full h-full text-white">
+      <div className="sticky top-0 left-0 w-full px-3 py-2 bg-primary-bg shadow-2xl flex">
+        <Link to='/main' className="w-fit p-2">
+          <img src={arrowLeft} alt="뒤로가기" className="invert size-[30px]" />
+        </Link>
+      </div>
+      <div className="w-full h-full no-scrollbar py-3 px-6 pb-10 flex flex-col gap-6 overflow-auto bg-primary-bg">
+        <div className="w-full flex flex-col justify-center items-center py-6">
+          <motion.img
+          initial={{opacity:0, scale:0.5}}
+          animate={{opacity:1, scale:1}}
+          transition={{duration:1}}
+          src={whiteChar} alt="하얀 캐릭터" className="size-[200px]" />
+          <motion.h1
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          transition={{duration:2}}
+          className="w-full text-center text-2xl font-semibold">완료한 것을 축하드립니다!</motion.h1>
+        </div>
+        <RelatedKeywords />
+        <Stats />
+        <StatAnalysis />
+        <JobRecommendation />
+      </div>
     </div>
   )
 }

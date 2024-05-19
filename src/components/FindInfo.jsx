@@ -10,7 +10,7 @@ export function FindInfo({
   return (
     <>
       <Link to={routeOne} className="p-3">{textOne}</Link>
-      <hr className="h-[20px] w-[1px] bg-black"/>
+      <hr className="h-[20px] w-[1px] bg-white"/>
       <Link to={routeTwo} className="p-3">{textTwo}</Link>
     </>
   )

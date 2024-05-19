@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, A11y } from 'swiper/modules';
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { initQuestions} from '/src/data/';
 import { SubmitBtn, QuestionsIndex, Questions, InitGuide } from './components/';
 
@@ -11,14 +11,24 @@ import 'swiper/css/scrollbar';
 
 
 export function InitialQuestions() {
-  const [swiperRef, setSwiperRef] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const sliderRef = useRef(null);
+
+  const handlePrev = useCallback(() => {
+    if(!sliderRef.current) return;
+    sliderRef.current.swiper.slidePrev();
+  }, [])
+
+  const handleNext = useCallback(() => {
+    if(!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
+  }, []);
 
   return (
-    <div className='w-full h-full bg-white flex flex-col pt-20 items-center'>
+    <div className='w-full h-full bg-primary-bg text-white flex flex-col items-center'>
       <div className='w-full px-6 flex flex-col gap-14'>
         <div>
-          <QuestionsIndex index={activeIndex} swiperRer={swiperRef} />
+          <QuestionsIndex btnPrevEvent={handlePrev} btnNextEvent={handleNext} index={activeIndex} />
           <Swiper
             style={{
               "--swiper-pagination-bullet-inactive-color": "#999999",
@@ -26,7 +36,7 @@ export function InitialQuestions() {
             modules={[Pagination, A11y]}
             spaceBetween={20}
             slidesPerView={1}
-            onSwiper={setSwiperRef}
+            ref={sliderRef}
             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
             pagination={{
               type: 'progressbar'

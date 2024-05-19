@@ -10,8 +10,6 @@ import {
   Tutorial,
   InitialQuestions,
   Form,
-  SettingsPage,
-  SurveyPage,
   CommunityPage, 
   Ranking, 
   HomePage,
@@ -19,7 +17,8 @@ import {
   QuestionsPage,
   CompletePage,
   ResultPage,
-  CompleteSignup
+  CompleteSignup,
+  Board
 } from './pages'
 import { AccessPage } from './pages/AccessPage'
 
@@ -42,14 +41,6 @@ const router = createBrowserRouter([
             element: <HomePage/>
           },
           {
-            path: 'settings',
-            element: <SettingsPage/>
-          },
-          {
-            path: 'survey/:category',
-            element: <SurveyPage />
-          },
-          {
             path: 'community',
             element: <CommunityPage />,
             children: [
@@ -60,6 +51,10 @@ const router = createBrowserRouter([
               {
                 path: 'friends',
                 element: <Friends />
+              },
+              {
+                path: 'board',
+                element: <Board />
               }
             ]
           }
@@ -89,7 +84,8 @@ const router = createBrowserRouter([
   },
   {
     path: 'signup',
-    element: <SignupPage/>,
+    element: (
+    <SignupPage/>),
     children: [
       {
         index:true,

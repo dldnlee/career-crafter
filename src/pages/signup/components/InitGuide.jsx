@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import whiteCharacter from '/src/assets/whiteCharacter.svg'
+import initGuide from '/src/assets/initGuide.svg'
 
 const guideText = [
   '간단한 질문에 답변해주세요',
@@ -24,9 +24,11 @@ export function InitGuide() {
   return (
     <button 
     onClick={clickHandler}
-    className={`${active ? 'absolute' : 'hidden'} w-full h-full backdrop-blur-sm z-10 overflow-hidden`}>
-        <p className='absolute bottom-[600px] text-sm right-20 bg-point-color text-white p-4 rounded-s-xl rounded-tr-xl'>{guideText[textIndex]}</p>
-        <img src={whiteCharacter} alt="하얀색 귀여운 캐릭터" className='size-[200px] -rotate-12 absolute top-60 -right-16'/>
+    className={`${active ? 'absolute' : 'hidden'} w-full h-full backdrop-blur-sm bg-black bg-opacity-30 z-10 overflow-hidden`}>
+        <div className='absolute right-0 top-[20%] w-fit flex gap-3 flex-col items-end'>
+          <p className='bg-point-color text-white max-w-[60%] p-3 rounded-2xl rounded-br-none mr-10'>{guideText[textIndex]}</p>
+          <img src={initGuide} alt="하얀색 귀여운 캐릭터" className='size-[150px]'/>
+        </div>
     </button>
   )
 }

@@ -53,6 +53,6 @@ export function SubmitBtn({index}) {
     <button 
       onClick={clickHandler}
       type='button'
-      className={`w-full bg-black text-white py-2 ${visible ? 'block' : 'invisible'} rounded-full`}>다음</button>
+      className={`w-full bg-point-color hover:bg-point-color/60 text-white py-2 ${visible ? 'block' : 'invisible'} rounded-full`}>다음</button>
   )
 }

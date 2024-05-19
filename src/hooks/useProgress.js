@@ -1,24 +1,56 @@
-import { useAtomValue, useSetAtom } from "jotai"
-import { userAnswerData, userProgress } from "/src/data"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react";
-
-import { getSum } from "/src/util";
-
+import { 
+  userAnswerData,
+  outgoingAnswers, 
+  challengingAnswers, 
+  regularityAnswers, 
+  actionAnswers, 
+  readinessAnswers,
+  userProgress,
+  headerState,
+  pb,
+  } from "/src/data"
+import { getTotalSum } from "../util";
 
 export async function useProgress() {
-  // const user = useAtomValue(userData);
   const userAnswers = useAtomValue(userAnswerData);
-  // const record = await pb.collection('answers').getFirstListItem(`user="${user.id}"`);
+  const [outgoing, setOutgoing] = useAtom(outgoingAnswers);
+  const [challenging, setChallenging] = useAtom(challengingAnswers);
+  const [regularity, setRegularity] = useAtom(regularityAnswers);
+  const [action, setAction] = useAtom(actionAnswers);
+  const [readiness, setReadiness] = useAtom(readinessAnswers);
   const setProgress = useSetAtom(userProgress);
-  useEffect(() => { 
-    if (!userAnswers) return;
-    let totalSum = 0;
-    totalSum += getSum(JSON.parse(userAnswers.outgoing));
-    totalSum += getSum(JSON.parse(userAnswers.challenging));
-    totalSum += getSum(JSON.parse(userAnswers.regularity));
-    totalSum += getSum(JSON.parse(userAnswers.action));
-    totalSum += getSum(JSON.parse(userAnswers.readiness));
-    setProgress(totalSum);
-  }, [userAnswers])
+  const setUserAnswers = useSetAtom(userAnswerData);
+  const setHeader = useSetAtom(headerState);
 
+  useEffect(() => {
+    async function getUserAnswers() {
+      const currentUser = JSON.parse(localStorage.getItem('pocketbase_auth'));
+      try {
+        setHeader(false);
+        const record = await pb.collection('answers').getFirstListItem(`user="${currentUser.model.id}"`, {requestKey:null});
+        setUserAnswers(record);
+      } catch {
+        console.error('failed');
+      }
+    }
+    getUserAnswers();
+  }, [])
+
+  useEffect(() => {
+    if (!userAnswers) return;
+    setOutgoing(JSON.parse(userAnswers.outgoing));
+    setChallenging(JSON.parse(userAnswers.challenging));
+    setRegularity(JSON.parse(userAnswers.regularity));
+    setAction(JSON.parse(userAnswers.action));
+    setReadiness(JSON.parse(userAnswers.readiness));
+  }, [userAnswers]);
+
+  useEffect(() => {
+    const listOfAnswers = [outgoing, challenging, regularity, action, readiness];
+    const total = getTotalSum(listOfAnswers);
+    setProgress(total);
+    // setHeader(true);
+  }, [outgoing, challenging, regularity, action, readiness]);
 }

@@ -16,7 +16,7 @@ export function CompleteSignup() {
 
   return (
     <div className="h-full w-full bg-primary-bg flex items-center justify-center">
-      <div className='flex flex-col justify-center items-center gap-16 text-white'>
+      <div className='flex flex-col justify-center items-center gap-10 text-white'>
         <motion.h1
         initial={{opacity:0}}
         animate={{opacity:1}}
@@ -30,7 +30,7 @@ export function CompleteSignup() {
         <button
         type='button'
         onClickCapture={StartBtn}
-        className='w-full py-3 bg-point-color rounded-full text-center font-semibold'>시작하기</button>
+        className='w-full py-3 bg-point-color hover:bg-point-color/50 rounded-full text-center font-semibold'>시작하기</button>
       </div>
     </div>
     
