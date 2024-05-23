@@ -5,6 +5,7 @@ import arrowLeft from 'src/assets/arrowLeft.png';
 import whiteChar from 'src/assets/whiteCharacter.svg';
 import {motion} from 'framer-motion';
 import mockGraph from 'src/assets/mockGraph.png';
+import { plugins, scales } from "chart.js";
 
 const keywords = [
   'PM (프로젝트 매니저',
@@ -51,6 +52,20 @@ function RelatedKeywords() {
 function Stats() {
   const {stats} = useRadarGraph();
 
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
+    scales: {
+      r: {
+        suggestedMin: 0,
+        suggestedMax: 50
+    }
+    }
+  }
+
   const data = {
     labels: [
       '외향성',
@@ -61,8 +76,8 @@ function Stats() {
     ],
   
     datasets: [{
-      label: '나의 현재 직무 상황',
-      data: stats,
+      label: '나의 직무 성향',
+      data: [...stats],
       fill: true,
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
       borderColor: 'rgb(54, 162, 235)',
@@ -74,13 +89,15 @@ function Stats() {
     }]
   };
 
+  console.log(stats);
+
 
   return (
     <div className="flex flex-col gap-5">
       <TitleText text={'유형 분석 그래프'} /> 
       <img src={mockGraph} alt="" className="rounded-lg" />
       <div className="bg-white p-6 rounded-2xl">
-        <Radar data={data}/>
+        <Radar data={data} options={options}/>
       </div>
     </div>
   )
