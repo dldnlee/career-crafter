@@ -5,18 +5,83 @@ import arrowLeft from 'src/assets/arrowLeft.png';
 import whiteChar from 'src/assets/whiteCharacter.svg';
 import {motion} from 'framer-motion';
 import mockGraph from 'src/assets/mockGraph.png';
-import { plugins, scales } from "chart.js";
+import { useEffect, useState } from "react";
+import { 
+  actionAnswers,
+  challengingAnswers,
+  outgoingAnswers,
+  pb, 
+  regularityAnswers } from "src/data";
+import { useAtomValue } from "jotai";
+import { getPercentage, getSumOfList } from "src/util";
 
-const keywords = [
-  'PM (프로젝트 매니저',
-  '인터렉션 개발자',
-  '스타트업',
-  '중견기업',
-  '금융 - 은행',
-  'IT'
-]
+
+function Line({text1, text2, number1, number2}) {
+  return (
+    <div className="w-full flex items-end">
+      <div className="w-full">
+        <h1>{text1}</h1>
+        <div className="w-full bg-gray-700 rounded-full h-1.5 flex justify-end">
+          <div
+            style={{ width: `${number1}%` }}
+            className={`bg-point-color h-1.5 rounded-s-full `}
+          ></div>
+        </div>
+      </div>
+      <hr className="h-[10px] border border-white"/>
+      <div className="w-full flex flex-col items-end">
+        <h1>{text2}</h1>
+        <div className="w-full bg-gray-700 rounded-full h-1.5 ">
+          <div
+            style={{ width: `${number2}%` }}
+            className={`bg-white h-1.5 rounded-e-full `}
+          ></div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function LineGraph() {
+  const outgoing = useAtomValue(outgoingAnswers)
+  const challenging = useAtomValue(challengingAnswers)
+  const regularity = useAtomValue(regularityAnswers)
+  const action = useAtomValue(actionAnswers)
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    let answers = [outgoing, challenging, regularity, action];
+    let answerResults = [];
+    console.log(getPercentage(50 - getSumOfList(outgoing)))
+    console.log(getPercentage(getSumOfList(outgoing)))
+
+    answers.forEach((item) => {
+      let check = {
+        first : getPercentage(50 - getSumOfList(item)),
+        second: getPercentage(getSumOfList(item))
+      }
+      answerResults.push(check);
+    })
+
+    setResults(answerResults);
+
+  },[])
+
+
+
+  return (
+    <div className="w-full p-4 py-6 flex flex-col gap-5 bg-secondary-bg rounded-xl">
+      <Line text1={'내향성'} text2={'외향성'} number1={results[0]?.first} number2={results[0]?.second}/>
+      <Line text1={'안전성'} text2={'도전성'} number1={results[1]?.first} number2={results[1]?.second}/>
+      <Line text1={'자유성'} text2={'규칙성'} number1={results[2]?.first} number2={results[2]?.second}/>
+      <Line text1={'기획형'} text2={'행동성'} number1={results[3]?.first} number2={results[3]?.second}/>
+    </div>
+  )
+}
+
 
 function Keyword({text, bgColor}) {
+
   return (
     <p 
       className={`px-4 py-1 mr-2 mb-2 inline-block text-white text-[12px] font-semibold w-fit rounded-full ${bgColor}`}>{text}</p>
@@ -32,6 +97,22 @@ function TitleText({text}) {
 }
 
 function RelatedKeywords() {
+  const [keywords, setKeywords] = useState([]);
+
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('pocketbase_auth'));
+
+    async function getKeywords() {
+      const record = await pb.collection('users').getOne(`${currentUser.model.id}`);
+      const keywords = JSON.parse(record.keywords);
+      setKeywords(keywords);
+    }
+
+    getKeywords()
+  }, [])
+
+
   return (
     <div className="flex flex-col gap-5">
       <TitleText text={'나의 관련 키워드'}/>
@@ -95,7 +176,7 @@ function Stats() {
   return (
     <div className="flex flex-col gap-5">
       <TitleText text={'유형 분석 그래프'} /> 
-      <img src={mockGraph} alt="" className="rounded-lg" />
+      <LineGraph />
       <div className="bg-white p-6 rounded-2xl">
         <Radar data={data} options={options}/>
       </div>

@@ -117,6 +117,16 @@ export function NPCCard() {
 
 export function GraphCard() {
   const {data} = useRadarGraph();
+
+  const options = {
+    scales: {
+      r: {
+        suggestedMin: 0,
+        suggestedMax: 50
+    }
+    }
+  }
+
   return (
       <motion.div
         initial={{y:100}}
@@ -126,7 +136,7 @@ export function GraphCard() {
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>스텟 분석</h1>
         </div>
-        <Radar data={data}/>
+        <Radar data={data} options={options}/>
       </motion.div>
   )
 }

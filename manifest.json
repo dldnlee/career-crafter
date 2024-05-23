@@ -5,7 +5,7 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "/assets/horse3d.svg",
+      "src": "src/assets/mainChar.svg",
       "sizes": "any"
     }
   ],

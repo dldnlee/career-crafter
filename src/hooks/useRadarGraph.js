@@ -33,8 +33,8 @@ export function useRadarGraph() {
       '도전성'
     ],
     datasets: [{
-      label: '나의 이전 직무 상황',
-      data: [40, 40, 50, 40, 20],
+      label: '나의 초기 스텟',
+      data: [20, 18, 15, 21, 20],
       fill: true,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgb(255, 99, 132)',
@@ -44,7 +44,7 @@ export function useRadarGraph() {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgb(255, 99, 132)'
     }, {
-      label: '나의 현재 직무 상황',
+      label: '나의 현재 스텟',
       data: stats,
       fill: true,
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
