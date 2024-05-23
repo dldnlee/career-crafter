@@ -4,6 +4,7 @@ import { useAtomValue } from "jotai";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../../../components";
+import { userKeywords } from "../../../data";
 
 
 export function SubmitBtn({index}) {
@@ -12,6 +13,7 @@ export function SubmitBtn({index}) {
   const userData = useAtomValue(signupData);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const keywords = useAtomValue(userKeywords);
 
 
   useEffect(() => {
@@ -26,6 +28,7 @@ export function SubmitBtn({index}) {
     let signupData;
     signupData = {...userData};
     signupData.initstats = JSON.stringify(stats);
+    signupData.keywords = JSON.stringify(keywords);
     
     try {
       setLoading(true);
