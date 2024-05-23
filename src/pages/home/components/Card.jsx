@@ -56,61 +56,55 @@ export function NPCCard() {
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
       </div>
-      <div>
-        <Link to="/questions/성향이">
-          <motion.div 
-            animate={{y: [-50, 0], rotate: 10}}
-            transition={{
-              rotate: {
-                duration: 0.7,
-                repeatDelay: 0,
-                repeat: Infinity,
-                repeatType: 'mirror',
-                ease: 'linear'
-              },
-              y: {
-                type: 'spring', 
-                stiffness: 100, 
-                duration: 0.1,
-                repeatDelay: 0,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'linear'
-              }
-            }}
-            className="relative"
-            >
-            <img src={biasChar} className="size-[90px]" alt="" />
-            <p className="absolute top-[-10px] left-6 text-sm w-full">성향이</p>
-          </motion.div>
-        </Link>
-        <Link to="/questions/취향이">
-          <motion.div 
-            animate={{x: [80, -80], y:-10}}
-            transition={{
-              y: {duration: 0.3, repeat: Infinity, repeatType:'mirror'},
-              x: {
-                duration: 10,
-                repeat: Infinity,
-                repeatType: 'reverse',}
-            }}
-            className="relative"
-            >
-            <img src={prefChar} className="size-[90px]" alt="" />
-            <p className="absolute top-[-10px] left-5 text-sm w-full">취향이</p>
-          </motion.div>
-        </Link>
-        <Link to="/questions/스펙이">
-          <motion.div
-            initial={{x:0}}
-            animate={{x:[20, 0, -20], y:[20, 0, 20]}}
-            transition={{repeat:Infinity, duration:3, repeatType:'reverse'}}
-            className="relative">
-            <img src={specChar} className="size-[75px]" alt="" />
-            <p className="absolute top-[-10px] left-5 text-sm w-full">스펙이</p>
-          </motion.div>
-        </Link>
-      </div>
+      <Link to='/npc' className="w-full h-full flex flex-col items-center justify-center">
+        <motion.div 
+          animate={{y: [-50, 0], rotate: 10}}
+          transition={{
+            rotate: {
+              duration: 0.7,
+              repeatDelay: 0,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'linear'
+            },
+            y: {
+              type: 'spring', 
+              stiffness: 100, 
+              duration: 0.1,
+              repeatDelay: 0,
+              repeat: Infinity,
+              repeatType: 'reverse',
+              ease: 'linear'
+            }
+          }}
+          className="relative"
+          >
+          <img src={biasChar} className="size-[90px]" alt="" />
+          <p className="absolute top-[-10px] left-6 text-sm w-full">성향이</p>
+        </motion.div>
+        <motion.div 
+          animate={{x: [80, -80], y:-10}}
+          transition={{
+            y: {duration: 0.3, repeat: Infinity, repeatType:'mirror'},
+            x: {
+              duration: 10,
+              repeat: Infinity,
+              repeatType: 'reverse',}
+          }}
+          className="relative"
+          >
+          <img src={prefChar} className="size-[90px]" alt="" />
+          <p className="absolute top-[-10px] left-5 text-sm w-full">취향이</p>
+        </motion.div>
+        <motion.div
+          initial={{x:0}}
+          animate={{x:[20, 0, -20], y:[20, 0, 20]}}
+          transition={{repeat:Infinity, duration:3, repeatType:'reverse'}}
+          className="relative">
+          <img src={specChar} className="size-[75px]" alt="" />
+          <p className="absolute top-[-10px] left-5 text-sm w-full">스펙이</p>
+        </motion.div>
+      </Link>
     </motion.div>
   )
 }

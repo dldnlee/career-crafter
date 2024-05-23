@@ -67,7 +67,7 @@ export function useQuestionsPage(category) {
       case '스펙이':
         if (!checkSpec(userAnswers)) {
           alert('모든 질문에 답변하셨습니다');
-          navigate('/main', {replace:true});
+          navigate('/npc', {replace:true});
         }
         range = getRange(checkSpec(userAnswers));
         setRangeStart(range);
@@ -77,7 +77,7 @@ export function useQuestionsPage(category) {
       case '취향이':
         if (!checkPref(userAnswers)) {
           alert('모든 질문에 답변하셨습니다');
-          navigate('/main', {replace:true});
+          navigate('/npc', {replace:true});
         }
         range = getRange(checkPref(userAnswers));
         setRangeStart(range);
@@ -87,7 +87,7 @@ export function useQuestionsPage(category) {
       case '성향이':
         if (!checkBias(userAnswers)) {
           alert('모든 질문에 답변하셨습니다');
-          navigate('/main', {replace:true});
+          navigate('/npc', {replace:true});
         }
         range = getRange(checkBias(userAnswers));
         setRangeStart(range);

@@ -15,7 +15,7 @@ export function SubmitBtn({index}) {
 
 
   useEffect(() => {
-    if(index === 4) {
+    if(index === 5) {
       setVisible(true);
     } else {
       setVisible(false);

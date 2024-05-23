@@ -62,15 +62,15 @@ export default function Header() {
           <p>나의 답변 현황: {percentage} %</p>
         {
           percentage === 100 ? 
-            <Link to='/result' className='text-sm'>
+            <Link to='/result' className='text-[12px]'>
               최종 분석결과 확인하기
             </Link>
             : null
         }</div>
-        <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
+        <div className="w-full bg-gray-700 rounded-full h-1.5 mb-4">
           <div 
           style={{ width: `${percentage}%` }}
-          className={`bg-blue-600 h-1.5 rounded-full dark:bg-blue-500`} ></div>
+          className={`bg-point-color h-1.5 rounded-full `} ></div>
         </div>
       </div>
       <button onClick={() => {setSettingsActive(true)}}>

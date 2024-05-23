@@ -9,3 +9,4 @@ export * from './checkComplete';
 export * from './checkEmpty';
 export * from './getQuestions';
 export * from './setDefaultValues';
+export * from './removeItem';

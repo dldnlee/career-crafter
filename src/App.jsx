@@ -18,7 +18,8 @@ import {
   CompletePage,
   ResultPage,
   CompleteSignup,
-  Board
+  Board,
+  NPCPage
 } from './pages'
 import { AccessPage } from './pages/AccessPage'
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
         ]  
       }
     ]
+  },
+  {
+    path: 'npc',
+    element: <NPCPage />
   },
   {
     path: 'result',

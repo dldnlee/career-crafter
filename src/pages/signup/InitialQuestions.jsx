@@ -1,17 +1,22 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, A11y } from 'swiper/modules';
 import { useState, useRef, useCallback } from 'react';
-import { initQuestions} from '/src/data/';
+import { initQuestions, jobKeywords, userKeywords } from '/src/data/';
 import { SubmitBtn, QuestionsIndex, Questions, InitGuide } from './components/';
+import { removeItem } from 'src/util';
+
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { useAtom } from 'jotai';
 
 
 export function InitialQuestions() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [keywords, setKeywords] = useAtom(userKeywords)
+
   const sliderRef = useRef(null);
 
   const handlePrev = useCallback(() => {
@@ -23,6 +28,17 @@ export function InitialQuestions() {
     if(!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   }, []);
+
+  function buttonHandler(item) {
+    const newKeywords = [...keywords];
+    if(newKeywords.includes(item)) {
+      setKeywords(removeItem(newKeywords, item));
+    } else {
+      newKeywords.push(item)
+      setKeywords(newKeywords);
+    }
+    console.log(keywords);
+  }
 
   return (
     <div className='w-full h-full bg-primary-bg text-white flex flex-col items-center'>
@@ -44,6 +60,22 @@ export function InitialQuestions() {
             centeredSlides={true}
             className="w-full h-fit"
             >
+              <SwiperSlide>
+                <div className='w-full flex flex-col justify-center items-center'>
+                  <h1 className='text-2xl text-center font-semibold py-14'>키워드 5개를 선택 해주세요!</h1>
+                  <div className='w-full h-[400px] flex flex-wrap gap-2 justify-center overflow-y-auto'>
+                    {
+                      jobKeywords.map((item) => (
+                        <button 
+                        onClick={() => buttonHandler(item)}
+                        key={item}
+                        className='bg-white w-fit text-black h-[40px] py-2 px-4 rounded-full'>{item}</button>
+                      ))
+                    }
+                  </div>
+                </div>
+              </SwiperSlide>
+
               {
                 initQuestions.map((item, index) => {
                   return (

@@ -8,7 +8,7 @@ export function QuestionsIndex({btnPrevEvent, btnNextEvent, index}) {
       <button type='button' onClick={btnPrevEvent} className='invert'>
         <img src={arrowLeft} alt="" />
       </button>
-      <p>{index+1}/5</p>
+      <p>{index+1}/6</p>
       <button type='button' onClick={btnNextEvent} className='invert'>
         <img src={arrowLeft} alt="" className='rotate-180'/>
       </button>
