@@ -185,6 +185,13 @@ function Stats() {
 }
 
 function StatAnalysis() {
+  const outgoing = useAtomValue(outgoingAnswers)
+  const challenging = useAtomValue(challengingAnswers)
+  const regularity = useAtomValue(regularityAnswers)
+  const action = useAtomValue(actionAnswers)
+
+
+
   return (
     <div className="flex flex-col gap-5">
       <TitleText text={'요인별 분석'} />
@@ -240,6 +247,23 @@ function JobRecommendation() {
   )
 }
 
+function Celebration() {
+  return (
+    <div className="w-full flex flex-col justify-center items-center py-6">
+      <motion.img
+      initial={{opacity:0, scale:0.5}}
+      animate={{opacity:1, scale:1}}
+      transition={{duration:1}}
+      src={whiteChar} alt="하얀 캐릭터" className="size-[200px]" />
+      <motion.h1
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      transition={{duration:2}}
+      className="w-full text-center text-2xl font-semibold">완료한 것을 축하드립니다!</motion.h1>
+    </div>
+  )
+}
+
 export function ResultPage() {
   return (
     <div className="w-full h-full text-white">
@@ -249,18 +273,7 @@ export function ResultPage() {
         </Link>
       </div>
       <div className="w-full h-full no-scrollbar py-3 px-6 pb-10 flex flex-col gap-6 overflow-auto bg-primary-bg">
-        <div className="w-full flex flex-col justify-center items-center py-6">
-          <motion.img
-          initial={{opacity:0, scale:0.5}}
-          animate={{opacity:1, scale:1}}
-          transition={{duration:1}}
-          src={whiteChar} alt="하얀 캐릭터" className="size-[200px]" />
-          <motion.h1
-          initial={{opacity:0}}
-          animate={{opacity:1}}
-          transition={{duration:2}}
-          className="w-full text-center text-2xl font-semibold">완료한 것을 축하드립니다!</motion.h1>
-        </div>
+        <Celebration />
         <RelatedKeywords />
         <Stats />
         <StatAnalysis />

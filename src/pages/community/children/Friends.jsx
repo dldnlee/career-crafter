@@ -1,82 +1,70 @@
 import {helix} from 'ldrs';
+import { useEffect, useState } from 'react';
+import { pb } from 'src/data';
+import mainChar from 'src/assets/mainChar.svg';
+import { ProgressBar } from 'src/components';
 
-
-const dummyData = [
-  {
-    'name': '발빠른 고양이',
-    'category': '서비스 기획자'
-  },
-  {
-    'name': '느릿 강아지',
-    'category': '개발자'
-  },
-  {
-    'name': '어글리 햄스터',
-    'category': '디자이너'
-  },
-]
 
 export function Friends() {
   helix.register();
+  const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(false); 
 
-  // const user = useAtomValue(userData);
+  useEffect(() => {
+    async function getFriends() {
+      const currentUser = JSON.parse(localStorage.getItem('pocketbase_auth'));
+      try {
+        setLoading(true);
+        const record = await pb.collection('users').getOne(`${currentUser.model.id}`,{
+          expand: 'friends'
+        })
+        setFriends(record.expand.friends)
+        setLoading(false);
+      } catch {
+        console.log('failed to retrieve data')
+      }
+    }
+    getFriends();
+  }, [])
 
-  // useEffect(() => {
-  //   async function getFriends() {
-  //     const records = await pb.collection('users').getOne(user.id, {
-  //       expand: 
-  //     });
-
-  //     console.log(records.friends);
-
-  //     records.friends.map((item) => {
-  //       console.log(item.expand);
-  //     })
-  //   }
-
-  //   getFriends();
-  // }, [])
-
-  return (
-    <div className="h-full w-full px-4">
+  if(loading) return (
+    <div className="h-full w-full px-4 overflow-auto no-scrollbar">
       <h1 className="text-white text-2xl font-bold pb-4">친구 목록</h1>
-      <ul className="flex w-full h-1/2 flex-col gap-2 justify-center items-center">
-        <div className='w-full items-center justify-center flex flex-col gap-6'>
-          <l-helix
-            size="60"
-            speed="2.0"
-            color="white"
-          ></l-helix>
-          <p className='text-white text-lg font-semibold'>서비스 준비중입니다.</p>
-        </div>
+      <ul className="flex w-full h-1/2 flex-col gap-2 items-center">
+        {
+          Array(10).fill(0).map((_, idx) => (
+            <li key={idx} className='w-full bg-black text-white p-3 rounded-xl flex gap-2 items-center'>
+              <div className='size-[50px] flex-shrink-0 rounded-full bg-gray-400 animate-pulse'></div>
+              <div className='w-full flex flex-col gap-2'>
+                <div className='w-[100px] h-[15px] bg-gray-400 animate-pulse'></div>
+                <div className='h-[10px] bg-gray-400 animate-pulse'></div>
+              </div>
+            </li>
+          ))
+        }
       </ul>
       
     </div>
   )
 
 
-  // return (
-  //   <div className="h-full w-full pt-16 px-4">
-  //     <h1 className="text-white text-2xl font-bold py-5">친구 목록</h1>
-  //     <ul className="flex flex-col gap-2">
-  //       {
-  //         dummyData.map((item, idx) => {
-  //           return (
-  //             <li key={idx} className="flex text-gray-400 bg-black p-3 rounded-lg items-center gap-3">
-  //               <div className="flex gap-2 items-center">
-  //                 <div className="size-[40px] bg-white rounded-lg"></div>
-  //                 <div>
-  //                   <p>{item.name}</p>
-  //                   <p>{item.category}</p>
-  //                 </div>
-  //               </div>
-  //             </li>
-  //           )
-  //         })
-  //       }
-
-  //     </ul>
+  return (
+    <div className="h-full w-full px-4">
+      <h1 className="text-white text-2xl font-bold pb-4">친구 목록</h1>
+      <ul className="flex w-full h-1/2 flex-col gap-2 items-center">
+        {
+          friends?.map((item, idx)=> (
+            <li key={idx} className='w-full bg-black text-white p-3 rounded-xl flex gap-2 items-center'>
+              <img src={mainChar} alt=""  className='size-[50px]'/>
+              <div className='w-full flex flex-col gap-2'>
+                <h1 className='flex justify-between'>{item?.name}<span>{item.progress}%</span></h1>
+                <ProgressBar percentage={item.progress}/>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
       
-  //   </div>
-  // )
+    </div>
+  )
 }

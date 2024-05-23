@@ -1,6 +1,6 @@
 import { useAtom, useAtomValue } from 'jotai'
 import gear from 'src/assets/settings.png'
-import { userProgress, settings, headerState } from 'src/data'
+import { userProgress, settings, headerState, pb } from 'src/data'
 import { useEffect, useState } from 'react';
 import { getPercentage } from 'src/util';
 import arrowLeft from 'src/assets/arrowLeft.png';
@@ -22,6 +22,22 @@ export default function Header() {
       setHeader(true);
     }, 1500)
   }, [progress]); 
+
+  useEffect(() => {
+    async function updatePercentage() {
+      const currentUser = JSON.parse(localStorage.getItem('pocketbase_auth'));
+      try {
+        const record = await pb.collection('users').getOne(`${currentUser.model.id}`);
+        let newData = {...record};
+        newData.progress = percentage;
+        await pb.collection('users').update(`${currentUser.model.id}`, newData);
+      } catch {
+        console.log('failed to update progress');
+      }
+    }
+
+    updatePercentage();
+  }, [percentage])
 
   if(!header) {
     return (
