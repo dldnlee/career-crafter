@@ -141,7 +141,6 @@ export function GraphCard() {
 export function KeywordCard() {
   helix.register();
 
-
   return (
     <motion.div
       initial={{y:100}}
