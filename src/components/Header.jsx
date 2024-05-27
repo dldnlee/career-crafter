@@ -41,10 +41,10 @@ export default function Header() {
 
   if(!header) {
     return (
-      <div className='sticky z-10 top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-[#181818] text-white z-100'>
+      <div className='sticky z-10 top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-primary-bg text-white z-100'>
         <div className='w-full pr-5 flex flex-col gap-2'>
-          <div className='w-[130px] h-4 mt-1 py-2 bg-gray-200 dark:bg-gray-700 animate-pulse'></div>
-          <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700 animate-pulse">
+          <div className='w-[130px] h-4 mt-1 py-2 bg-gray-700 animate-pulse'></div>
+          <div className="w-full rounded-full h-1.5 mb-4 bg-gray-700 animate-pulse">
           </div>
         </div>
         <button onClick={() => {setSettingsActive(true)}}>
@@ -56,7 +56,7 @@ export default function Header() {
   }
 
   return (
-    <div className='sticky z-10 top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-[#181818] text-white z-100'>
+    <div className='sticky z-10 top-0 left-0 flex justify-between p-5 pb-0 items-center w-full bg-primary-bg text-white z-100'>
       <div className='w-full pr-5 flex flex-col gap-2'>
         <div className='flex items-center justify-between'>
           <p>나의 답변 현황: {percentage} %</p>

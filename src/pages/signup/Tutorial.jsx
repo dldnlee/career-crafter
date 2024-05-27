@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination, A11y } from "swiper/modules"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import prefChar from 'src/assets/prefChar.svg'
-import biasChar from 'src/assets/biasChar.svg'
-import specChar from 'src/assets/specChar.svg'
+import tutorial1 from 'src/assets/tutorial1.png'
+import tutorial2 from 'src/assets/tutorial2.png'
+import tutorial3 from 'src/assets/tutorial3.png'
 import { HeaderWithBack } from "/src/components"
 
 import 'swiper/css';
@@ -17,13 +17,11 @@ import { signupData } from "../../data"
 function TutorialCard({topText, btmText, noteText, imgSrc}) {
   return (
     <div className="flex flex-col gap-8 w-full h-full items-center">
-      <div>
+      <div className="w-full pl-6">
         <h1 className="text-lg font-semibold">{topText}<br></br>{btmText}</h1>
         <p className="text-[12px] text-gray-400">{noteText}</p>
       </div>
-      <div className="w-[300px] h-[300px] bg-white rounded-2xl flex justify-center items-center">
-        <img src={imgSrc} alt="" className="size-[50%]" />
-      </div>
+      <img src={imgSrc} alt={topText + btmText} />
     </div>
 
   )
@@ -34,7 +32,6 @@ function NavigateBtn({index}) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log(swiperRef.activeIndex);
     if(index === 2) {
       setActive(true);
     } else {
@@ -84,23 +81,23 @@ export function Tutorial() {
               topText={'매일 질문 답변을 통해'}
               btmText={'나의 커리어를 찾아봐요!'}
               noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={prefChar}
+              imgSrc={tutorial1}
             />
           </SwiperSlide>
           <SwiperSlide>
             <TutorialCard 
-              topText={'매일 질문 답변을 통해'}
-              btmText={'나의 커리어를 찾아봐요!'}
-              noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={biasChar}
+              topText={'데이터 분석 기반'}
+              btmText={'직무 추천을 받을 수 있어요!'}
+              noteText={'직무/회사 추천'}
+              imgSrc={tutorial2}
             />
           </SwiperSlide>
           <SwiperSlide>
             <TutorialCard 
-              topText={'매일 질문 답변을 통해'}
-              btmText={'나의 커리어를 찾아봐요!'}
-              noteText={'오늘의 질문, NPC 질문, 나의 직무 상황, 관심 키워드'}
-              imgSrc={specChar}
+              topText={'다른 사람들의'}
+              btmText={'진로 준비도를 확인해봐요!'}
+              noteText={'커뮤니티'}
+              imgSrc={tutorial3}
             />
           </SwiperSlide>
       </Swiper>

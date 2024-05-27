@@ -1,8 +1,8 @@
 import close from 'src/assets/close.svg';
 import { Link } from 'react-router-dom';
-import prefChar from 'src/assets/prefChar.svg'
-import biasChar from 'src/assets/biasChar.svg'
-import specChar from 'src/assets/specChar.svg'
+import prefChar from 'src/assets/prefChar.png'
+import biasChar from 'src/assets/biasChar.png'
+import specChar from 'src/assets/specChar.png'
 import { Playground } from './components/Playground';
 import { NPCProgress } from './components/NPCProgress';
 import { useAtomValue } from 'jotai';
@@ -54,7 +54,7 @@ export function NPCPage() {
       <div className='w-full p-4'>
         <Playground />
       </div>
-      <div className='w-full p-4'>
+      <div className='w-full p-4 flex flex-col gap-2'>
         <NPCProgress charImg={prefChar} percentage={prefProgress}/>
         <NPCProgress charImg={biasChar} percentage={biasProgress}/>
         <NPCProgress charImg={specChar} percentage={specProgress}/>

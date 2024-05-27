@@ -30,17 +30,17 @@ export function CommunityPage() {
       <ul className="w-full flex items-center gap-2 p-3 bg-primary-bg">
         <li>
           <button 
-            className={`px-6 py-2 w-full rounded-xl ${activeTab === 1 ? 'bg-white text-black' : 'bg-black text-white'}`}
+            className={`px-6 py-2 w-full rounded-xl ${activeTab === 1 ? 'bg-white text-black' : 'bg-[#303030] text-white'}`}
             onClick={() => {setActiveTab(1); navigate('/main/community')}}>랭킹</button>
         </li>
         <li>
           <button 
-            className={`px-6 py-2 w-full rounded-xl ${activeTab === 2 ? 'bg-white text-black' : 'bg-black text-white'}`}
+            className={`px-6 py-2 w-full rounded-xl ${activeTab === 2 ? 'bg-white text-black' : 'bg-[#303030] text-white'}`}
             onClick={() => {setActiveTab(2); navigate('/main/community/friends')}}>친구</button>
         </li>
         <li>
           <button 
-            className={`px-6 py-2 w-full rounded-xl ${activeTab === 3 ? 'bg-white text-black' : 'bg-black text-white'}`}
+            className={`px-6 py-2 w-full rounded-xl ${activeTab === 3 ? 'bg-white text-black' : 'bg-[#303030] text-white'}`}
             onClick={() => {setActiveTab(3); navigate('/main/community/board')}}>게시판</button>
         </li>
       </ul>

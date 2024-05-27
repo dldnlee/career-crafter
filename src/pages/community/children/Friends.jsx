@@ -1,7 +1,7 @@
 import {helix} from 'ldrs';
 import { useEffect, useState } from 'react';
 import { pb } from 'src/data';
-import mainChar from 'src/assets/mainChar.svg';
+import mainChar from 'src/assets/mainChar.png';
 import { ProgressBar } from 'src/components';
 import addFriend from 'src/assets/addFriend.png';
 import close from 'src/assets/close.svg';

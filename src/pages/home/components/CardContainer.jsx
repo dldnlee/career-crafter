@@ -19,7 +19,7 @@ export function CardContainer() {
     <div className="w-full h-full z-0">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={5}
+        spaceBetween={10}
         slidesPerView={1.2}
         effect="fade"
         centeredSlides={true}
