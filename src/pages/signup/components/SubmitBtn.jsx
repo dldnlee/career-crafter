@@ -45,6 +45,7 @@ export function SubmitBtn({index}) {
       await pb.collection('answers').create(answerData);
       setLoading(false);
       navigate('/signup/complete');
+      
     } catch {
       console.log('register failed');
     }

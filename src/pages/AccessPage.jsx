@@ -3,9 +3,16 @@ import { FindInfo } from "../components"
 import { motion } from "framer-motion"
 import whiteCharacter from 'src/assets/whiteCharacterStart.svg';
 import { useInitializeAtoms } from "../hooks/useInitializeAtoms";
+import { swiperIndex } from "../data";
+import {useSetAtom} from 'jotai'
+import { useEffect } from "react";
 
 export function AccessPage() {
+  const setActiveIndex = useSetAtom(swiperIndex);
 
+  useEffect(() => {
+    setActiveIndex(0);
+  })
   useInitializeAtoms();
 
   return (

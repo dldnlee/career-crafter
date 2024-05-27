@@ -23,23 +23,25 @@ export function MainCard() {
       initial={{y:100}}
       animate={{y:0}}
       className="w-full h-[420px] ">
-      <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-semibold text-xl rounded-2xl relative bg-[#d8fdff] bg-maincard-bg bg-contain bg-no-repeat bg-center flex justify-center items-center">
+      <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-semibold text-xl rounded-2xl relative bg-[#d8fdff] bg-maincard-bg bg-contain bg-no-repeat bg-center flex justify-center items-center flex-col">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>오늘의 질문</h1>
         </div>
-        <motion.img 
-          animate={{y:20, rotate:10}}
-          transition={{
-            type:'spring',
-            stiffness:100,
-            duration: 1,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            
-          }}
-          src={mainCharacter} alt='Main Character'
-          className="w-[180px]"
-          />
+          <motion.div
+            animate={{y:20, rotate:10}}
+            transition={{
+              type:'spring',
+              stiffness:100,
+              duration: 1,
+              repeat: Infinity,
+              repeatType: 'reverse',
+            }}>
+            <img 
+              src={mainCharacter} alt='Main Character'
+              className="w-[180px]"
+              />
+            <p className="bg-white p-4 font-normal text-sm rounded-xl absolute bottom-[-50px] left-auto right-auto">질문에 답변 해주세요!</p>
+        </motion.div>
       </Link>
 
     </motion.div>
