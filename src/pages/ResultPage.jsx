@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import arrowLeft from 'src/assets/arrowLeft.png';
 import whiteChar from 'src/assets/whiteCharacter.svg';
 import {motion} from 'framer-motion';
-import mockGraph from 'src/assets/mockGraph.png';
 import { useEffect, useState } from "react";
 import { 
   actionAnswers,
