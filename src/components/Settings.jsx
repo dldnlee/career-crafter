@@ -36,7 +36,7 @@ export function Settings({active}) {
           <li className="py-3 px-3 border-b border-gray-50/20">고객센터</li>
           <li className="">
             <button 
-              className="py-3 text-red-500 px-3 border-b border-gray-50/20 w-full text-start hover:bg-black "
+              className="py-3 text-red-500 px-3 border-b border-gray-50/20 w-full text-start hover:bg-white/20 "
               onClick={handleLogout}
               type="button">
               로그아웃

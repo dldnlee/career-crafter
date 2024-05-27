@@ -11,10 +11,6 @@ function AddFriendDialog({active, setActive}) {
   const [result, setResults] = useState();
   const [search, setSearch] = useState('');
 
-
-
-
-
   async function submitHandler(e) {
     e.preventDefault();
     const record = await pb.collection('users').getFirstListItem(`username="${search}"`)
@@ -120,7 +116,7 @@ export function Friends() {
         {!loading ? 
           friends?.map((item, idx)=> (
             <li key={idx} className='w-full bg-black text-white p-3 rounded-xl flex gap-2 items-center'>
-              <img src={mainChar} alt=""  className='size-[50px]'/>
+              <img src={mainChar} alt=""  className='w-[50px]'/>
               <div className='w-full flex flex-col gap-2'>
                 <h1 className='flex justify-between'>{item?.name}<span>{item.progress}%</span></h1>
                 <ProgressBar percentage={item.progress}/>

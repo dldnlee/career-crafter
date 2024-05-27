@@ -23,7 +23,7 @@ export function MainCard() {
       initial={{y:100}}
       animate={{y:0}}
       className="w-full h-[420px] ">
-      <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-semibold text-xl rounded-2xl relative bg-gradient-to-tl bg-[#d8fdff] flex justify-center items-center">
+      <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-semibold text-xl rounded-2xl relative bg-[#d8fdff] bg-maincard-bg bg-contain bg-no-repeat bg-center flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>오늘의 질문</h1>
         </div>
@@ -38,6 +38,7 @@ export function MainCard() {
             
           }}
           src={mainCharacter} alt='Main Character'
+          className="w-[180px]"
           />
       </Link>
 
