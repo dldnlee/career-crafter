@@ -19,7 +19,8 @@ import {
   ResultPage,
   CompleteSignup,
   Board,
-  NPCPage
+  NPCPage,
+  GraphPage
 } from './pages'
 import { AccessPage } from './pages/AccessPage'
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: 'npc',
     element: <NPCPage />
+  },
+  {
+    path: 'graph',
+    element: <GraphPage />
   },
   {
     path: 'result',
@@ -118,7 +123,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className='relative mx-auto w-screen h-svh max-w-[400px] max-h-[900px]'>
+    <div className='relative mx-auto w-screen h-svh max-w-[400px] bg-primary-bg max-h-[900px]'>
       <RouterProvider router={router} />
     </div>
   )

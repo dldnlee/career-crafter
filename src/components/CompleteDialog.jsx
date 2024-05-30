@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import mainCharacter from "src/assets/mainChar.svg"
-import prefChar from 'src/assets/prefChar.svg'
-import biasChar from 'src/assets/biasChar.svg'
-import specChar from 'src/assets/specChar.svg'
+import prefChar from 'src/assets/prefChar.png'
+import biasChar from 'src/assets/biasChar.png'
+import specChar from 'src/assets/specChar.png'
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -57,8 +57,8 @@ export function CompleteDialog({category, active}) {
       animate={{scale:1}}
       className="w-fit p-8 bg-white text-black flex flex-col gap-5 items-center rounded-2xl">
         <p className="text-center text-lg font-semibold">{variants[number].text1}<br></br>{variants[number].text2}</p>
-        <img src={variants[number].character} alt="캐릭터" className="size-[200px]"/>
-        <Link to='/main' replace={true} className="w-full text-center py-2 bg-point-color hover:bg-point-color/80 text-white rounded-full">완료</Link>
+        <img src={variants[number].character} alt="캐릭터" className="size-[100px]"/>
+        <Link to='/main' className="w-full text-center py-2 bg-point-color hover:bg-point-color/80 text-white rounded-full">완료</Link>
       </motion.div>
     </div>
   )

@@ -55,9 +55,9 @@ export function NPCPage() {
         <Playground />
       </div>
       <div className='w-full p-4 flex flex-col gap-2'>
-        <NPCProgress charImg={prefChar} percentage={prefProgress}/>
-        <NPCProgress charImg={biasChar} percentage={biasProgress}/>
-        <NPCProgress charImg={specChar} percentage={specProgress}/>
+        <NPCProgress charImg={biasChar} percentage={prefProgress} charName={'성향이'}/>
+        <NPCProgress charImg={prefChar} percentage={biasProgress} charName={'취향이'}/>
+        <NPCProgress charImg={specChar} percentage={specProgress} charName={'스펙이'}/>
         
       </div>
     </div>

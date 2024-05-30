@@ -1,33 +1,43 @@
-
+import biasChar from 'src/assets/biasChar.png'
+import prefChar from 'src/assets/biasChar.png'
+import specChar from 'src/assets/biasChar.png'
 
 const dummyData = [
   {
     'name': '김민지',
-    'category': 'PM(Product Manager)'
+    'category': 'PM(Product Manager)',
+    'img' : biasChar
   },
   {
     'name': '강해린',
-    'category': 'UI / UX 디자이너'
+    'category': 'UI / UX 디자이너', 
+    'img': prefChar
   },
   {
     'name': '이혜인',
-    'category': '프론트 개발자'
+    'category': '프론트 개발자',
+    'img' : specChar
   },
   {
     'name': '팜하니',
-    'category': '백앤드 개발자'
+    'category': '백앤드 개발자',
+    'img': prefChar
   },
   {
     'name': '다니엘',
-    'category': '요리사'
+    'category': '요리사',
+    'img': biasChar
+
   },
   {
     'name': '햄스터',
-    'category': '컨설팅'
+    'category': '컨설팅',
+    'img': specChar
   },
   {
     'name': '토끼',
-    'category': '디자이너'
+    'category': '디자이너',
+    'img': biasChar
   },
 ]
 
@@ -44,7 +54,7 @@ export function Ranking() {
                 <p className="text-xl text-white">{idx+1}등</p>
                 <p className="font-extralight">|</p>
                 <div className="flex gap-2 items-center">
-                  <div className="size-[40px] bg-white rounded-lg"></div>
+                  <img src={item.img} alt="캐릭터" className='size-[40px]'/>
                   <div>
                     <p>{item.name}</p>
                     <p>{item.category}</p>

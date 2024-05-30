@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import arrowLeft from 'src/assets/arrowLeft.png';
 import { Loader, RangeInput } from '/src/components';
 import { motion } from 'framer-motion';
@@ -8,11 +8,12 @@ import { useQuestionsPage } from '/src/hooks/useQuestionsPage';
 import { CompleteDialog } from '../components/CompleteDialog';
 
 
+
 export function QuestionsPage() {
   const { category } = useParams();
-  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [complete, setComplete] = useState(false);
+  const navigate = useNavigate();
 
   const {rangeStart, answerSheet, questions, questionType, userAnswers, setAnswerSheet} = useQuestionsPage(category);
 
@@ -60,9 +61,9 @@ export function QuestionsPage() {
   return (
     <div className="w-full h-full bg-primary text-white">
       <div className='sticky top-0 left-0 w-full p-6 flex justify-between'>
-        <Link to='/main'>
+        <button onClick={() => navigate(-1, {replace:true})}>
           <img src={arrowLeft} alt='뒤로가기' className='invert'/>
-        </Link>
+        </button>
         <h1 className='text-lg font-semibold'>{category}</h1>
       </div>
       <form

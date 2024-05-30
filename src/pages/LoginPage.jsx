@@ -34,7 +34,7 @@ export function LoginPage() {
   if (loading) return (<Loader active={loading}/>)
 
   return (
-    <div className="flex flex-col gap-10 items-center justify-center w-full h-full bg-primary text-white">
+    <div className="flex flex-col gap-10 items-center justify-center w-full h-full bg-primary-bg text-white">
       <div className="absolute top-0 left-0 w-full flex justify-end p-4">
         <Link to='/access' replace className="w-[30px]">
           <img src={close} alt="닫기" className="w-full invert"/>
@@ -68,7 +68,7 @@ export function LoginPage() {
           <span className={`${valid ? 'hidden' : 'block'} text-red-500`}>이메일 또는 비밀번호가 잘못 되었습니다</span>
         </label>
         <button 
-          className="w-full bg-point-color mt-5 hover:bg-point-color/60 hover:text-white py-3 rounded-full"
+          className="w-full bg-white text-black font-semibold mt-5 hover:bg-white/20 hover:text-white py-3 rounded-full"
           >로그인
         </button>
         <div className="flex w-full text-[13px] justify-between items-center px-12">

@@ -7,9 +7,9 @@ export function RangeInput({id, question, onChangeFn}) {
       <h3>{question}</h3>
       <div className='w-full flex flex-col gap-2'>
         <div className='w-full justify-between flex text-sm font-semibold'>
-          <p>매우 싫다</p>
+          <p>매우 낮음</p>
           <p>보통</p>
-          <p>매우 만족</p>
+          <p>매우 높음</p>
         </div>
         <div className='w-full px-5 py-2 relative flex justify-center items-center'>
           <input

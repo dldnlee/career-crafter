@@ -30,7 +30,7 @@ export function CompleteSignup() {
         <button
         type='button'
         onClickCapture={StartBtn}
-        className='w-full py-3 bg-point-color hover:bg-point-color/50 rounded-full text-center font-semibold'>시작하기</button>
+        className='w-full py-3 bg-white text-black hover:bg-white/20 rounded-full text-center font-semibold'>시작하기</button>
       </div>
     </div>
     

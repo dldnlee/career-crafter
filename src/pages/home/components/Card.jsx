@@ -127,6 +127,7 @@ export function GraphCard() {
   }
 
   return (
+    <Link to='/graph'>
       <motion.div
         initial={{y:100}}
         animate={{y:0}}
@@ -137,6 +138,7 @@ export function GraphCard() {
         </div>
         <Radar data={data} options={options}/>
       </motion.div>
+    </Link>
   )
 }
 
