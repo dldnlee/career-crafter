@@ -173,10 +173,10 @@ export function JobCard() {
         </div>
         <div className="flex h-[320px] overflow-hidden flex-col px-4 gap-2 w-full ">
           {
-            Array(4).fill(0).map(() => (
-              <>
+            Array(4).fill(0).map((_, idx) => (
+              <div key={idx}>
                 <Job />
-              </>
+              </div>
             ))
           }
 

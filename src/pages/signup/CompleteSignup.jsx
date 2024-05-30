@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import whiteChar from '/src/assets/whiteCharacter.svg';
+import whiteChar from '/src/assets/mainChar2.svg';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -26,7 +26,7 @@ export function CompleteSignup() {
         initial={{y:100, opacity:0}}
         animate={{y:0, opacity:1}}
         transition={{duration:2}}
-        src={whiteChar} alt="하얀색 캐릭터" className='size-[250px]' />
+        src={whiteChar} alt="하얀색 캐릭터" className='w-[190px]' />
         <button
         type='button'
         onClickCapture={StartBtn}

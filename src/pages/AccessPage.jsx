@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom"
-import { FindInfo } from "../components"
 import { motion } from "framer-motion"
-import whiteCharacter from 'src/assets/whiteCharacterStart.svg';
 import { useInitializeAtoms } from "../hooks/useInitializeAtoms";
 import { swiperIndex } from "../data";
 import {useSetAtom} from 'jotai'
 import { useEffect } from "react";
+import accessPage from 'src/assets/accessPage.svg';
 
 export function AccessPage() {
   const setActiveIndex = useSetAtom(swiperIndex);
@@ -16,8 +15,8 @@ export function AccessPage() {
   useInitializeAtoms();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-12 w-full bg-primary-bg h-full bg-primary text-white">
-      <div className="flex flex-col w-fit justify-center items-start">
+    <div className="flex flex-col items-center justify-center gap-6 w-full bg-primary-bg h-full bg-primary text-white">
+      <div className="flex flex-col w-fit justify-center items-center">
         <motion.p
           initial={{x:-100}}
           animate={{x:0}}
@@ -30,11 +29,11 @@ export function AccessPage() {
           animate={{opacity:1}}
           transition={{duration:2}}
           className="font-semibold text-[20px]">: 나만의 진로 설계 가이드</motion.p>
+        <motion.img 
+        initial={{scale:0.2}}
+        animate={{scale:1}}
+        src={accessPage} alt="커리어크래프터 캐릭터" className="size-[270px]" />
       </div>
-      {/* <motion.img 
-      initial={{scale:0.2}}
-      animate={{scale:1}}
-      src={whiteCharacter} alt="커리어크래프터 캐릭터" className="size-[220px]" /> */}
       <div className="flex flex-col w-auto gap-3 mt-5">
         <Link to="/login" className="w-[260px] py-3 text-sm text-center text-black bg-white hover:bg-white/60 rounded-full">
           로그인

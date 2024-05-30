@@ -18,7 +18,7 @@ export function LandingPage() {
   }, [])
   
   return (
-    <div className='w-full h-full flex flex-col gap-20 items-center justify-center bg-primary-bg'>
+    <div className='w-full h-full flex flex-col gap-10 items-center justify-center bg-primary-bg'>
       <motion.div 
               animate={{y: [-50, 0], rotate: 10}}
               transition={{

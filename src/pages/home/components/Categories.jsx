@@ -35,7 +35,7 @@ export function Categories() {
   },);
   
   return (
-    <ul className="flex overflow-auto w-full gap-3 py-2 px-4 text-nowrap no-scrollbar">
+    <ul className="flex overflow-y-scroll w-full gap-3 py-2 px-4 text-nowrap no-scrollbar">
       {
         categories.map((item, idx) => {
           return (

@@ -12,13 +12,12 @@ export function JobPage() {
         <div className="flex overflow-auto no-scrollbar h-[70%] flex-col gap-2 w-full ">
           <TitleText text={'직무 추천'}/>
           {
-            Array(10).fill(0).map(() => (
-              <>
-                <Job />
-              </>
+            Array(10).fill(0).map((_, idx) => (
+              <div key={idx}>
+                <Job/>
+              </div>
             ))
           }
-
         </div>
       </div>
       </div>
