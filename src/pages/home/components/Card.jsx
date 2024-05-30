@@ -13,7 +13,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import arrowRight from 'src/assets/arrowRight.svg';
+import { Job } from "src/components/"
 
 
 
@@ -26,6 +28,7 @@ export function MainCard() {
       <Link to="/questions/오늘의 질문" className="w-full h-full text-black font-semibold text-xl rounded-2xl relative bg-[#d8fdff] bg-maincard-bg bg-contain bg-no-repeat bg-center flex justify-center items-center flex-col">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>오늘의 질문</h1>
+          <img src={arrowRight} alt="오른쪽 화살표" />
         </div>
           <motion.div
             animate={{y:20, rotate:10}}
@@ -58,6 +61,7 @@ export function NPCCard() {
       className="relative w-full h-[420px] text-black font-semibold text-xl rounded-2xl bg-gradient-to-tl bg-white flex justify-center items-center">
       <div className="flex  absolute top-0 left-0 w-full justify-between p-5">
         <h1>NPC 질문</h1>
+        <img src={arrowRight} alt="오른쪽 화살표" />
       </div>
       <Link to='/npc' className="w-full h-full flex flex-col items-center justify-center pt-16 px-4 pb-4">
         <div className="w-full h-full flex flex-col items-center justify-center gap-10 bg-primary-bg rounded-[60px] text-white">
@@ -121,9 +125,18 @@ export function GraphCard() {
     scales: {
       r: {
         suggestedMin: 0,
-        suggestedMax: 50
-    }
-    }
+        suggestedMax: 50,
+        ticks: {
+          display: false
+        },
+        grid: {
+          color: 'gray',
+        },
+        pointLabels: {
+          color: 'black'
+        }
+      }
+    },
   }
 
   return (
@@ -132,12 +145,44 @@ export function GraphCard() {
         initial={{y:100}}
         animate={{y:0}}
         transition={{delay:0.2}}
-      className="w-full h-[420px] text-black font-semibold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
+      className="w-full h-[420px] text-black font-semibold text-xl rounded-2xl px-5 relative bg-gradient-to-tl bg-[#fcff6f] flex justify-center items-center">
         <div className="flex absolute top-0 left-0 w-full justify-between p-5">
           <h1>스텟 분석</h1>
+          <img src={arrowRight} alt="오른쪽 화살표" />
         </div>
         <Radar data={data} options={options}/>
       </motion.div>
+    </Link>
+  )
+}
+
+
+export function JobCard() {
+  helix.register();
+
+  return (
+    <Link to='/job'>
+      <motion.div
+        initial={{y:100}}
+        animate={{y:0}}
+        transition={{delay:0.3}}
+      className="w-full h-[420px] max-h-[420px] text-black font-semibold text-xl rounded-2xl relative bg-gradient-to-tl bg-[#c2ffd3] overflow-hidden flex-col flex">
+        <div className="flex w-full justify-between p-5">
+          <h1>직무/회사</h1>
+          <img src={arrowRight} alt="오른쪽 화살표" />
+        </div>
+        <div className="flex h-[320px] overflow-hidden flex-col px-4 gap-2 w-full ">
+          {
+            Array(4).fill(0).map(() => (
+              <>
+                <Job />
+              </>
+            ))
+          }
+
+        </div>
+      </motion.div>
+    
     </Link>
   )
 }
@@ -151,7 +196,7 @@ export function KeywordCard() {
       initial={{y:100}}
       animate={{y:0}}
       transition={{delay:0.3}}
-    className="w-full h-[420px] text-black font-semibold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ffe099] flex justify-center items-center">
+    className="w-full h-[420px] text-black font-semibold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#f799ff] flex justify-center items-center">
       <div className="flex absolute top-0 left-0 w-full justify-between p-5">
         <h1>관심 키워드</h1>
       </div>

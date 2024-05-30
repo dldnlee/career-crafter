@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { MainCard, NPCCard, GraphCard, KeywordCard } from "./Card"
+import { MainCard, NPCCard, GraphCard, KeywordCard, JobCard } from "./Card"
 import { Categories } from "./Categories"
 
 export function CardContainer() {
@@ -36,6 +36,9 @@ export function CardContainer() {
           </SwiperSlide>
           <SwiperSlide>
             <GraphCard/>
+          </SwiperSlide>
+          <SwiperSlide>
+            <JobCard />
           </SwiperSlide>
           <SwiperSlide>
             <KeywordCard/>

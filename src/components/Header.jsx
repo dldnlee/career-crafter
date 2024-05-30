@@ -7,6 +7,7 @@ import arrowLeft from 'src/assets/arrowLeft.png';
 import { Settings } from './Settings';
 import { useProgress } from 'src/hooks';
 import { Link, useNavigate } from 'react-router-dom';
+// import close from 'src/assets/close.svg';
 
 export default function Header() {
   const progress = useAtomValue(userProgress);
@@ -89,5 +90,16 @@ export function HeaderWithBack({path = '/access'}) {
         <img src={arrowLeft} alt='뒤로가기' className='invert' />
       </button>
     </div>
+  )
+}
+
+export function HeaderWithClose({path='/main', text}) {
+  return (
+    <div className='sticky top-0 left-0 w-full p-6 flex bg-primary-bg justify-between items-center'>
+        <Link to={path}>
+          <img src={arrowLeft} alt="" className='size-[30px] invert'/>
+        </Link>
+        <h1 className='text-white text-xl font-semibold'>{text}</h1>
+      </div>
   )
 }

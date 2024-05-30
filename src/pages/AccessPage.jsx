@@ -16,20 +16,20 @@ export function AccessPage() {
   useInitializeAtoms();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 w-full bg-primary-bg h-full bg-primary text-white">
+    <div className="flex flex-col items-center justify-center gap-12 w-full bg-primary-bg h-full bg-primary text-white">
       <div className="flex flex-col w-fit justify-center items-start">
         <motion.p
           initial={{x:-100}}
           animate={{x:0}}
           transition={{type:"spring", duration:.2, bounce:0.25, stiffness:80}}
-          className="text-[30px] font-extrabold flex flex-col leading-none">
+          className="text-[35px] font-extrabold flex flex-col leading-none">
           CareerCrafter
         </motion.p>
         <motion.p
           initial={{opacity:0}}
           animate={{opacity:1}}
           transition={{duration:2}}
-          className="font-semibold text-[18px]">: 나만의 진로 설계 가이드</motion.p>
+          className="font-semibold text-[20px]">: 나만의 진로 설계 가이드</motion.p>
       </div>
       {/* <motion.img 
       initial={{scale:0.2}}

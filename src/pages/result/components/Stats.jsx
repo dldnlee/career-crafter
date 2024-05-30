@@ -82,14 +82,23 @@ export function Stats() {
     plugins: {
       legend: {
         display: false,
-      }
+      },
     },
     scales: {
       r: {
         suggestedMin: 0,
-        suggestedMax: 50
-    }
-    }
+        suggestedMax: 50,
+        ticks: {
+          display: false
+        },
+        grid: {
+          color: 'gray',
+        },
+        pointLabels: {
+          color: 'white'
+        }
+      }
+    },
   }
 
   const data = {
@@ -119,7 +128,7 @@ export function Stats() {
     <div className="flex flex-col gap-5">
       <TitleText text={'유형 분석 그래프'} /> 
       <LineGraph />
-      <div className="bg-white p-6 rounded-2xl">
+      <div className="bg-secondary-bg p-6 rounded-2xl">
         <Radar data={data} options={options}/>
       </div>
     </div>

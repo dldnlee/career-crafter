@@ -18,6 +18,10 @@ const categories = [
     function: () => {}
   },
   {
+    category: '직업 추천',
+    function: () => {}
+  },
+  {
     category: '관심 키워드',
     function: () => {}
   },

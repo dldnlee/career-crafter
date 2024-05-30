@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import mainCharacter from "src/assets/mainChar.svg"
+import mainCharacter from "src/assets/mainChar2.svg"
 import prefChar from 'src/assets/prefChar.png'
 import biasChar from 'src/assets/biasChar.png'
 import specChar from 'src/assets/specChar.png'
@@ -55,10 +55,10 @@ export function CompleteDialog({category, active}) {
       <motion.div
       initial={{scale:0.2}}
       animate={{scale:1}}
-      className="w-fit p-8 bg-white text-black flex flex-col gap-5 items-center rounded-2xl">
+      className="w-fit p-8 bg-secondary-bg text-white flex flex-col gap-5 items-center rounded-2xl">
         <p className="text-center text-lg font-semibold">{variants[number].text1}<br></br>{variants[number].text2}</p>
         <img src={variants[number].character} alt="캐릭터" className="size-[100px]"/>
-        <Link to='/main' className="w-full text-center py-2 bg-point-color hover:bg-point-color/80 text-white rounded-full">완료</Link>
+        <Link to='/main' className="w-full text-center py-2 bg-white hover:bg-black/40 hover:text-white text-black rounded-full">완료</Link>
       </motion.div>
     </div>
   )

@@ -91,7 +91,7 @@ export function QuestionsPage() {
           }
         </motion.ul>
         <button 
-          className='w-full bg-point-color py-3 rounded-full text-white hover:bg-point-color/60 hover:text-white'
+          className='w-full bg-white py-3 rounded-full text-black hover:bg-black/40 hover:text-white'
           >완료
         </button>
       </form>

@@ -14,6 +14,7 @@ import {
   regularityAnswers } from 'src/data';
 import { useEffect, useState } from 'react';
 import { getPercentage, getSum } from '../../util';
+import { HeaderWithClose } from 'src/components';
 
 
 export function NPCPage() {
@@ -45,19 +46,14 @@ export function NPCPage() {
 
   return (
     <div>
-      <div className='w-full p-3 flex justify-between items-center'>
-        <h1 className='text-white text-xl font-extrabold'>NPC 질문</h1>
-        <Link to='/main'>
-          <img src={close} alt="" className='size-[30px] invert'/>
-        </Link>
-      </div>
+      <HeaderWithClose text='NPC 질문'/> 
       <div className='w-full p-4'>
         <Playground />
       </div>
       <div className='w-full p-4 flex flex-col gap-2'>
-        <NPCProgress charImg={biasChar} percentage={prefProgress} charName={'성향이'}/>
-        <NPCProgress charImg={prefChar} percentage={biasProgress} charName={'취향이'}/>
-        <NPCProgress charImg={specChar} percentage={specProgress} charName={'스펙이'}/>
+        <NPCProgress charImg={biasChar} percentage={prefProgress} charName={'초록이'}/>
+        <NPCProgress charImg={prefChar} percentage={biasProgress} charName={'파랑이'}/>
+        <NPCProgress charImg={specChar} percentage={specProgress} charName={'노랑이'}/>
         
       </div>
     </div>

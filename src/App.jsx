@@ -20,7 +20,8 @@ import {
   CompleteSignup,
   Board,
   NPCPage,
-  GraphPage
+  GraphPage,
+  JobPage
 } from './pages'
 import { AccessPage } from './pages/AccessPage'
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: 'graph',
     element: <GraphPage />
+  },
+  {
+    path: 'job',
+    element: <JobPage />
   },
   {
     path: 'result',

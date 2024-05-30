@@ -65,8 +65,6 @@ function AddFriendDialog({active, setActive}) {
           
         </div>
         
-
-
       </div>
     </div>
   )

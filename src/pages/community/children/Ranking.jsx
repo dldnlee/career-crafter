@@ -1,6 +1,6 @@
 import biasChar from 'src/assets/biasChar.png'
-import prefChar from 'src/assets/biasChar.png'
-import specChar from 'src/assets/biasChar.png'
+import prefChar from 'src/assets/prefChar.png'
+import specChar from 'src/assets/specChar.png'
 
 const dummyData = [
   {

@@ -1,9 +1,8 @@
 import { useRadarGraph } from "src/hooks/useRadarGraph"
-import {motion} from 'framer-motion'
 import { Radar } from "react-chartjs-2"
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS} from 'chart.js/auto'
-import { HeaderWithBack } from "src/components"
+import { HeaderWithClose } from "src/components"
 import {useAtomValue} from 'jotai'
 import { useEffect, useState } from "react";
 import { 
@@ -22,14 +21,23 @@ function StatsCard() {
     scales: {
       r: {
         suggestedMin: 0,
-        suggestedMax: 50
-    }
-    }
+        suggestedMax: 50,
+        ticks: {
+          display: false
+        },
+        grid: {
+          color: 'gray ',
+        },
+        pointLabels: {
+          color: 'white'
+        }
+      }
+    },
   }
 
   return (
       <div
-      className="w-full h-[420px] text-black font-semibold text-xl rounded-2xl relative bg-gradient-to-tl from-white to-[#ebffcc] flex justify-center items-center">
+      className="w-full h-[420px] text-black font-semibold text-xl rounded-2xl relative bg-gradient-to-tl bg-secondary-bg flex justify-center items-center p-5">
         <Radar data={data} options={options}/>
       </div>
   )
@@ -102,16 +110,12 @@ function LineGraph() {
 export function GraphPage() {
   return (
     <div className="w-full h-full text-white">
-      <HeaderWithBack path='/main'/> 
+      <HeaderWithClose path='/main' text={'나의 직무 성향'}/> 
       <div className="w-full h-full p-4 flex flex-col gap-4 items-center">
-        <h1 className="text-xl font-semibold">나의 직무 성향 그래프</h1>
         <StatsCard />
         <LineGraph />
         <p>*현재까지 답변한 내용에 대한 분석입니다</p>
-
       </div>
-      
-      
     </div>
   )
 }
