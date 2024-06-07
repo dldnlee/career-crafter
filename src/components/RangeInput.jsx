@@ -4,7 +4,7 @@
 export function RangeInput({id, question, onChangeFn}) {
   return (
     <label htmlFor={id} className='relative flex flex-col gap-6'>
-      <h3>{question}</h3>
+      <h3 className="whitespace-pre-line">{question}</h3>
       <div className='w-full flex flex-col gap-2'>
         <div className='w-full justify-between flex text-sm font-semibold'>
           <p>매우 낮음</p>

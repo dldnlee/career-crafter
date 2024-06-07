@@ -56,7 +56,7 @@ export function InitialQuestions() {
 
   return (
     <div className='w-full h-full bg-primary-bg text-white flex flex-col items-center'>
-      <div className='w-full px-6 flex flex-col gap-14'>
+      <div className='w-full px-6 flex flex-col '>
         <div>
           <QuestionsIndex btnPrevEvent={handlePrev} btnNextEvent={handleNext} index={activeIndex} />
           <Swiper
@@ -77,7 +77,7 @@ export function InitialQuestions() {
               <SwiperSlide>
                 <div className='w-full flex flex-col justify-center items-center'>
                   <h1 className='text-2xl text-center font-semibold py-14'>키워드를 선택 해주세요!</h1>
-                  <div className='w-full h-[400px] flex flex-wrap gap-2 justify-center overflow-y-auto'>
+                  <div className='w-full h-[200px] flex flex-wrap gap-2 justify-center overflow-y-auto'>
                     {
                       jobKeywords.map((item) => (
                         <KeywordButton key={item} item={item}/>
